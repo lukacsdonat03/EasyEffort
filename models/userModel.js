@@ -30,6 +30,10 @@ module.exports = (sequelize,DataTypes) => {
         calorieId:{
             type:DataTypes.INTEGER,
             allowNull: false
+        },
+        targetCalorie:{
+            type:DataTypes.INTEGER,
+            allowNull: true,
         }
     }
     )

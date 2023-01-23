@@ -22,6 +22,11 @@ module.exports = (sequelize,DataTypes)=>{
         },
         fat:{
             type: DataTypes.DOUBLE
+        },
+        category:{
+            type:DataTypes.STRING(50),
+            allowNull:true,
+            required: false
         }
     })
     return Calorie;
