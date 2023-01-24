@@ -14,10 +14,11 @@ module.exports = (sequelize,DataTypes) => {
         email:{
             type: DataTypes.STRING(50),
             allowNull: false,
-            required: true
+            required: true,
+            unique:true
         },
         password:{
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING,     //hashing miatt nem adom meg a mezo meretet
             allowNull: false,
             required: true
         },
