@@ -34,7 +34,8 @@ module.exports = (sequelize,DataTypes) => {
         targetCalorie:{
             type:DataTypes.INTEGER,
             allowNull: true,
-        }
+        },
+        
     }
     )
     return User;

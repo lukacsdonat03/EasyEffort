@@ -33,6 +33,7 @@ database.sequelize = sequelize;
 
 database.users = require('./userModel.js')(sequelize,DataTypes)
 database.calories = require('./calorieModel')(sequelize,DataTypes)
+database.comments = requrie('./commentModel')(sequelize,DataTypes)
 
 database.sequelize.sync({force:false})
     .then(()=>{
@@ -43,10 +44,25 @@ database.sequelize.sync({force:false})
 
 database.user.hasMany(database.calories,{
     foreignKey: 'calorieId',
-    as:'caloriId'
+    as:'caloriId',
+    onUpdate : 'CASCADE',
+    onDelete: 'SET NULL'
 })
 
 database.calories.belongsTo(database.users,{
     foreignKey: 'id',
     as: 'id'
 })
+
+//Kapcsolat user - comment
+ database.comments.haOne(database.user,{
+    foreignKey: 'userId',
+    as:'userId',
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+ })
+
+ database.user.belongsTo(database.comments,{
+    foreignKey:'id',
+    as: 'id'
+ })

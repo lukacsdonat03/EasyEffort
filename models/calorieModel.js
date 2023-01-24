@@ -10,7 +10,7 @@ module.exports = (sequelize,DataTypes)=>{
             type: DataTypes.STRING(50),
             allowNull: false
         },
-        amount: {    //gramm
+        amount: {               //gramm
             type: DataTypes.INTEGER,
             allowNull: false
         },
