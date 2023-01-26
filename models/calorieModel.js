@@ -10,6 +10,11 @@ module.exports = (sequelize,DataTypes)=>{
             type: DataTypes.STRING(50),
             allowNull: false
         },
+        calorie:{
+            type:DataTypes.INTEGER,
+            allowNull:false,
+            required:true
+        },
         amount: {               //gramm
             type: DataTypes.INTEGER,
             allowNull: false

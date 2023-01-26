@@ -6,10 +6,11 @@ module.exports = (sequelize,DataTypes) => {
             autoIncrement: true,
             allowNull: false
         },
-        name:{
+        userName:{
             type: DataTypes.STRING(50),
             allowNull: false,
-            required: true
+            required: true,
+            unique:true
         },
         email:{
             type: DataTypes.STRING(50),
@@ -22,16 +23,20 @@ module.exports = (sequelize,DataTypes) => {
             allowNull: false,
             required: true
         },
+        fullname:{
+            type : DataTypes.STRING(50),
+            allowNull: false,
+            required: true
+        },
         currentWeight:{
             type:DataTypes.DOUBLE
         },
         targetWeight:{
             type:DataTypes.DOUBLE
         },
-        calorieId:{
+        currentCalorie:{
             type:DataTypes.INTEGER,
-            allowNull: false
-        },
+        }, 
         targetCalorie:{
             type:DataTypes.INTEGER,
             allowNull: true,

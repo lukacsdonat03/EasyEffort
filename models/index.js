@@ -17,7 +17,7 @@ const sequelize = new Sequelize(
         }
     }
 )
-
+//check the connection
 sequelize.authenticate()
     .then(()=>{
         console.log('Connected...');
@@ -40,11 +40,11 @@ database.sequelize.sync({force:false})
         console.log('Sync kész!')
     })
 
-//Kapcsolat 1:M
+//Kapcsolat 1:M user-calorie
 
-database.user.hasMany(database.calories,{
-    foreignKey: 'calorieId',
-    as:'caloriId',
+database.user.hasMany(database.calorie,{
+    foreignKey: 'userId',
+    as:'userId',
     onUpdate : 'CASCADE',
     onDelete: 'SET NULL'
 })
