@@ -45,8 +45,6 @@ database.sequelize.sync({force:false})
 database.user.hasMany(database.calorie,{
     foreignKey: 'userId',
     as:'userId',
-    onUpdate : 'CASCADE',
-    onDelete: 'SET NULL'
 })
 
 database.calories.belongsTo(database.users,{
@@ -58,8 +56,6 @@ database.calories.belongsTo(database.users,{
  database.comments.haOne(database.user,{
     foreignKey: 'userId',
     as:'userId',
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
  })
 
  database.user.belongsTo(database.comments,{
