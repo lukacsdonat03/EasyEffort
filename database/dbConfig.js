@@ -1,8 +1,8 @@
 module.exports = {
-    HOST: 'localhost',
-    USER: 'root',
-    PASSWORD: '',
-    DB: '',
+    HOST: '%',
+    USER: 'admin',
+    PASSWORD: 'admin',
+    DB: 'easyeffort',
     dialect: 'mysql',
 
     pool: {

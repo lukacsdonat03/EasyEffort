@@ -2,10 +2,13 @@ const express = require('express')
 const cors = require('cors')
 const { StatusCodes } = require('http-status-codes/build/cjs/status-codes')
 const app  = express()
-require('http-status-codes')
-require('dotenv').config()
 
 //routers
+const userRouter = require('./routes/userRouter')
+
+
+require('http-status-codes')
+require('dotenv').config()
 
 
 //middlerwares
@@ -20,7 +23,7 @@ app.use(cors())
 app.get('/' ,(req,res)=>{
     res.status(StatusCodes.OK).send('Home page')
 })
-
+app.use('/api/v1/auth',userRouter)
 
 //server
 const port = process.env.PORT || 5000;

@@ -18,24 +18,23 @@ const sequelize = new Sequelize(
     }
 )
 //check the connection
-sequelize.authenticate()
-    .then(()=>{
-        console.log('Connected...');
-    })
-    .catch(err=>{
-        console.log(`Errror: ${err}`)
-    })
+try{
+    await sequelize.authenticate()
+    console.log('Adatbázis kapcsolat létrejött ...');
+}catch(error){
+    console.error('Az adatbázis nem elérhető')
+}
 
 const database = {};
 
 database.Sequelize = Sequelize;
 database.sequelize = sequelize;
 
-database.users = require('./userModel.js')(sequelize,DataTypes)
-database.calories = require('./calorieModel')(sequelize,DataTypes)
-database.comments = requrie('./commentModel')(sequelize,DataTypes)
+database.user = require('./userModel.js')(sequelize,DataTypes)
+database.calorie = require('./calorieModel')(sequelize,DataTypes)
+database.comment = requrie('./commentModel')(sequelize,DataTypes)
 
-database.sequelize.sync({force:false})
+database.sequelize.sync()
     .then(()=>{
         console.log('Sync kész!')
     })
@@ -47,18 +46,20 @@ database.user.hasMany(database.calorie,{
     as:'userId',
 })
 
-database.calories.belongsTo(database.users,{
+database.calorie.belongsTo(database.user,{
     foreignKey: 'id',
     as: 'id'
 })
 
 //Kapcsolat user - comment
- database.comments.haOne(database.user,{
+ database.comment.haOne(database.user,{
     foreignKey: 'userId',
     as:'userId',
  })
 
- database.user.belongsTo(database.comments,{
+ database.user.belongsTo(database.comment,{
     foreignKey:'id',
     as: 'id'
  })
+
+ module.exports = database

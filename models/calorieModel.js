@@ -1,5 +1,5 @@
 module.exports = (sequelize,DataTypes)=>{
-    const Calorie = sequelize.define('Calorie',{
+    const Calorie = sequelize.define('calorie',{
         id:{
             type: DataTypes.INTEGER,
             primaryKey: true,
