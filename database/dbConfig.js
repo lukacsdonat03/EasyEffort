@@ -1,14 +1,9 @@
-module.exports = {
-    HOST: '%',
-    USER: 'admin',
-    PASSWORD: 'admin',
-    DB: 'easyeffort',
-    dialect: 'mysql',
+const mysql = require('mysql')
+const connention =mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    passwor: '',
+    database: 'easyeffort'
+})
 
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
-}
+module.exports = connention

@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const { StatusCodes } = require('http-status-codes/build/cjs/status-codes')
 const app  = express()
+const dbConfig = require('./database/dbConfig')
 
 //routers
 const userRouter = require('./routes/userRouter')
@@ -28,9 +29,15 @@ app.use('/api/v1/auth',userRouter)
 //server
 const port = process.env.PORT || 5000;
 
-const start = async ()=>{
+const start =  ()=>{
     try {
-        // await connect db
+        dbConfig.connect(function (err) {
+            if (err) {
+                console.log(err)
+                return
+            }
+            console.log('Connected...')
+        })
         app.listen(port,()=>{
             console.log(`App is listening on port ${port}`);
         })
