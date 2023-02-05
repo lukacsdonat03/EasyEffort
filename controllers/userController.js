@@ -13,7 +13,7 @@ const register = async (req,res)=>{
         [email],
         (err,rows)=>{
            if(err){
-            throw new NotFoundError(err)
+            res.status(StatusCodes.NOT_FOUND).send(err)
            } 
             if(rows.length !== 0){
                 console.log('Ezzel az email címmel már létezik felhasználó!');
