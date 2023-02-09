@@ -8,6 +8,7 @@ const dbConfig = require('./database/dbConfig')
 const userRouter = require('./routes/userRouter')
 
 
+
 require('http-status-codes')
 require('dotenv').config()
 
@@ -15,6 +16,7 @@ require('dotenv').config()
 //middlerwares
 app.use(express.json())
 app.use(cors())
+
 
 //error handlers
 
