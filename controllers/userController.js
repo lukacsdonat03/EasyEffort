@@ -40,7 +40,7 @@ const register = async (req,res)=>{
 const login = async ( req,res)=>{
     const {email,password} = req.body
     if(!email || !password){
-        throw new BadRequestError('Adja meg az email és a jelszót')
+        throw new BadRequestError('Adja meg az emailt és a jelszót')
     }
     database.query('SELECT * FROM user WHERE email = ?;',[email],(err,rows)=>{
         if(err) res.status(StatusCodes.NO_CONTENT).send(err)

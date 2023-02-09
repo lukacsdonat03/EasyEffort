@@ -6,8 +6,8 @@ const dbConfig = require('./database/dbConfig')
 
 //routers
 const userRouter = require('./routes/userRouter')
-
-
+const commentRouter = require('./routes/commentRouter')
+const calorieRouter = require('./routes/caloprieRouter')
 
 require('http-status-codes')
 require('dotenv').config()
@@ -27,6 +27,8 @@ app.get('/' ,(req,res)=>{
     res.status(StatusCodes.OK).send('Home page')
 })
 app.use('/api/v1/auth',userRouter)
+app.use('/api/v1/contact',commentRouter)
+app.use('/api/v1/products',calorieRouter)
 
 //server
 const port = process.env.PORT || 5000;

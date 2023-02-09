@@ -1,7 +1,6 @@
 const database = require("../database/dbConfig");
 const {
   BadRequestError,
-  UnauthenticatedError,
   NotFoundError,
 } = require("../errors");
 const { StatusCodes } = require("http-status-codes");

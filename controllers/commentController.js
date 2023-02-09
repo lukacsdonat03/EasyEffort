@@ -2,58 +2,62 @@ const database = require('../database/dbConfig')
 const {StatusCodes} = require('http-status-codes')
 const {
     BadRequestError,
-    UnauthenticatedError,
     NotFoundError,
   } = require("../errors");
 
-const getComment = () =>{
-    const {id} = req.params.id
+const getComment = async (req,res) =>{
+    const {id} = req.params
     if(!id) throw new BadRequestError('Nincs id')
     database.query('SELECT * FROM comment WHERE id = ?',[id],(err,rows)=>{
         if(err){
-          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
+          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Kaka a palacsintában'+err)
         }
-        if(rows.length === 0){
-          throw new NotFoundError(`No comment with ${id} id`)
+        if(rows.length === 0){  
+        throw new NotFoundError(`No comment with ${id} id`)
         }
         res.status(StatusCodes.OK).send(rows[0])
       })
     }
 
-const allComment = ()=>{
+const allComment = async (req,res)=>{
     database.query('SELECT * FROM comment',(err,rows)=>{
         if(err) res.status(StatusCodes.NOT_FOUND).send(err)
         res.status(StatusCodes.OK).send(rows)
     })
 }
 
-const deleteComment = () =>{
-    const {id} = req.params.id
+const deleteComment = async (req,res) =>{
+    const {id} = req.params
     if(!id) throw new BadRequestError('Nincs id')
     database.query('DELETE FROM comment WHERE id = ?',[id],(err)=>{
-        if(err) res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
+        if(err) {
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
+        }
         res.status(StatusCodes.OK).send('Sikeres törlés')
     })
 }
 
-const createComment = () =>{
+const createComment = async (req,res) =>{
     const {userId,comment} = req.body
-    database.query('INSERT INTO comment VALUES(?,?)',[userId,comment],(err)=>{
-        if(err) res.status(StatusCodes.NOT_FOUND).send(err)
+    database.query('INSERT INTO comment (userId,message) VALUES(?,?)',[userId,comment],(err)=>{
+        if(err){
+            res.status(StatusCodes.NOT_FOUND).send(err)
+        }
         res.status(StatusCodes.CREATED).send('Created')
     })
 } 
 
-const updateComment = () =>{
-    const {id,userId,comment} = req.body
-    if(!comment) res.status(StatusCodes.BAD_REQUEST).send('Nincs hozzászólás')
-    database.query('UPDATE comment SET userId = ? ,comment = ? WHERE ?'
-    [userId,comment,id],
+const updateComment =async (req,res) =>{
+    const message = req.body.message
+    const id = req.params.id
+
+    database.query('UPDATE comment SET message = ?  WHERE id = ?',
+    [message,id],
     (err)=>{
-        if (err) {
-            res.status(StatusCodes.NOT_FOUND).send(err);
-          }
-        res.status(StatusCodes.OK).send({comment: comment})
+        if(err){
+            res.status(StatusCodes.NOT_FOUND).send(err)
+        }
+        res.status(StatusCodes.OK).send("Updated sucessfully")
     }
     )
 } 
