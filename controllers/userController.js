@@ -4,6 +4,7 @@ const database = require('../database/dbConfig')
 const bcrypt = require('bcrypt')
 const jwt  = require('jsonwebtoken')
 const bodyParser = require('body-parser')
+require('dotenv').config()
 
 const register = async (req,res)=>{
 
@@ -50,7 +51,9 @@ const login = async ( req,res)=>{
         if(! isCorrenctPassword)
             res.status(StatusCodes.UNAUTHORIZED).send("Unauthorized")
         
-        const token = jwt.sign({id: rows[0].id},'Bearer')
+        const token = jwt.sign({id: rows[0].id},process.env.JWT_SECRET,{
+            expiresIn: process.env.JWT_LIFETIME
+        })
 
         res.cookie('access token',token,{
             httpOnly: true
