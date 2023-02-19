@@ -8,6 +8,7 @@ const dbConfig = require('./database/dbConfig')
 const authRouter = require('./routes/authRouter')
 const commentRouter = require('./routes/commentRouter')
 const calorieRouter = require('./routes/caloprieRouter')
+const userRouter = require('./routes/UserRouter')
 
 require('http-status-codes')
 require('dotenv').config()
@@ -29,6 +30,7 @@ app.get('/' ,(req,res)=>{
 app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/contact',commentRouter)
 app.use('/api/v1/products',calorieRouter)
+app.use('/api/v1/user',userRouter)
 
 //server
 const port = process.env.PORT || 5000;
