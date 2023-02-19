@@ -43,7 +43,7 @@ const createItem = async (req, res) => {
   );
 };
 
-const updateItem = () => {
+const updateItem = (req, res) => {
   const product = { ...req.body };
   if (!product.id) throw new NotFoundError("Nincs termék ilyen id-vel");
   database.query(
@@ -60,7 +60,7 @@ const updateItem = () => {
   );
 };
 
-const allItem = ()=>{
+const allItem = (req, res)=>{
   database.query('SELECT * FROM calorie;',(err,rows)=>{
     if(err){
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
@@ -69,7 +69,7 @@ const allItem = ()=>{
   })
 }
 
-const getItem = ()=>{
+const getItem = (req, res)=>{
   const {id} = req.params.id
   if(!id) throw new BadRequestError('Nincs id')
   database.query('SELECT * FROM calorie WHERE id = ?',[id],(err,rows)=>{
@@ -83,10 +83,14 @@ const getItem = ()=>{
   })
 }
 
+
+
 module.exports = {
   getItem,
   allItem,
   updateItem,
   createItem,
-  deleteItem
+  deleteItem,
+  setCurrentWeight,
+  setTargetWeight
 }

@@ -5,7 +5,7 @@ const app  = express()
 const dbConfig = require('./database/dbConfig')
 
 //routers
-const userRouter = require('./routes/userRouter')
+const authRouter = require('./routes/authRouter')
 const commentRouter = require('./routes/commentRouter')
 const calorieRouter = require('./routes/caloprieRouter')
 
@@ -26,7 +26,7 @@ app.use(cors())
 app.get('/' ,(req,res)=>{
     res.status(StatusCodes.OK).send('Home page')
 })
-app.use('/api/v1/auth',userRouter)
+app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/contact',commentRouter)
 app.use('/api/v1/products',calorieRouter)
 
