@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { CalorieList } from '../componets/CalorieList'
-import { Counter } from '../componets/Counter'
+
+import { CalorieList } from '../components/CalorieList'
+import { Counter } from '../components/Counter'
 
 
 

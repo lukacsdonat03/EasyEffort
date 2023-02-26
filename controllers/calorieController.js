@@ -91,6 +91,6 @@ module.exports = {
   updateItem,
   createItem,
   deleteItem,
-  setCurrentWeight,
-  setTargetWeight
+ /* setCurrentWeight,
+  setTargetWeight*/
 }

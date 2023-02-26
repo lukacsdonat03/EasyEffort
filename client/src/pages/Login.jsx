@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios'
 import "../App.css";
 
 
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  
+    const navigate = useNavigate()
     const handleLogin = (event) => {
       event.preventDefault();
       // handle login logic here
+      try {
+        axios.post('http://localhost:8080/api/v1/auth/login',{email,password}).then((res)=>{console.log(res.data);setEmail('');setPassword('');navigate('/')})
+      } catch (error) {
+        console.error(error)
+      }
     };
 
   return (

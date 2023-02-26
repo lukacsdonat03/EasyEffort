@@ -1,17 +1,20 @@
 import React from 'react'
 import { useState } from 'react';
+import axios from 'axios';
 import "../App.css";
+import { useNavigate } from 'react-router-dom';
 
 
 export const Register = () => {
    
-        const [fullName, setFullName] = useState('');
+        const [fullname, setFullName] = useState('');
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
-      
+        const navigate = useNavigate();
         const handleRegister = (event) => {
           event.preventDefault();
           // handle registration logic here
+          axios.post('http://localhost:8080/api/v1/auth/register',{fullname,email,password}).then((res)=>{console.log(res.data+' sikeres regisztráció');navigate('/')})
         };
   
   
@@ -25,7 +28,7 @@ export const Register = () => {
           type="text"
           id="full-name"
           placeholder="Enter your full name"
-          value={fullName}
+          value={fullname}
           onChange={(event) => setFullName(event.target.value)}
         />
       </div>
