@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import { Button} from '@mui/material';
 
 
 
 export const Counter = () => {
+  const[item,setItem] = useState("")
+
+  const handleCange = (e)=>{
+    
+  }
+  
   return (
     <div style={{height:"580px",width:"500px",borderRadius:"30px",border:"1px solid black",boxShadow:"10px 5px 5px black",margin:"auto"}}>
         <div style={{margin:"auto",textAlign:'center',padding:"5px"}}>
