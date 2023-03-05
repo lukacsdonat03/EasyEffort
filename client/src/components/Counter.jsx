@@ -8,38 +8,14 @@ let ITEMS = [];
 export const Counter = () => {
   const [input, setInput] = useState("");
   const [search,setSearch] = useState("");
-
-  useEffect(() => {
+useEffect(() => {
     ITEMS = [];
-    const options = {
-      method: "GET",
-      url: `https://nutritionix-api.p.rapidapi.com/v1_1/search/${search}`,
-      params: {
-        fields: "item_name,brand_name,nf_calories,nf_total_fat,nt_protein,nf_total_carbohydrate",
-      },
-      headers: {
-        "X-RapidAPI-Key": "1213c3aae7msh94cb6f7e643c1eep11ed8bjsn987a07e007df",
-        "X-RapidAPI-Host": "nutritionix-api.p.rapidapi.com",
-      },
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        //response.data.hits.forEach(element => {ITEMS.push(element.fields.item_name,);console.log(ITEMS);})
-        response.data.hits.forEach(element =>{
-          const item_name  = element.fields.item_name
-          const nf_calories = element.fields.nf_calories
-          const item = {label: item_name,nf_calories:nf_calories}
-          ITEMS.push(item)
-          console.log(ITEMS);
-        })
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    axios.post('http://localhost:8080/api/v1/counter/items',{item_name: search}).then((res)=>{
+      res.data.forEach(element=>{ITEMS.push(element.fields.item_name)}) 
+    })
   });
 
+  
   const handleClick = (e) => {
     setInput(input + e.target.value);
   };
@@ -50,6 +26,7 @@ export const Counter = () => {
     setSearch(e.target.value)
     console.log(search);
   }
+  
 
   return (
     <div
