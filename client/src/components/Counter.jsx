@@ -1,30 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import { Autocomplete, Button, TextField } from "@mui/material";
-import axios from 'axios'
+import axios from "axios";
 
-const options = {
-  method: 'GET',
-  url: 'https://nutritionix-api.p.rapidapi.com/v1_1/search/cheddar%20cheese',
-  params: {fields: 'item_name,item_id,brand_name,nf_calories,nf_total_fat'},
-  headers: {
-    'X-RapidAPI-Key': '1213c3aae7msh94cb6f7e643c1eep11ed8bjsn987a07e007df',
-    'X-RapidAPI-Host': 'nutritionix-api.p.rapidapi.com'
-  }
-};
-const products = []
-axios.request(options).then(function (response) {
-  products.push(response.data)
-}).catch(function (error) {
-	console.error(error);
-});
+let ITEMS = [];
 
 export const Counter = () => {
   const [input, setInput] = useState("");
+  const [search,setSearch] = useState("");
+
+  useEffect(() => {
+    ITEMS = [];
+    const options = {
+      method: "GET",
+      url: `https://nutritionix-api.p.rapidapi.com/v1_1/search/${search}`,
+      params: {
+        fields: "item_name,brand_name,nf_calories,nf_total_fat,nt_protein,nf_total_carbohydrate",
+      },
+      headers: {
+        "X-RapidAPI-Key": "1213c3aae7msh94cb6f7e643c1eep11ed8bjsn987a07e007df",
+        "X-RapidAPI-Host": "nutritionix-api.p.rapidapi.com",
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        //response.data.hits.forEach(element => {ITEMS.push(element.fields.item_name,);console.log(ITEMS);})
+        response.data.hits.forEach(element =>{
+          const item_name  = element.fields.item_name
+          const nf_calories = element.fields.nf_calories
+          const item = {label: item_name,nf_calories:nf_calories}
+          ITEMS.push(item)
+          console.log(ITEMS);
+        })
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  });
 
   const handleClick = (e) => {
     setInput(input + e.target.value);
   };
+  const handleSubmit = (e) => {
+    setInput("");
+  };
+  const handleSearch = (e)=>{
+    setSearch(e.target.value)
+    console.log(search);
+  }
 
   return (
     <div
@@ -39,17 +64,25 @@ export const Counter = () => {
     >
       <div style={{ margin: "auto", textAlign: "center", padding: "5px" }}>
         <Grid container spacing={1}>
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             <label>Keresés: </label>
             <Autocomplete
               style={{ width: "100%" }}
               disablePortal
-              options={products}
+              id="combo-box-demo"
+              options={ITEMS}
               sx={{ width: 300 }}
-              renderInput={(params) => <TextField{...params} label="Search..." />}
+              renderInput={(params) => (
+                <TextField {...params} label="Search..."  onChange={handleSearch}/>
+              )}
             />
             <br />
-            <input style={{ width: "100%" }} type="text" name="numberInput" />
+            <input
+              style={{ width: "100%" }}
+              type="text"
+              name="numberInput"
+              value={input}
+            />
           </Grid>
 
           <Grid item xs={4}>
@@ -111,13 +144,7 @@ export const Counter = () => {
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button
-              onClick={() => {
-                setInput("");
-              }}
-              variant="contained"
-              color="success"
-            >
+            <Button onClick={handleSubmit} variant="contained" color="success">
               Submit
             </Button>
           </Grid>
