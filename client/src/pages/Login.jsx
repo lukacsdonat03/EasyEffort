@@ -9,12 +9,8 @@ export const Login = () => {
     const navigate = useNavigate()
     const handleLogin = (event) => {
       event.preventDefault();
-      
-      try {
-        axios.post('http://localhost:8080/api/v1/auth/login',formData).then((res)=>{console.log(res.data);formData.email('');fomrData.password('');navigate('/home')})
-      } catch (error) {
-        console.error(error)
-      }
+      axios.post('http://localhost:8080/api/v1/auth/login',formData,{headers: {"Content-Type":'application/json'}})
+        .then(res=>console.log(res))
     };
 
   return (
@@ -28,7 +24,7 @@ export const Login = () => {
           id="email"
           placeholder="Enter your email"
           name="email"
-          value={fomrData?.email || ''}
+          value={formData?.email || ''}
           onChange={({target : {name,value} })=>{
             setFormData({...formData,[name]:value})
           }}
@@ -41,7 +37,7 @@ export const Login = () => {
           id="password"
           placeholder="Enter your password"
           name="password"
-          value={fomrData?.password || ''}
+          value={formData?.password || ''}
           onChange={({target : {name,value} })=>{
             setFormData({...formData,[name]:value})
           }}

@@ -15,7 +15,11 @@ const getItems = (req, res) => {
     };
 
     axios.request(options).then(function (response) {
-        res.status(StatusCodes.OK).send(response.data.hits)
+        const result = []
+        response.data.hits.forEach(element => {
+            result.push(element.fields)
+        });
+        res.status(StatusCodes.OK).send(result)
     }).catch(function (error) {
         res.status(StatusCodes.NOT_FOUND).send('Error: '+error)
     });

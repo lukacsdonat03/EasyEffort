@@ -42,12 +42,13 @@ const login = async ( req,res)=>{
     if(!email || !password){
         return res.status(StatusCodes.BAD_REQUEST).send('Adja meg az email és a jelszót!')
     }
-    database.query('SELECT * FROM user WHERE email = ?;',[email],(err,rows)=>{
+    database.query('SELECT * FROM user WHERE email = ?;',[email],async (err,rows)=>{
         if(err) return res.status(StatusCodes.NO_CONTENT).send(err)
         if(rows.length===0) return res.status(StatusCodes.NOT_FOUND).send('Nincs regisztrálva ez az email')
         
-        const isCorrenctPassword = bcrypt.compare(password,rows[0].password)
-        if(! isCorrenctPassword)
+        const isCorrenctPassword = await bcrypt.compare(password,rows[0].password)
+        console.log(isCorrenctPassword);
+        if(!isCorrenctPassword)
             return res.status(StatusCodes.UNAUTHORIZED).send("Unauthorized")
         
         const token = jwt.sign({id: rows[0].id},process.env.JWT_SECRET,{
@@ -62,7 +63,7 @@ const login = async ( req,res)=>{
     })
 
 
-
+    
 }
 
 module.exports = {
