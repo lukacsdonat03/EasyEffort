@@ -25,7 +25,7 @@ export const Register = () => {
           id="full-name"
           placeholder="Enter your full name"
           name="fullname"
-          value={fomrData?.fullname || ''}
+          value={formData?.fullname || ''}
           onChange={({target : {name,value} })=>{
             setFormData({...formData,[name]:value})
           }}
@@ -38,7 +38,7 @@ export const Register = () => {
           id="email"
           placeholder="Enter your email"
           name="email"
-          value={fomrData?.email || ''}
+          value={formData?.email || ''}
           onChange={({target : {name,value} })=>{
             setFormData({...formData,[name]:value})
           }}
@@ -51,7 +51,7 @@ export const Register = () => {
           id="password"
           placeholder="Enter your password"
           name="password"
-          value={fomrData?.password || ''}
+          value={formData?.password || ''}
           onChange={({target : {name,value} })=>{
             setFormData({...formData,[name]:value})
           }}
