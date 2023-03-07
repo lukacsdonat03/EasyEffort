@@ -15,7 +15,7 @@ require('http-status-codes')
 require('dotenv').config()
 
 
-//middlerwares
+//middlewares
 app.use(express.json())
 app.use(cors({credentials:true,origin:'http://localhost:3000'}))
 
