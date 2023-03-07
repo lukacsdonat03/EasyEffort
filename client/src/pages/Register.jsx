@@ -6,15 +6,11 @@ import { useNavigate } from 'react-router-dom';
 
 
 export const Register = () => {
-   
-        const [fullname, setFullName] = useState('');
-        const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
+        const [formData,setFormData] = useState({})
         const navigate = useNavigate();
         const handleRegister = (event) => {
           event.preventDefault();
-          // handle registration logic here
-          axios.post('http://localhost:8080/api/v1/auth/register',{fullname,email,password}).then((res)=>{console.log(res.data+' sikeres regisztráció');navigate('/')})
+          axios.post('http://localhost:8080/api/v1/auth/register',formData).then((res)=>{console.log(res.data+' sikeres regisztráció');navigate('/home')})
         };
   
   
@@ -28,8 +24,11 @@ export const Register = () => {
           type="text"
           id="full-name"
           placeholder="Enter your full name"
-          value={fullname}
-          onChange={(event) => setFullName(event.target.value)}
+          name="fullname"
+          value={fomrData?.fullname || ''}
+          onChange={({target : {name,value} })=>{
+            setFormData({...formData,[name]:value})
+          }}
         />
       </div>
       <div className="register-form-group">
@@ -38,8 +37,11 @@ export const Register = () => {
           type="email"
           id="email"
           placeholder="Enter your email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          name="email"
+          value={fomrData?.email || ''}
+          onChange={({target : {name,value} })=>{
+            setFormData({...formData,[name]:value})
+          }}
         />
       </div>
       <div className="register-form-group">
@@ -48,8 +50,11 @@ export const Register = () => {
           type="password"
           id="password"
           placeholder="Enter your password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          name="password"
+          value={fomrData?.password || ''}
+          onChange={({target : {name,value} })=>{
+            setFormData({...formData,[name]:value})
+          }}
         />
       </div>
       <button type="submit" className="register-button">
