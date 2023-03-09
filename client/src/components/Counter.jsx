@@ -3,19 +3,25 @@ import Grid from "@mui/material/Grid";
 import { Autocomplete, Button, TextField } from "@mui/material";
 import axios from "axios";
 
-let ITEMS = [];
+const PRODUCTS = []
 
 export const Counter = () => {
   const [input, setInput] = useState("");
   const [search,setSearch] = useState("");
-useEffect(() => {
-    ITEMS = [];
-    axios.post('http://localhost:8080/api/v1/counter/items',{item_name: search}).then((res)=>{
-      res.data.forEach(element=>{ITEMS.push(element.fields.item_name)}) 
-    })
-  });
-
   
+  useEffect(()=>{
+    PRODUCTS.splice(0,PRODUCTS.length)
+    axios.post('http://localhost:8080/api/v1/counter/items',{item_name:search},{headers:{'Content-Type':'application/json'}})
+      .then(res => {
+        
+        for (let index = 1; index < res.data.length; index++) {
+          PRODUCTS.push({index,label:res.data[index].item_name})
+        }
+        console.log(PRODUCTS);
+      })
+
+  },[search])
+
   const handleClick = (e) => {
     setInput(input + e.target.value);
   };
@@ -47,7 +53,7 @@ useEffect(() => {
               style={{ width: "100%" }}
               disablePortal
               id="combo-box-demo"
-              options={ITEMS}
+              options={PRODUCTS}
               sx={{ width: 300 }}
               renderInput={(params) => (
                 <TextField {...params} label="Search..."  onChange={handleSearch}/>

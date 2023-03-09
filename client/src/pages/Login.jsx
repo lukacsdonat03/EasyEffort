@@ -10,7 +10,7 @@ export const Login = () => {
     const handleLogin = (event) => {
       event.preventDefault();
       axios.post('http://localhost:8080/api/v1/auth/login',formData,{headers: {"Content-Type":'application/json'}})
-        .then(res=>console.log(res))
+        .then(res=>console.log(res),navigate('/home'))
     };
 
   return (
