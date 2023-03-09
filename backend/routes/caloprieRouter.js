@@ -9,7 +9,7 @@ const {
 } = require("../controllers/calorieController");
 
 router.get('/:id',getItem)
-router.get('/',allItem)
+router.get('/all/:userId',allItem)
 router.post('/',createItem)
 router.put('/:id',updateItem)
 router.delete('/:id',deleteItem)

@@ -7,60 +7,46 @@ const { StatusCodes } = require("http-status-codes");
 
 const deleteItem = async (req, res) => {
   const { id } = req.params;
-  if (!id) throw new BadRequestError("Nincs ezzel az id-vel termék");
+  if (!id) return res.status(StatusCodes.BAD_REQUEST).send("Nincs ezzel az id-vel termék");
   database.query("DELETE FROM calorie WHERE id = ?;", [id], (err) => {
     if (err) {
       res.status(StatusCodes.NOT_FOUND).send(err);
     }
-    res.status(StatusCodes.NO_CONTENT).send("Sikeres törlés...");
+    res.status(StatusCodes.OK).send("Sikeres törlés...");
   });
 };
 
 const createItem = async (req, res) => {
   const product = { ...req.body };
-  if (!product.item_id) {
-    res
-      .status(StatusCodes.NOT_ACCEPTABLE)
-      .send("Nincs termék ezzel az azonosítóval");
-  }
-  database.query(
-    "INSERT INTO calorie VALUES(?,?,?,?,?,?,?)",
-    [
-      product.item_name,
-      product.amount,
-      product.carbohydrate,
-      product.protein,
-      product.fat,
-      product.userId,
-    ],
-    (err) => {
-      if (err) {
-        res.status(StatusCodes.NOT_FOUND).send(err);
-      }
-      res.status(StatusCodes.OK).send({ product: product.item_name,id:item_id });
-    }
-  );
+  console.log(product);
+  if(!product.id) return res.status(StatusCodes.BAD_REQUEST).send('Nics termék azonosító!')
+  database.query('INSERT INTO calorie (id,name,amount,carbohydrate,protein,fat,totalCalorie,userId) VALUES(?,?,?,?,?,?,?,?);',[product],(err)=>{
+    if(err) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
+    res.status(StatusCodes.CREATED).send('Create...')
+  })
 };
 
 const updateItem = (req, res) => {
-  const product = { ...req.body };
-  if (!product.item_id) throw new NotFoundError("Nincs termék ilyen id-vel");
+  const id = req.params
+  const {item_name,amount} = req.body;
+  if (!id)  return res.status(StatusCodes.BAD_REQUEST).send('Nics termék azonosító!')
   database.query(
     "UPDATE calorie SET name = ?, amount = ? WHERE id = ? ",
-    [product.item_name, product.amount,product.item_id],
+    [item_name, amount,id],
     (err) => {
       if (err) {
         res.status(StatusCodes.NOT_FOUND).send(err);
       }
       res
         .status(StatusCodes.OK)
-        .send('Updated \n'+{id:item_id, product: product.item_name, amount: product.amount });
+        .send('Updated \n'+{id: id, name: item_name,amount: amount });
     }
   );
 };
 
 const allItem = (req, res)=>{
-  database.query('SELECT * FROM calorie;',(err,rows)=>{
+  const userId = req.params.userId
+  database.query('SELECT * FROM calorie WHERE userId=?;',[userId],(err,rows)=>{
     if(err){
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
     }
@@ -69,7 +55,7 @@ const allItem = (req, res)=>{
 }
 
 const getItem = (req, res)=>{
-  const id = req.params.item_id
+  const id = req.params.id
   if(!id) throw new BadRequestError('Nincs id')
   database.query('SELECT * FROM calorie WHERE id = ?',[id],(err,rows)=>{
     if(err){
@@ -90,6 +76,4 @@ module.exports = {
   updateItem,
   createItem,
   deleteItem,
- /* setCurrentWeight,
-  setTargetWeight*/
 }
