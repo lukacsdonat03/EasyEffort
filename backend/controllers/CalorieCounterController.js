@@ -7,7 +7,7 @@ const getItems = (req, res) => {
     const options = {
         method: 'GET',
         url: `https://nutritionix-api.p.rapidapi.com/v1_1/search/${item_name}`,
-        params: { fields: 'item_name,item_id,nf_calories' },
+        params: { fields: 'item_name,item_id,nf_calories,nf_total_fat,nf_protein,nf_total_carbohydrate' },
         headers: {
             'X-RapidAPI-Key': '1213c3aae7msh94cb6f7e643c1eep11ed8bjsn987a07e007df',
             'X-RapidAPI-Host': 'nutritionix-api.p.rapidapi.com'

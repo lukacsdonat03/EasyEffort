@@ -37,34 +37,38 @@ const register = async (req,res)=>{
     )
 }
 
-const login = async ( req,res)=>{
-    const {email,password} = req.body
-    if(!email || !password){
-        return res.status(StatusCodes.BAD_REQUEST).send('Adja meg az email és a jelszót!')
-    }
-    database.query('SELECT * FROM user WHERE email = ?;',[email],async (err,rows)=>{
-        if(err) return res.status(StatusCodes.NO_CONTENT).send(err)
-        if(rows.length===0) return res.status(StatusCodes.NOT_FOUND).send('Nincs regisztrálva ez az email')
+ const login =  (req, res) => {
+    const { email, password } = req.body;
+    database.query(
+      "SELECT * FROM user WHERE email LIKE ?;",
+      [email],
+      (err, data) => {
+        if (err) {
+          return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Error" });
+        }
+        if (data.length === 0) {
+          return res.status(StatusCodes.NOT_FOUND).json({ message: "User not found." });
+        }
+  
+        const isCorrectPassword = bcrypt.compareSync(password, data[0].password);
+        console.log(isCorrectPassword);
+        if (!isCorrectPassword)
+          return res.status(StatusCodes.BAD_REQUEST).json({ message: "Wrong username or password." });
+  
+        const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET);
         
-        const isCorrenctPassword = await bcrypt.compare(password,rows[0].password)
-        console.log(isCorrenctPassword);
-        if(!isCorrenctPassword)
-            return res.status(StatusCodes.UNAUTHORIZED).send("Unauthorized")
-        
-        const token = jwt.sign({id: rows[0].id},process.env.JWT_SECRET,{
-            expiresIn: process.env.JWT_LIFETIME
-        })
-
-        res.cookie('access token',token,{
-            httpOnly: true
-        }).status(StatusCodes.OK).send({isAdmin: rows[0].admin,password: rows[0].password})
-
-       
-    })
-
+        res
+          .cookie("access_token", token, {
+            httpOnly: true,
+          })
+          .status(200)
+          .json({ isAdmin: data[0].admin });
+      }
+    );
+  };
 
     
-}
+
 
 module.exports = {
     register,

@@ -16,18 +16,18 @@ const deleteItem = async (req, res) => {
   });
 };
 
-const createItem = async (req, res) => {
+const createItem = (req, res) => {
   const product = { ...req.body };
   console.log(product);
   if(!product.id) return res.status(StatusCodes.BAD_REQUEST).send('Nics termék azonosító!')
-  database.query('INSERT INTO calorie (id,name,amount,carbohydrate,protein,fat,totalCalorie,userId) VALUES(?,?,?,?,?,?,?,?);',[product],(err)=>{
+  database.query('INSERT INTO calorie (name,amount,carbohydrate,protein,fat,totalCalorie,userId) VALUES(?,?,?,?,?,?,?);',[product],(err)=>{
     if(err) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
     res.status(StatusCodes.CREATED).send('Create...')
   })
 };
 
 const updateItem = (req, res) => {
-  const id = req.params
+  const id = req.params.id
   const {item_name,amount} = req.body;
   if (!id)  return res.status(StatusCodes.BAD_REQUEST).send('Nics termék azonosító!')
   database.query(

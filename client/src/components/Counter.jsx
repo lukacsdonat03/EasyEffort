@@ -8,12 +8,13 @@ let PRODUCTS = []
 export const Counter = () => {
   const [input, setInput] = useState("");
   const [search,setSearch] = useState("");
+  const [ selectedItem, setSelectedItem ] = useState({})
   
   useEffect(()=>{
     axios.post('http://localhost:8080/api/v1/counter/items',{item_name:search},{headers:{'Content-Type':'application/json'}})
       .then(res => {
-        res.data.forEach(element=>PRODUCTS.push({label:element.item_name}))
-        
+        res.data.forEach(element=>PRODUCTS.push({label:element.item_name,fields:element}))
+        console.log(PRODUCTS); 
       })
 
   },[search])
@@ -23,6 +24,12 @@ export const Counter = () => {
   };
   const handleSubmit = (e) => {
     setInput("");
+    PRODUCTS = []
+    if(!selectedItem){
+      return alert('Please choose an item')
+    }
+    axios.post('http://localhost:8080/api/v1/calorie/producst',{selectedItem},{headers:{'Content-Type':'application/json'}})
+      .then(res =>{ console.log(res.data);})
   };
   const handleSearch = (e)=>{
     PRODUCTS = []
@@ -57,6 +64,7 @@ export const Counter = () => {
                 )
               }}
               sx={{ width: 300 }}
+              onChange={(event,value)=>{setSelectedItem(value);console.log(value);}}
               renderInput={(params) => (
                 <TextField {...params} label="Search..."  onChange={handleSearch}/>
               )}
