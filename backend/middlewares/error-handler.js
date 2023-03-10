@@ -18,7 +18,7 @@ const errorHanlerMiddleware = (err,req,res,next) =>{
           )} field, please choose another value`
           customError.statusCode = 400
     }
-    if(err.nname = 'CastError'){
+    if(err.name = 'CastError'){
         customError.msg = `Nincs adat ezzel az id-vel ${err.value}`
         customError.statusCode = 404
     }

@@ -1,4 +1,5 @@
-
+import   { Grid}  from '@mui/material'
+import { Box } from '@mui/system'
 import { CalorieList } from '../components/CalorieList'
 import { Counter } from '../components/Counter'
 
@@ -7,13 +8,15 @@ import { Counter } from '../components/Counter'
 export const CalorieCounter = () => {
   
   return (
-    <div>
-        <div style={{float:"left",border:"1px solid black"}}>
-            <CalorieList />
-        </div>
-        <div style={{float:"right",border:"1px solid black"}}>
-            <Counter />
-        </div>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <CalorieList/>
+        </Grid>
+        <Grid item xs={4}>
+          <Counter/>
+        </Grid>
+        </Grid>
+        </Box>
   )
 }
