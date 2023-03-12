@@ -8,15 +8,17 @@ import { Counter } from '../components/Counter'
 export const CalorieCounter = () => {
   
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <div>
+      <Box sx={{ flexGrow: 1 }} >
       <Grid container spacing={2}>
-        <Grid item xs={8}>
+        <Grid item md={6} sm={6} xs={8}>
           <CalorieList/>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item md={3} sm={3} xs={4}>
           <Counter/>
         </Grid>
         </Grid>
         </Box>
+    </div>
   )
 }

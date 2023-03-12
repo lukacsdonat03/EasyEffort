@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import { Autocomplete, Button, TextField } from "@mui/material";
 import axios from "axios";
 
+
 let PRODUCTS = []
 
 export const Counter = () => {
@@ -23,6 +24,7 @@ export const Counter = () => {
     setInput(input + e.target.value);
   };
   const handleSubmit = (e) => {
+    e.preventDefeult();
     setInput("");
     PRODUCTS = []
     if(!selectedItem){
@@ -45,8 +47,10 @@ export const Counter = () => {
         width: "500px",
         borderRadius: "30px",
         border: "1px solid black",
-        boxShadow: "10px 5px 5px black",
+        boxShadow: "10px 5px 15px #2C6E49",
         margin: "auto",
+        backgroundColor: "#4C956C"
+        
       }}
     >
       <div style={{ margin: "auto", textAlign: "center", padding: "5px" }}>
@@ -71,7 +75,7 @@ export const Counter = () => {
             />
             <br />
             <input
-              style={{ width: "100%" }}
+              style={{ width: "90%" }}
               type="text"
               name="numberInput"
               value={input}
@@ -79,60 +83,60 @@ export const Counter = () => {
           </Grid>
 
           <Grid item xs={4}>
-            <Button value={1} onClick={handleClick} variant="contained">
+            <Button  value={1} onClick={handleClick} variant="contained" color="warning">
               1
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={2} onClick={handleClick} variant="contained">
+            <Button value={2} onClick={handleClick} variant="contained"  color="warning">
               2
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={3} onClick={handleClick} variant="contained">
+            <Button value={3} onClick={handleClick} variant="contained"  color="warning">
               3
             </Button>
           </Grid>
 
           <Grid item xs={4}>
-            <Button value={4} onClick={handleClick} variant="contained">
+            <Button value={4} onClick={handleClick} variant="contained"  color="warning">
               4
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={5} onClick={handleClick} variant="contained">
+            <Button value={5} onClick={handleClick} variant="contained"  color="warning">
               5
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={6} onClick={handleClick} variant="contained">
+            <Button value={6} onClick={handleClick} variant="contained"  color="warning">
               6
             </Button>
           </Grid>
 
           <Grid item xs={4}>
-            <Button value={7} onClick={handleClick} variant="contained">
+            <Button value={7} onClick={handleClick} variant="contained"  color="warning">
               7
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={8} onClick={handleClick} variant="contained">
+            <Button value={8} onClick={handleClick} variant="contained"  color="warning">
               8
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={9} onClick={handleClick} variant="contained">
+            <Button value={9} onClick={handleClick} variant="contained"  color="warning">
               9
             </Button>
           </Grid>
 
           <Grid item xs={4}>
-            <Button value={","} onClick={handleClick} variant="contained">
+            <Button value={","} onClick={handleClick} variant="contained"  color="warning"> 
               ,
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={0} onClick={handleClick} variant="contained">
+            <Button value={0} onClick={handleClick} variant="contained"  color="warning">
               0
             </Button>
           </Grid>
