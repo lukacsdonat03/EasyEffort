@@ -47,7 +47,7 @@ export const Login = () => {
         Login
       </button>
       <br/>
-    <Link to='/register'>Nincs még fiókod?</Link> 
+    <Link to='/register' className="link">Nincs még fiókod?</Link> 
     </form>
   </div>
   );

@@ -15,10 +15,10 @@ export const Register = () => {
   
   
     return (
-    <div className="register-container">
-    <form onSubmit={handleRegister} className="register-form">
-      <h2 className="register-heading">Register</h2>
-      <div className="register-form-group">
+    <div className="login-container">
+    <form onSubmit={handleRegister} className="login-form">
+      <h2 className="login-heading">Register</h2>
+      <div className="login-form-group">
         <label htmlFor="full-name">Full Name</label>
         <input
           type="text"
@@ -31,7 +31,7 @@ export const Register = () => {
           }}
         />
       </div>
-      <div className="register-form-group">
+      <div className="login-form-group">
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -44,7 +44,7 @@ export const Register = () => {
           }}
         />
       </div>
-      <div className="register-form-group">
+      <div className="login-form-group">
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -57,7 +57,7 @@ export const Register = () => {
           }}
         />
       </div>
-      <button type="submit" className="register-button">
+      <button type="submit" className="login-button">
         Register
       </button>
     </form>

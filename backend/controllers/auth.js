@@ -37,34 +37,27 @@ const register = async (req,res)=>{
     )
 }
 
- const login =  (req, res) => {
-    const { email, password } = req.body;
-    database.query(
-      "SELECT * FROM user WHERE email LIKE ?;",
-      [email],
-      (err, data) => {
-        if (err) {
-          return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Error" });
-        }
-        if (data.length === 0) {
-          return res.status(StatusCodes.NOT_FOUND).json({ message: "User not found." });
-        }
-  
-        const isCorrectPassword = bcrypt.compareSync(password, data[0].password);
-        console.log(isCorrectPassword);
-        if (!isCorrectPassword)
-          return res.status(StatusCodes.BAD_REQUEST).json({ message: "Wrong username or password." });
-  
-        const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET);
-        
-        res
-          .cookie("access_token", token, {
-            httpOnly: true,
-          })
-          .status(200)
-          .json({ isAdmin: data[0].admin });
-      }
-    );
+ const login =   (req, res) => {
+  database.query("SELECT * FROM user WHERE email LIKE ?;", [req.body.email], (err, data) => {
+    if (err) return res.status(500).json(err);
+    if (data.length === 0) return res.status(204).json("User not found.");
+
+    const isCorrectPassword = bcrypt.compareSync(req.body.password, data[0].password);
+    console.log(isCorrectPassword);
+
+    if (!isCorrectPassword)
+        return res.status(400).send("Wrong username or password.");
+
+    const { email, admin: isAdmin } = data[0];
+
+    const token = jwt.sign({ id: data[0].id, }, process.env.JWT_SECRET);
+
+
+    res.cookie("access_token", token, {
+        httpOnly: true
+    }).status(200).json({ email});
+});
+    
   };
 
     
