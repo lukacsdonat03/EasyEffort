@@ -20,7 +20,9 @@ export const CalorieCounter = () => {
         </Grid>
         </Grid>
         </Box>
-        <Footer/>
+        <div className='footer-container'>
+          <Footer/>
+        </div>
     </div>
   )
 }

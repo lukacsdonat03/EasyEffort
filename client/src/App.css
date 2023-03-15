@@ -97,7 +97,6 @@
   background-color: #4c856c;
   height: 1080px;
   padding-top: 100px;
-  padding-left: 25px;
 }
 
 /* - calorie list - */
@@ -105,6 +104,16 @@
 .calorie-list-container{
   background-color: #d5dfe5;
   border: 2px solid black;
+  margin-left: 10px;
 }
 
+
+/* - footer - */
+
+.footer-container{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
 

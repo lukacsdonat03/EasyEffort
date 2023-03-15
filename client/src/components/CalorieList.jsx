@@ -22,12 +22,12 @@ export const CalorieList = () => {
   
   const columns = [
     { field: 'event_time', headerName: 'Date', width: 150 },
-    { field: 'item_name', headerName: 'Product', width: 150 },
-    { field: 'total_calorie', headerName: 'Calorie', width: 150 },
-    { field: 'carbohydrate', headerName: 'Carbohydrate', width: 150 },
-    { field: 'protein', headerName: 'Protein', width: 150 },
-    { field: 'fat', headerName: 'Fat', width: 150 },
-    { field: 'amount', headerName: 'Amount/Weight', width: 150 },
+    { field: 'item_name', headerName: 'Product', width: 100 },
+    { field: 'total_calorie', headerName: 'Calorie', width: 100 },
+    { field: 'carbohydrate', headerName: 'Carbohydrate', width: 100 },
+    { field: 'protein', headerName: 'Protein', width: 100 },
+    { field: 'fat', headerName: 'Fat', width: 100 },
+    { field: 'amount', headerName: 'Amount/Weight', width: 100 },
 
   ];
   

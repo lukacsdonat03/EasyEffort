@@ -11,7 +11,6 @@ export const Footer = () => {
             to="/"
             role="button"
           >
-            <i className="fab fa-facebook-f" />
             About
           </Link>
 
@@ -20,7 +19,6 @@ export const Footer = () => {
             to="/"
             role="button"
           >
-            <i className="fab fa-twitter" />
             Contacts
           </Link>
 
@@ -29,7 +27,6 @@ export const Footer = () => {
             to="/"
             role="button"
           >
-            <i className="fab fa-google" />
             Facebook
           </Link>
 
@@ -38,7 +35,6 @@ export const Footer = () => {
             to="/"
             role="button"
           >
-            <i className="fab fa-instagram" />
             Tel
           </Link>
           <Link
@@ -46,7 +42,6 @@ export const Footer = () => {
             to="/"
             role="button"
           >
-            <i className="fab fa-github" />
             Github
           </Link>
         </section>
