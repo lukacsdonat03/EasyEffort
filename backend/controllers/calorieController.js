@@ -19,10 +19,9 @@ const deleteItem = async (req, res) => {
 const createItem = (req, res) => {
   const product = { ...req.body };
   console.log(product);
-  if(!product.id) return res.status(StatusCodes.BAD_REQUEST).send('Nics termék azonosító!')
-  database.query('INSERT INTO calorie (name,amount,carbohydrate,protein,fat,totalCalorie,userId) VALUES(?,?,?,?,?,?,?);',[product],(err)=>{
+  database.query('INSERT INTO calorie (name,amount,carbohydrate,protein,fat,totalCalorie,userId) VALUES(?,?,?,?,?,?,?);',[product.name, product.amount,product.carbohydrate,product.protein,product.fat,product.totalCalorie,product.userId],(err)=>{
     if(err) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
-    res.status(StatusCodes.CREATED).send('Create...')
+    res.status(StatusCodes.CREATED).send('Created...')
   })
 };
 

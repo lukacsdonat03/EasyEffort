@@ -24,14 +24,13 @@ export const Counter = () => {
     setInput(input + e.target.value);
   };
   const handleSubmit = (e) => {
-    e.preventDefeult();
-    setInput("");
-    PRODUCTS = []
-    if(!selectedItem){
-      return alert('Please choose an item')
-    }
-    axios.post('http://localhost:8080/api/v1/calorie/producst',{selectedItem},{headers:{'Content-Type':'application/json'}})
-      .then(res =>{ console.log(res.data);})
+    //e.preventDefeult();
+    setInput('');
+    //console.log(selectedItem.fields.item_name);
+    const item = selectedItem.fields;
+    axios.post('http://localhost:8080/api/v1/products/',
+    {name:item.item_name,amount:item.nf_serving_size_qty * input ,carbohydrate: item.nf_total_carbohydrate,protein:item.nf_protein,fat:item.nf_total_fat,totalCalorie:item.nf_calories,userId:12},
+    {headers:{'Content-Type':'application/json'},withCredentials:true})
   };
   const handleSearch = (e)=>{
     PRODUCTS = []
@@ -58,7 +57,7 @@ export const Counter = () => {
                 )
               }}
               sx={{ width: 300 }}
-              onChange={(event,value)=>{setSelectedItem(value);console.log(value);}}
+              onChange={(event,value)=>{setSelectedItem(value);console.log(value.fields);}}
               renderInput={(params) => (
                 <TextField {...params} label="Search..."  onChange={handleSearch}/>
               )}
