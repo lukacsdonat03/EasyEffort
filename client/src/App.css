@@ -1,3 +1,10 @@
+/* - global - */
+.fullwidth{
+  width: 100%;
+}
+.border-radius{
+  border-radius: 15px;
+}
 
 /* form style - login*/
 
@@ -64,3 +71,40 @@
 .link:visited{
   color:#4c956c;
 }
+
+/* - counter style -*/
+
+.counter-box{
+  height: 580px;
+  width: 500px;
+  border-radius: 30px;
+  border: 1px solid black;
+  box-shadow: 10px 5px 15px black;
+  margin: auto;
+  background-color: #d5dfe5;
+  justify-content: center;
+  padding: 5px;
+  text-align: center;
+}
+
+.counter-container{
+  margin: auto;
+  text-align: center;
+  padding: 25px;
+}
+
+.calorie-counter-page-container{
+  background-color: #4c856c;
+  height: 1080px;
+  padding-top: 100px;
+  padding-left: 25px;
+}
+
+/* - calorie list - */
+
+.calorie-list-container{
+  background-color: #d5dfe5;
+  border: 2px solid black;
+}
+
+

@@ -32,7 +32,7 @@ export const CalorieList = () => {
   ];
   
     return (
-      <div style={{ width: '100%' }}>
+      <div className='calorie-list-container'>
         <div style={{ height: 350, width: '100%' }}>
           <DataGrid rows={rows} columns={columns} />
         </div>

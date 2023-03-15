@@ -41,26 +41,16 @@ export const Counter = () => {
   
 
   return (
-    <div
-      style={{
-        height: "580px",
-        width: "500px",
-        borderRadius: "30px",
-        border: "1px solid black",
-        boxShadow: "10px 5px 15px #2C6E49",
-        margin: "auto",
-        backgroundColor: "#4C956C"
-        
-      }}
-    >
-      <div style={{ margin: "auto", textAlign: "center", padding: "5px" }}>
+    <div className="counter-box">
+      <div className="counter-container">
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <label>Keresés: </label>
             <Autocomplete
-              style={{ width: "100%" }}
+              style={{width: "100%"}}
               disablePortal
               id="combo-box-demo"
+              //className="fullwidth" nem irja felul ://
               options={PRODUCTS}
               renderOption={(props,option)=>{
                 return(
@@ -75,7 +65,7 @@ export const Counter = () => {
             />
             <br />
             <input
-              style={{ width: "90%" }}
+              className="fullwidth border-radius"
               type="text"
               name="numberInput"
               value={input}
@@ -83,60 +73,60 @@ export const Counter = () => {
           </Grid>
 
           <Grid item xs={4}>
-            <Button  value={1} onClick={handleClick} variant="contained" color="warning">
+            <Button  value={1} className="counter-button" onClick={handleClick} variant="contained" >
               1
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={2} onClick={handleClick} variant="contained"  color="warning">
+            <Button value={2} onClick={handleClick} variant="contained" >
               2
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={3} onClick={handleClick} variant="contained"  color="warning">
+            <Button value={3} onClick={handleClick} variant="contained">
               3
             </Button>
           </Grid>
 
           <Grid item xs={4}>
-            <Button value={4} onClick={handleClick} variant="contained"  color="warning">
+            <Button value={4} onClick={handleClick} variant="contained" >
               4
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={5} onClick={handleClick} variant="contained"  color="warning">
+            <Button value={5} onClick={handleClick} variant="contained" >
               5
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={6} onClick={handleClick} variant="contained"  color="warning">
+            <Button value={6} onClick={handleClick} variant="contained" >
               6
             </Button>
           </Grid>
 
           <Grid item xs={4}>
-            <Button value={7} onClick={handleClick} variant="contained"  color="warning">
+            <Button value={7} onClick={handleClick} variant="contained" >
               7
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={8} onClick={handleClick} variant="contained"  color="warning">
+            <Button value={8} onClick={handleClick} variant="contained" >
               8
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={9} onClick={handleClick} variant="contained"  color="warning">
+            <Button value={9} onClick={handleClick} variant="contained" >
               9
             </Button>
           </Grid>
 
           <Grid item xs={4}>
-            <Button value={","} onClick={handleClick} variant="contained"  color="warning"> 
+            <Button value={","} onClick={handleClick} variant="contained" > 
               ,
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button value={0} onClick={handleClick} variant="contained"  color="warning">
+            <Button value={0} onClick={handleClick} variant="contained" >
               0
             </Button>
           </Grid>
