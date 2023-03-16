@@ -9,7 +9,7 @@ export const Register = () => {
         const navigate = useNavigate();
         const handleRegister = (event) => {
           event.preventDefault();
-          axios.post('http://localhost:8080/api/v1/auth/register',formData).then((res)=>{console.log(res.data+' sikeres regisztráció');navigate('/home')})
+          axios.post('http://localhost:8080/api/v1/auth/register',formData).then((res)=>{console.log(res.data+' sikeres regisztráció');navigate('/login')})
         };
   
   

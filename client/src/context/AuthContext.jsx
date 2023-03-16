@@ -13,7 +13,7 @@ export const Authentication = ({children}) =>{
         setCurrentUser(res.data)
     }
     const logout = async () =>{
-       // axios.get('http://localhost:8080/api/v1/auth/logout') még nincs meg
+       axios.get('http://localhost:8080/api/v1/auth/logout')
        setCurrentUser(null)
     }
 

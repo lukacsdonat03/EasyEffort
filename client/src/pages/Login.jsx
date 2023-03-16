@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios'
+import { AuthContext } from "../context/AuthContext";
+
 
 
 
 export const Login = () => {
+    const {login} = useContext(AuthContext)
     const[formData,setFormData] = useState({})
     const navigate = useNavigate()
     const handleLogin = (event) => {
       event.preventDefault();
-      axios.post('http://localhost:8080/api/v1/auth/login',formData,{headers: {"Content-Type":'application/json'}})
-        .then(res=>console.log(res),navigate('/home'))
+      login(formData).then(()=>navigate('/'))
     };
 
   return (
