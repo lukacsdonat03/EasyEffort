@@ -8,17 +8,28 @@ let PRODUCTS = []
 
 export const Counter = () => {
   const [input, setInput] = useState("");
-  const [search,setSearch] = useState("");
+  const [search,setSearch] = useState("%20");
   const [ selectedItem, setSelectedItem ] = useState({})
   
   useEffect(()=>{
-    axios.post('http://localhost:8080/api/v1/counter/items',{item_name:search},{headers:{'Content-Type':'application/json'}})
+    axios.post('http://localhost:8080/api/v1/counter/items',{item_name:"%20"},{headers:{'Content-Type':'application/json'},withCredentials:true})
+      .then(res=>{
+        console.log(res);
+        res.data.map((element,index)=>PRODUCTS.push({id:index+1,label:element.item_name,fields:element}))
+        console.log(PRODUCTS);
+      })
+  },[])
+
+  useEffect(()=>{
+    axios.post('http://localhost:8080/api/v1/counter/items',{item_name:search},{headers:{'Content-Type':'application/json'},withCredentials:true})
       .then(res => {
-        res.data.forEach(element=>PRODUCTS.push({label:element.item_name,fields:element}))
+        res.data.map((element,index)=>PRODUCTS.push({id:index+1,label:element.item_name,fields:element}))
         console.log(PRODUCTS); 
       })
 
   },[search])
+
+  
 
   const handleClick = (e) => {
     setInput(input + e.target.value);
@@ -26,16 +37,16 @@ export const Counter = () => {
   const handleSubmit = (e) => {
     //e.preventDefeult();
     setInput('');
-    //console.log(selectedItem.fields.item_name);
     const item = selectedItem.fields;
     axios.post('http://localhost:8080/api/v1/products/',
     {name:item.item_name,amount:item.nf_serving_size_qty * input ,carbohydrate: item.nf_total_carbohydrate,protein:item.nf_protein,fat:item.nf_total_fat,totalCalorie:item.nf_calories,userId:12},
     {headers:{'Content-Type':'application/json'},withCredentials:true})
   };
   const handleSearch = (e)=>{
-    PRODUCTS = []
+    PRODUCTS.splice(0,PRODUCTS.length)
     setSearch(e.target.value)
     console.log(search);
+    console.log(Object.keys(PRODUCTS));
   }
   
 
@@ -53,7 +64,7 @@ export const Counter = () => {
               options={PRODUCTS}
               renderOption={(props,option)=>{
                 return(
-                  <li {...props} key={Object.keys(option)} >{option.label}</li> 
+                  <li {...props} key={option.id} >{option.label}</li> 
                 )
               }}
               sx={{ width: 300 }}
@@ -68,6 +79,7 @@ export const Counter = () => {
               type="text"
               name="numberInput"
               value={input}
+              readOnly
             />
           </Grid>
 
