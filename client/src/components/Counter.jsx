@@ -10,15 +10,6 @@ export const Counter = () => {
   const [input, setInput] = useState("");
   const [search,setSearch] = useState("%20");
   const [ selectedItem, setSelectedItem ] = useState({})
-  
-  useEffect(()=>{
-    axios.post('http://localhost:8080/api/v1/counter/items',{item_name:"%20"},{headers:{'Content-Type':'application/json'},withCredentials:true})
-      .then(res=>{
-        console.log(res);
-        res.data.map((element,index)=>PRODUCTS.push({id:index+1,label:element.item_name,fields:element}))
-        console.log(PRODUCTS);
-      })
-  },[])
 
   useEffect(()=>{
     axios.post('http://localhost:8080/api/v1/counter/items',{item_name:search},{headers:{'Content-Type':'application/json'},withCredentials:true})
@@ -43,10 +34,12 @@ export const Counter = () => {
     {headers:{'Content-Type':'application/json'},withCredentials:true})
   };
   const handleSearch = (e)=>{
-    PRODUCTS.splice(0,PRODUCTS.length)
-    setSearch(e.target.value)
-    console.log(search);
-    console.log(Object.keys(PRODUCTS));
+    if(e.keyCode === 13){
+      PRODUCTS.splice(0,PRODUCTS.length)
+      setSearch(e.target.value)
+      console.log(search);
+      console.log(Object.keys(PRODUCTS));
+    }
   }
   
 
@@ -55,7 +48,6 @@ export const Counter = () => {
       <div className="counter-container">
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <label>Keresés: </label>
             <Autocomplete
               style={{width: "100%"}}
               disablePortal
@@ -70,9 +62,10 @@ export const Counter = () => {
               sx={{ width: 300 }}
               onChange={(event,value)=>{setSelectedItem(value);console.log(value.fields);}}
               renderInput={(params) => (
-                <TextField {...params} label="Search..."  onChange={handleSearch}/>
+                <TextField {...params} label="Search..."  onKeyDown={handleSearch}/>
               )}
-            />
+              />
+             
             <br />
             <input
               className="fullwidth border-radius"
