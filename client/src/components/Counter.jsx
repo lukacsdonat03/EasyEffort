@@ -7,17 +7,16 @@ let PRODUCTS = [];
 
 export const Counter = () => {
   const [input, setInput] = useState("");
-  const [search, setSearch] = useState("%20");
+  const [search, setSearch] = useState("");
   const [selectedItem, setSelectedItem] = useState({});
 
-  /*useEffect(()=>{
-    axios.post('http://localhost:8080/api/v1/counter/items',{item_name:search},{headers:{'Content-Type':'application/json'},withCredentials:true})
+  useEffect(()=>{
+    axios.post('http://localhost:8080/api/v1/counter/items',{item_name:"%20"},{headers:{'Content-Type':'application/json'},withCredentials:true})
       .then(res => {
         res.data.map((element,index)=>PRODUCTS.push({id:index+1,label:element.item_name,fields:element}))
         console.log(PRODUCTS); 
       })
-
-  },[search])*/
+  },[])
 
   const handleInput = (e) => {
     axios
