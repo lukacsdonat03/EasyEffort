@@ -5,15 +5,15 @@ import axios from 'axios'
 export const CalorieList = () => {
   
   const rows = [
-    //{ id: 1, col1: 'Hello', col2: 'World' },
     {id:1,event_time: Date(),item_name: "apple",total_calorie: 123,carbohydrate:10,protein:2,fat:3,amount:81} 
     
   ];
   
   useEffect(() => {
-    axios.get('http://localhost:8080/api/v1/products/all/1').then(res=>{
+    axios.get('http://localhost:8080/api/v1/products/all/20').then(res=>{
+      console.log(res.data);
       const product = res.data
-      rows.push(product.event_time,{item_name:product.name,total_calorie:product.totalCalorie},product.carbohydrate,product.protein,product.fat,product.amount)
+      rows.push(product.event_time,product.name,product.totalCalorie,product.carbohydrate,product.protein,product.fat,product.amount)
       console.log(rows);
     })
   }, )
