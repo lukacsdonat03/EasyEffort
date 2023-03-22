@@ -3,12 +3,14 @@ import { Box } from '@mui/system'
 import { CalorieList } from '../components/CalorieList'
 import { Counter } from '../components/Counter'
 import { Footer } from '../components/Footer'
+import { Navbar } from '../components/Navbar'
 
 
 
 export const CalorieCounter = () => {
   
   return (
+    <div className='Navbar-container'><Navbar></Navbar>
     <div className='calorie-counter-page-container'>
       <Box sx={{ flexGrow: 1 }} >
       <Grid container spacing={2}>
@@ -24,5 +26,8 @@ export const CalorieCounter = () => {
           <Footer/>
         </div>
     </div>
+    </div>
   )
 }
+
+export default CalorieCounter;
