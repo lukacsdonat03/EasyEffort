@@ -12,7 +12,7 @@ import { Register } from './pages/Register';
 function App() {
   return (
     <>
-      <Authentication>
+      
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<HomePage/>} />

@@ -8,7 +8,7 @@ export const HomePage = () => {
   return (
     <div className="HomePage">
       <Navbar/>
-      <div className="container">
+      <div className="container w-100" >
       <section className="hero">
         <h1>Welcome to Easy Effort</h1>
         <p>We are a fitness website that helps you achieve your fitness goals with ease and effort.</p>

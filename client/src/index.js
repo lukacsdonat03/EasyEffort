@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { Authentication } from './context/AuthContext';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -16,6 +17,10 @@ import Login from './pages/Login.jsx'
 
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage/>,
+  },
   {
     path: "/HomePage",
     element: <HomePage/>,
@@ -44,12 +49,16 @@ const router = createBrowserRouter([
     path: "/Login",
     element: <Login/>,
   },
+  
 ]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Authentication>
     <RouterProvider router={router} />
+    </Authentication>
     </React.StrictMode>
 );
 
