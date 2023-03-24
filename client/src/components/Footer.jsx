@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Footer = () => {
   return (
     <footer className="bg-dark text-center text-white">
-      <div className="container p-4 pb-0">
+      <div className="p-4 pb-0">
         <section className="mb-4">
           <Link
             className="btn btn-outline-light btn-floating m-1"
