@@ -14,6 +14,7 @@ import ExcercisesPage from './pages/ExcercisesPage.js';
 import BMIPage from './pages/BMIPage.js';
 import CalorieCounter from './pages/CalorieCounter.jsx';
 import Login from './pages/Login.jsx'
+import {Register} from './pages/Register.jsx'
 
 
 const router = createBrowserRouter([
@@ -22,33 +23,37 @@ const router = createBrowserRouter([
     element: <HomePage/>,
   },
   {
-    path: "/HomePage",
+    path: "/home",
     element: <HomePage/>,
   },
   {
-    path: "/AboutPage",
+    path: "/about",
     element: <AboutPage/>,
   },
   {
-    path: "/ContactPage",
+    path: "/contacts",
     element: <ContactPage/>,
   },
   {
-    path: "/BMIPage",
+    path: "/bmi-page",
     element: <BMIPage/>,
   },
   {
-    path: "/CalorieCounterPage",
+    path: "/counter",
     element: <CalorieCounter/>,
   },
   {
-    path: "/ExcercisesPage",
+    path: "/excercises",
     element: <ExcercisesPage/>,
   },
   {
-    path: "/Login",
+    path: "/login",
     element: <Login/>,
   },
+  {
+    path:"/register",
+    element:<Register/>
+  }
   
 ]);
 
