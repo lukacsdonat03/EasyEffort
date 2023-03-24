@@ -4,6 +4,8 @@ const {
   NotFoundError,
 } = require("../errors");
 const { StatusCodes } = require("http-status-codes");
+const fitnessCalculator = require('fitness-calculator')
+
 
 const deleteUser = (req,res) =>{
     const{id} = req.params
@@ -76,12 +78,39 @@ const setTargetWeight = (req,res)=>{
 }
 
 const setCurrentCalorie = (req,res)=>{
-    //external lib??
-    //api
-}
+
+    database.query('UPDATE user SET currentCalorie= currentCalorie + ? WHERE id = ? '[req.body.totalCalorie,req.params.id],(err)=>{
+        if(err){
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
+        }
+        return res.status(StatusCodes.OK).send('Updated Successfully...')
+    })
+}  
 
 const setTargetCalorie = (req,res)=>{
-    //external lib??
+    /*
+        TODO:valami option cucc frontenden ahol a user ki tudja választani a listából, hogy melyik legyen beállítiva
+        visszatérési érték:
+            {
+                balance: Number,
+                mildWeightLoss: Number,
+                mildWeightGain: Number,
+                heavyWeightLoss: Number,
+                heavyWeightGain: Number
+            }
+    */ 
+    const{id} = req.params
+    const {gender,age,height,weight,activity} = req.body
+    const calorieNeeds = fitnessCalculator.calorieNeeds(gender,age,height,weight,activity)
+    //TODO:eldönteni hogy weightLoss vagy weightGain kell
+    //database query
+    //TODO: szar az sql paraméteresen valamiért
+    database.query('UPDATE user SET targetCalorie = ? WHERE id = ?',[calorieNeeds.mildWeightLoss,id],(err)=>{
+        if(err){
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
+        }
+        return res.status(StatusCodes.OK).json(calorieNeeds)
+    })
 }
 
 module.exports = {
@@ -89,5 +118,7 @@ module.exports = {
     getAllUser,
     getUser,
     setCurrentWeight,
-    setTargetWeight
+    setTargetWeight,
+    setCurrentCalorie,
+    setTargetCalorie
 }
