@@ -78,12 +78,14 @@ const setTargetWeight = (req,res)=>{
 }
 
 const setCurrentCalorie = (req,res)=>{
-
-    database.query('UPDATE user SET currentCalorie= currentCalorie + ? WHERE id = ? '[req.body.totalCalorie,req.params.id],(err)=>{
-        if(err){
-            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
-        }
-        return res.status(StatusCodes.OK).send('Updated Successfully...')
+    const {id} = req.params
+    const {totalCalorie} = req.body
+    if(!id || !totalCalorie){
+        return res.status(StatusCodes.BAD_REQUEST)
+    }
+    database.query('UPDATE user SET currentCalorie = currentCalorie + ? WHERE id = ? ',[totalCalorie,id],(err)=>{
+        if(err) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
+        return res.status(StatusCodes.OK).send('Calorie updated...')
     })
 }  
 
