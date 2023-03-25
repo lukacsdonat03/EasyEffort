@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 
-
-
 export const Login = () => {
     const {login} = useContext(AuthContext)
     const[formData,setFormData] = useState({})
@@ -48,7 +46,7 @@ export const Login = () => {
         Login
       </button>
       <br/>
-    <Link to='/register' className="link">Nincs még fiókod?</Link> 
+    <Link to='/register' className="link">Don't have an account yet?</Link> 
     </form>
   </div>
   );

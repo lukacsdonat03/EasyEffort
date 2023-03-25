@@ -6,8 +6,7 @@ const jwt  = require('jsonwebtoken')
 const bodyParser = require('body-parser')
 require('dotenv').config()
 
-const register = async (req,res)=>{
-
+const register = (req,res)=>{
     const fullname = req.body.fullname
     const email = req.body.email
     const password = req.body.password
@@ -15,7 +14,7 @@ const register = async (req,res)=>{
         [email],
         (err,rows)=>{
            if(err){
-            return res.status(StatusCodes.NOT_FOUND).send(err)
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
            } 
             if(rows.length !== 0){
                return res.status(StatusCodes.CONFLICT).send("Ezzel a emaillal már létezik felhasználó!")
