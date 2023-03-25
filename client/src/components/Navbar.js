@@ -8,7 +8,7 @@ export const Navbar = () => {
   return (
    
         <nav>
-            <Link className='Link' to="/HomePage"><img src={SmallLogo} alt="logo" height="80" /></Link>
+            <Link className='Link' to="/home"><img src={SmallLogo} alt="logo" height="80" /></Link>
         
         <div>
             <ul id='navbar'>
