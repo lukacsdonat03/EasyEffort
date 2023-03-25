@@ -99,15 +99,6 @@
   padding-top: 100px;
 }
 
-/* - calorie list - */
-
-.calorie-list-container{
-  background-color: #d5dfe5;
-  border: 2px solid black;
-  margin-left: 10px;
-}
-
-
 /* - footer - */
 
 .footer-container{
@@ -117,3 +108,21 @@
   width: 100%;
 }
 
+/* calorie-table  */
+.calorie-table{
+  border: 2px solid white;
+  background-color: #0d1f2d;
+  color: #d5dfe5;
+}
+
+.calorie-table-cells{
+  border: 2px solid white;
+  padding: 10px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.calorie-table-div{
+  margin-left: 10px;
+  box-shadow: 10px 15px 15px 5px black;
+}

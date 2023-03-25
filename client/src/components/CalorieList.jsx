@@ -1,44 +1,46 @@
-import React, { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import axios from "axios";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 export const CalorieList = () => {
-  const [rows, setRows] = useState([]);
+  const [ listData,setListData ] = useState([])
 
-  useEffect(() => {
-    axios.get("http://localhost:8080/api/v1/products/all/12").then((res) => {
-      res.data.forEach((element) => {
-        setRows(...rows, {
-          id: element.key,
-          date: element.event,
-          name: element.name,
-          totalCalorie: element.totalCalorie,
-          carbohydrate: element.carbohydrate,
-          protein: element.protein,
-          fat: element.fat,
-          amount: element.amount,
-        });
-      }
-      );
-      console.log("Rows \n "+rows);
-    });
-  },[]);
-
-  const columns = [
-    { field: "date", headerName: "Date", width: 150 },
-    { field: "name", headerName: "Product", width: 100 },
-    { field: "totalCalorie", headerName: "Calorie", width: 100 },
-    { field: "carbohydrate", headerName: "Carbohydrate", width: 100 },
-    { field: "protein", headerName: "Protein", width: 100 },
-    { field: "fat", headerName: "Fat", width: 100 },
-    { field: "amount", headerName: "Weight", width: 100 },
-  ];
+  useEffect(()=>{
+    axios.get("http://localhost:8080/api/v1/products/all/12")
+      .then(res=>{
+        setListData(res.data)
+      })
+  },[])
 
   return (
-    <div className="calorie-list-container">
-      <div style={{ height: 350, width: "100%" }}>
-        <DataGrid rows={rows} columns={columns} />
+    <>
+      <div className='calorie-table-div'>
+      <table className='calorie-table'>
+        <thead>
+          <tr>
+            <th className='calorie-table-cells'>Date</th>
+            <th className='calorie-table-cells'>Product</th>
+            <th className='calorie-table-cells'>Cals</th>
+            <th className='calorie-table-cells'>Carbs<sub>(g)</sub></th>
+            <th className='calorie-table-cells'>Protein<sub>(g)</sub></th>
+            <th className='calorie-table-cells'>Fat<sub>(g)</sub></th>
+            <th className='calorie-table-cells'>Weight <sub>(g)</sub></th>
+          </tr>
+        </thead>
+        <tbody>
+          {listData.map((value,index)=>{
+           return <tr key={index}>
+              <td className='calorie-table-cells'>{value.event_time}</td>
+              <td className='calorie-table-cells'>{value.name}</td>
+              <td className='calorie-table-cells'>{value.totalCalorie}</td>
+              <td className='calorie-table-cells'>{value.carbohydrate}</td>
+              <td className='calorie-table-cells'>{value.protein}</td>
+              <td className='calorie-table-cells'>{value.fat}</td>
+              <td className='calorie-table-cells'>{value.amount}</td>
+            </tr>
+          })}
+        </tbody>
+      </table>
       </div>
-    </div>
-  );
-};
+    </>
+  )
+}
