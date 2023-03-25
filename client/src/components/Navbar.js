@@ -12,12 +12,12 @@ export const Navbar = () => {
         
         <div>
             <ul id='navbar'>
-                <li><NavLink className='Link' to="/HomePage">Home</NavLink></li>
-                <li><NavLink className='Link' to="/CalorieCounterPage">Calorie Counter</NavLink></li>
-                <li><NavLink className='Link' to="/BMIPage">BMI Calculator</NavLink></li>
-                <li><NavLink className='Link' to="/AboutPage">About</NavLink></li>
-                <li><NavLink className='Link' to="/ContactPage">Contacts</NavLink></li>
-                <li><NavLink className='Link Login' to="/Login">Login</NavLink></li>
+                <li><NavLink className='Link' to="/home">Home</NavLink></li>
+                <li><NavLink className='Link' to="/counter">Calorie Counter</NavLink></li>
+                <li><NavLink className='Link' to="/bmi-page">BMI Calculator</NavLink></li>
+                <li><NavLink className='Link' to="/about">About</NavLink></li>
+                <li><NavLink className='Link' to="/contacts">Contacts</NavLink></li>
+                <li><NavLink className='Link Login' to="/login">Login</NavLink></li>
             </ul>
         </div>
         </nav>

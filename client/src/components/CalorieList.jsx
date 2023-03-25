@@ -3,12 +3,12 @@ import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 
 export const CalorieList = () => {
-  const [dataGridRows, setDataGridRows] = useState([]);
+  const [rows, setRows] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/v1/products/all/12").then((res) => {
       res.data.forEach((element) => {
-        setDataGridRows(...dataGridRows, {
+        setRows(...rows, {
           id: element.key,
           date: element.event,
           name: element.name,
@@ -18,9 +18,11 @@ export const CalorieList = () => {
           fat: element.fat,
           amount: element.amount,
         });
-      });
+      }
+      );
+      console.log("Rows \n "+rows);
     });
-  });
+  },[]);
 
   const columns = [
     { field: "date", headerName: "Date", width: 150 },
@@ -35,7 +37,7 @@ export const CalorieList = () => {
   return (
     <div className="calorie-list-container">
       <div style={{ height: 350, width: "100%" }}>
-        <DataGrid rows={dataGridRows} columns={columns} />
+        <DataGrid rows={rows} columns={columns} />
       </div>
     </div>
   );
