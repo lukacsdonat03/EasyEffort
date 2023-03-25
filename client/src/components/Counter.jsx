@@ -106,7 +106,7 @@ export const Counter = () => {
             </Button>
             <br />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={8}>
             <input
               className="fullwidth border-radius"
               type="text"
@@ -115,7 +115,9 @@ export const Counter = () => {
               readOnly
             />
           </Grid>
-
+          <Grid item xs={4}>
+            <Button variant="contained" onClick={()=>setInput("")}>Clear</Button>
+          </Grid>
           <Grid item xs={4}>
             <Button
               value={1}
