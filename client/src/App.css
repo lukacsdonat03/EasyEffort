@@ -126,3 +126,57 @@
   margin-left: 10px;
   box-shadow: 10px 15px 15px 5px black;
 }
+/* yes/no buttons */
+
+.list-button{
+  background-color: #0d1f2d;
+  margin: 1px;
+  border:none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.list-button:hover{
+  background-color:#D5DFE5 ;
+  border: none;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* admin */
+.message-container{
+  margin: auto;
+}
+.admin-page-container{
+  background-color: #4c956c;
+  height: 850px;
+}
+
+.dashboard-container{
+  margin: auto;
+}
+
+.dashboard-cells{
+  background-color: #D5DFE5;
+  border: 2px solid #0d1f2d;
+  color: #0d1f2d;
+  padding: 10px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.dashboard-button{
+  background-color: #0d1f2d;
+  color: #D5DFE5;
+  margin: 1px;
+  border:none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-button:hover{
+  background-color:#2C6E49 ;
+  border: none;
+  box-shadow: 0px 5px 10px rgba(1, 0, 0, 2);
+}
+

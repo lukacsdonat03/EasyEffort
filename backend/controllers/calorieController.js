@@ -2,7 +2,7 @@ const database = require("../database/dbConfig");
 const { BadRequestError, NotFoundError } = require("../errors");
 const { StatusCodes } = require("http-status-codes");
 
-const deleteItem = async (req, res) => {
+const deleteItem = (req, res) => {
   const { id } = req.params;
   if (!id)
     return res

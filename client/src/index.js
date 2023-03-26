@@ -15,6 +15,7 @@ import BMIPage from './pages/BMIPage.js';
 import CalorieCounter from './pages/CalorieCounter.jsx';
 import Login from './pages/Login.jsx'
 import {Register} from './pages/Register.jsx'
+import { AdminPage } from './pages/admin/AdminPage';
 
 
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path:"/register",
     element:<Register/>
+  },
+  {
+    path:'/admin',
+    element:<AdminPage/>
   }
   
 ]);

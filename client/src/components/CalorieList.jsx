@@ -14,7 +14,7 @@ export const CalorieList = () => {
       .then(res=>{
         setListData(res.data)
       })
-  },[])
+  },[currentUser.id])
 
   return (
     <>

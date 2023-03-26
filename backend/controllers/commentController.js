@@ -5,49 +5,49 @@ const {
     NotFoundError,
   } = require("../errors");
 
-const getComment = async (req,res) =>{
+const getComment =(req,res) =>{
     const {id} = req.params
     if(!id) throw new BadRequestError('Nincs id')
     database.query('SELECT * FROM comment WHERE id = ?',[id],(err,rows)=>{
         if(err){
-          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Kaka a palacsintában'+err)
+         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Kaka a palacsintában'+err)
         }
         if(rows.length === 0){  
-        throw new NotFoundError(`No comment with ${id} id`)
+         return res.sendStatus(StatusCodes.NO_CONTENT)
         }
-        res.status(StatusCodes.OK).send(rows[0])
+        return res.status(StatusCodes.OK).send(rows[0])
       })
     }
 
-const allComment = async (req,res)=>{
+const allComment = (req,res)=>{
     database.query('SELECT * FROM comment',(err,rows)=>{
-        if(err) res.status(StatusCodes.NOT_FOUND).send(err)
-        res.status(StatusCodes.OK).send(rows)
+        if(err) return  res.status(StatusCodes.NOT_FOUND).send(err)
+        return res.status(StatusCodes.OK).send(rows)
     })
 }
 
-const deleteComment = async (req,res) =>{
+const deleteComment = (req,res) =>{
     const {id} = req.params
-    if(!id) throw new BadRequestError('Nincs id')
+    if(!id) return res.sendStatus(StatusCodes.BAD_REQUEST)
     database.query('DELETE FROM comment WHERE id = ?',[id],(err)=>{
         if(err) {
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
         }
-        res.status(StatusCodes.OK).send('Sikeres törlés')
+        return res.status(StatusCodes.OK).send('Sikeres törlés')
     })
 }
 
-const createComment = async (req,res) =>{
+const createComment = (req,res) =>{
     const {userId,comment} = req.body
     database.query('INSERT INTO comment (userId,message) VALUES(?,?)',[userId,comment],(err)=>{
         if(err){
-            res.status(StatusCodes.NOT_FOUND).send(err)
+           return res.status(StatusCodes.NOT_FOUND).send(err)
         }
-        res.status(StatusCodes.CREATED).send('Created')
+        return res.status(StatusCodes.CREATED).send('Created')
     })
 } 
 
-const updateComment =async (req,res) =>{
+const updateComment = (req,res) =>{
     const message = req.body.message
     const id = req.params.id
 
@@ -55,9 +55,9 @@ const updateComment =async (req,res) =>{
     [message,id],
     (err)=>{
         if(err){
-            res.status(StatusCodes.NOT_FOUND).send(err)
+           return res.status(StatusCodes.NOT_FOUND).send(err)
         }
-        res.status(StatusCodes.OK).send("Updated sucessfully")
+       return res.status(StatusCodes.OK).send("Updated sucessfully")
     }
     )
 } 
