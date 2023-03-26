@@ -75,10 +75,10 @@ const getItem = (req, res) => {
   if (!id) throw new BadRequestError("Nincs id");
   database.query("SELECT * FROM calorie WHERE id = ?", [id], (err, rows) => {
     if (err) {
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
     }
     if (rows.length === 0) {
-      throw new NotFoundError(`No item with ${id} id`);
+      return res.statis(StatusCodes.NO_CONTENT).send('No content')
     }
     res.status(StatusCodes.OK).send(rows[0]);
   });
