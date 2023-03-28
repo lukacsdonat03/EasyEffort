@@ -38,10 +38,10 @@ const deleteComment = (req,res) =>{
 }
 
 const createComment = (req,res) =>{
-    const {userId,subject,comment} = req.body
-    database.query('INSERT INTO comment (userId,subject,message) VALUES(?,?)',[userId,subject,comment],(err)=>{
+    const {userId,subject,message} = req.body
+    database.query('INSERT INTO comment (userId,subject,message) VALUES(?,?,?)',[userId,subject,message],(err)=>{
         if(err){
-           return res.status(StatusCodes.NOT_FOUND).send(err)
+           return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
         }
         return res.status(StatusCodes.CREATED).send('Created')
     })

@@ -18,6 +18,7 @@ export const UserMessage = () => {
                     <tr>
                         <th className='calorie-table-cells'>ID</th>
                         <th className='calorie-table-cells'>UserId</th>
+                        <th className='calorie-table-cells'>Subject</th>
                         <th className='calorie-table-cells'>Message</th>
                         <th className='calorie-table-cells'>Name</th>
                         <th className='calorie-table-cells'>Option</th>
@@ -28,6 +29,7 @@ export const UserMessage = () => {
                         return <tr key={index}>
                             <td className='calorie-table-cells'>{index+1}</td>
                             <td className='calorie-table-cells'>{singleMessage.userId}</td>
+                            <td className='calorie-table-cells'>{singleMessage.subject}</td>
                             <td className='calorie-table-cells'>{singleMessage.message}</td>
                             <td className='calorie-table-cells'>pityu</td>
                             <th className='calorie-table-cells'><button className='list-button'>✅</button><button className='list-button'>❌</button></th>
