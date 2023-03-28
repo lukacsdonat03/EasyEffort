@@ -45,6 +45,7 @@ form {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
+    height: 60px;
   }
   
   button[type="submit"]:hover {
@@ -63,4 +64,15 @@ form {
       max-width: 100%;
     }
   }
+
+  .bottom-footer-container{
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+  }
+   .subtext{
+    font-family: 'Tilt Warp';
+    text-align: center;
+    color:#0d1f2d
+   }
   
