@@ -47,20 +47,20 @@ const register = (req,res)=>{
     if (!isCorrectPassword)
         return res.status(400).send("Wrong username or password.");
 
-    const { email, admin: isAdmin } = data[0];
+    const { email, admin } = data[0];
 
     const token = jwt.sign({ id: data[0].id, }, process.env.JWT_SECRET);
 
 
-    res.cookie("access_token", token, {
+    res.cookie("accessToken", token, {
         httpOnly: true
-    }).status(200).json({ email});
+    }).status(200).json({ email,admin});
 });
     
   };
 
     const logout = (req,res) =>{
-        res.clearCookie("access_token", {
+        res.clearCookie("accessToken", {
             sameSite: "none",
             secure: true
         }).status(200).json("User has been logged out.")
