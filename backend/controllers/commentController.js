@@ -38,8 +38,8 @@ const deleteComment = (req,res) =>{
 }
 
 const createComment = (req,res) =>{
-    const {userId,comment} = req.body
-    database.query('INSERT INTO comment (userId,message) VALUES(?,?)',[userId,comment],(err)=>{
+    const {userId,subject,comment} = req.body
+    database.query('INSERT INTO comment (userId,subject,message) VALUES(?,?)',[userId,subject,comment],(err)=>{
         if(err){
            return res.status(StatusCodes.NOT_FOUND).send(err)
         }
@@ -48,10 +48,10 @@ const createComment = (req,res) =>{
 } 
 
 const updateComment = (req,res) =>{
-    const message = req.body.message
+    const {subject,message} = req.body
     const id = req.params.id
 
-    database.query('UPDATE comment SET message = ?  WHERE id = ?',
+    database.query('UPDATE comment SET subject = ? , message = ?  WHERE id = ?',
     [message,id],
     (err)=>{
         if(err){
@@ -61,6 +61,7 @@ const updateComment = (req,res) =>{
     }
     )
 } 
+
 
 module.exports ={
     getComment,
