@@ -9,8 +9,9 @@ export const CalorieList = () => {
   const{ currentUser } = useContext(AuthContext)
 //TODO:cookiból kinyerni a jwt-t és decóüdolni az id miatt
   useEffect(()=>{
-   console.log(Cookies.get('access_token'));
-    axios.get(`http://localhost:8080/api/v1/products/all/${currentUser.id}`)
+    Cookies.set('accessToken','asd')
+    console.log(Cookies.get('accessToken'));
+    axios.get(`http://localhost:8080/api/v1/products/all/${currentUser.id}`,{withCredentials:true})
       .then(res=>{
         setListData(res.data)
       })

@@ -57,6 +57,7 @@ const updateItem = (req, res) => {
 };
 
 const allItem = (req, res) => {
+  console.log(req.cookies);
   const userId = req.params.userId;
   database.query(
     "SELECT * FROM calorie WHERE userId=?;",

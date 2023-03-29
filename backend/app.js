@@ -3,7 +3,7 @@ const cors = require('cors')
 const { StatusCodes } = require('http-status-codes/build/cjs/status-codes')
 const app  = express()
 const dbConfig = require('./database/dbConfig')
-
+const cookieParser = require('cookie-parser')
 //routers
 const authRouter = require('./routes/authRouter')
 const commentRouter = require('./routes/commentRouter')
@@ -18,7 +18,7 @@ require('dotenv').config()
 //middlewares
 app.use(express.json())
 app.use(cors({credentials:true,origin:'http://localhost:3000'}))
-
+app.use(cookieParser())
 
 //error handlers
 
