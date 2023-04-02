@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Typography } from '@mui/material'
+import { AdmimnModal } from './AdminModal'
 
 export const Dashboard = () => {
   
   const [userList, setUserList] = useState([])
+ 
 
   useEffect(()=>{
     axios.get('http://localhost:8080/api/v1/user/all')
       .then((res)=>setUserList(res.data))
   },[])
+
   
   return (
        
@@ -35,7 +38,7 @@ export const Dashboard = () => {
                 <td className='dashboard-cells'>{user.fullname}</td>
                 <td className='dashboard-cells'>{user.email}</td>
                 <td className='dashboard-cells'>{user.admin ===1 ?<span>💹</span>:<span>❌</span>}</td>
-                <td className='dashboard-cells'><button className='dashboard-button'>More...</button></td>
+                <td className='dashboard-cells'><AdmimnModal users={user}/></td>
               </tr>
             })}
           </tbody>
