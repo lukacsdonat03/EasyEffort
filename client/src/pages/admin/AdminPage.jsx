@@ -1,10 +1,21 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
+import { useContext } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Dashboard } from "../../components/admin/Dashboard";
 import { UserMessage } from "../../components/admin/UserMessage";
 import { Navbar } from "../../components/Navbar";
+import { AuthContext } from "../../context/AuthContext";
 
 export const AdminPage = () => {
+  const{currentUser} = useContext(AuthContext)
+
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(!currentUser || currentUser.admin !== 1)
+      navigate('/home')
+  },[currentUser, navigate])
   return (
     <>
       <Navbar />
