@@ -27,11 +27,19 @@ export const Navbar = () => {
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink className="Link" to="/counter">
-              Calorie Counter
-            </NavLink>
-          </li>
+          {currentUser && currentUser.admin === 1 ? (
+            <li>
+              <NavLink className="Link" to="/admin">
+                Admin
+              </NavLink>
+            </li>
+          ) : null}
+           {currentUser && 
+            <li>
+              <NavLink className="Link" to="/counter">
+                Calorie Counter
+              </NavLink>
+            </li>}
           <li>
             <NavLink className="Link" to="/bmi-page">
               BMI Calculator
