@@ -15,92 +15,106 @@ const initModels = require('../models/init-models')
 const models = initModels(sequelize)
 
 
-const deleteUser = (req,res) =>{
+const deleteUser = async (req,res) =>{
     const{id} = req.params
-    database.query('DELETE * FROM user WHERE id = ?',[id],(err)=>{
-        if (err) {
-            res.status(StatusCodes.NOT_FOUND).send(err);
-          }
-          res.status(StatusCodes.NO_CONTENT).send("Sikeres törlés...");
-    })
+    if(!id){
+        return res.status(StatusCodes.NOT_FOUND).send("No id provided");
+    }
+    models.user.destroy({where:{id:id}})
+        .then(()=>{
+            return res.status(StatusCodes.NO_CONTENT).send('Deleted successfully')
+        })
+        .catch((err)=>{
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
+        })
+
 }
 
 const getAllUser = async (req,res) =>{
-   /* database.query('SELECT * FROM user',(err,rows)=>{
-        if(err){
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
-        }
-        res.status(StatusCodes.OK).send(rows)
-    })*/
-    models.user.findAll().then(users =>{
-        res.status(StatusCodes.OK).send(users)
-    })
+    models.user.findAll()
+        .then(users =>{
+            return res.status(StatusCodes.OK).send(users)
+        })
 } 
 
-const getUser = (req,res) =>{
+const getUser = async (req,res) =>{
     const {id} = req.params
-    database.query('SELECT * FROM user WHERE id = ?',[id],(err,data)=>{
-        if(err){
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('ERROR: '+err)
-        }
-        if(data.length === 0){
-            res.status(StatusCodes.NO_CONTENT).send(`No user with id ${id}`)
-        }
-        res.status(StatusCodes.OK).send(data)
-    })
+    if(!id){
+        return res.status(StatusCodes.NOT_FOUND).send("No id provided");
+    }
+    models.user.findOne({where:{id:id}})
+        .then((user)=>{
+            return res.status(StatusCodes.OK).send(user)
+        })
+        .catch((err)=>{
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
+        })
 } 
 
-//create == register => auth.js
-
-const setCurrentWeight = (req,res)=>{
+const setCurrentWeight = async (req,res)=>{
     const {id} = req.params
     const {currentWeight} = req.body
 
-    if(!id)
-        throw new BadRequestError('Nincs id negadva!')
+    if(!id){
+        return res.status(StatusCodes.NOT_FOUND).send("No id provided");
+    }
+    if(!currentWeight){
+        return res.status(StatusCodes.NOT_FOUND).send('There is no weight provided')
+    }
+    if(currentWeight<1 ){
+        return res.status(StatusCodes.BAD_REQUEST).send('Invalid weight!')
+    }
+    
 
-    if(currentWeight<1 )
-        throw new BadRequestError('Invalid súly')
-
-    database.query('UPDATE user SET currentWeight = ? WHERE id = ?',[currentWeight,id],(err)=>{
-        if(err){
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
-        }
-        res.status(StatusCodes.OK).send(`Weight updated to ${currentWeight}.`)
-    }) 
+    models.user.update({currentWeight:currentWeight},{where:{id:id}})
+        .then(()=>{
+            return res.status(StatusCodes.OK).send(`Weight updated to ${currentWeight} successfully.`)
+        })
+        .catch((err)=>{
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
+        })
 }
 
-const setTargetWeight = (req,res)=>{
+const setTargetWeight = async(req,res)=>{
     const {id} = req.params
     const {targetWeight} = req.body
     
-    if(!id)
-        throw new BadRequestError('Nincs id negadva!')
-
-    if(targetWeight<50 )
-        throw new BadRequestError('Nem adhatsz meg 50kg-nál kisebb értéket')
-
-    database.query('UPDATE user SET targetWeight = ? WHERE id = ?',[targetWeight,id],(err)=>{
-        if(err){
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
-        }
-        res.status(StatusCodes.OK).send(`Your target weight updated to ${targetWeight}.`)
-    }) 
+    if(!id){
+        return res.status(StatusCodes.NOT_FOUND).send("No id provided");
+    }
+    if(!targetWeight){
+        return res.status(StatusCodes.NOT_FOUND).send('There is no weight provided')
+    }
+    if(targetWeight<50 ){
+        return res.status(StatusCodes.BAD_REQUEST).send('Weight must be at least 50!')
+    }
+    
+    models.user.update({targetWeight:targetWeight},{where:{id:id}})
+        .then(()=>{  
+            return res.status(StatusCodes.OK).send(`Weight updated to ${targetWeight} successfully.`)
+        })
+        .catch((err)=>{
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
+        })
 }
 
-const setCurrentCalorie = (req,res)=>{
+const setCurrentCalorie = async(req,res)=>{
     const {id} = req.params
     const {totalCalorie} = req.body
     if(!id || !totalCalorie){
-        return res.status(StatusCodes.BAD_REQUEST)
+        return res.status(StatusCodes.BAD_REQUEST).send('Id and calorie must be provided')
     }
-    database.query('UPDATE user SET currentCalorie = currentCalorie + ? WHERE id = ? ',[totalCalorie,id],(err)=>{
-        if(err) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
-        return res.status(StatusCodes.OK).send('Calorie updated...')
-    })
+    models.user.update({currentCalorie:totalCalorie},{where:{id:id}})
+        .then(()=>{
+            return res.status(StatusCodes.OK).send('User updated successfully!')  
+        })
+        .catch((err)=>{
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
+        })
+
 }  
 
-const setTargetCalorie = (req,res)=>{
+const setTargetCalorie = async(req,res)=>{
     /*
         TODO:valami option cucc frontenden ahol a user ki tudja választani a listából, hogy melyik legyen beállítiva
         visszatérési érték:
@@ -116,14 +130,16 @@ const setTargetCalorie = (req,res)=>{
     const {gender,age,height,weight,activity} = req.body
     const calorieNeeds = fitnessCalculator.calorieNeeds(gender,age,height,weight,activity)
     //TODO:eldönteni hogy weightLoss vagy weightGain kell
-    //database query
-    //TODO: szar az sql paraméteresen valamiért
-    database.query('UPDATE user SET targetCalorie = ? WHERE id = ?',[calorieNeeds.mildWeightLoss,id],(err)=>{
-        if(err){
+    if(!id){
+        return res.status(StatusCodes.NOT_FOUND).send("No id provided");
+    }
+    models.calorie.update({targetCalorie:calorieNeeds.mildWeightLoss},{where:{id:id}})
+        .then(()=>{
+            return res.status(StatusCodes.OK).send('User updated successfully!')
+        })
+        .catch((err)=>{
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
-        }
-        return res.status(StatusCodes.OK).json(calorieNeeds)
-    })
+        })
 }
 
 module.exports = {
