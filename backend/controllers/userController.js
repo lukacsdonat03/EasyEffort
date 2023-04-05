@@ -1,14 +1,7 @@
-const database = require("../database/dbConfig");
-const {
-  BadRequestError,
-} = require("../errors");
 const { StatusCodes } = require("http-status-codes");
 const fitnessCalculator = require('fitness-calculator')
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('easyeffort', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql'
-});
+const sequelize = require('../database/databaseConfig')
+
 
 const initModels = require('../models/init-models')
 
