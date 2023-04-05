@@ -1,10 +1,18 @@
 const database = require("../database/dbConfig");
 const {
   BadRequestError,
-  NotFoundError,
 } = require("../errors");
 const { StatusCodes } = require("http-status-codes");
 const fitnessCalculator = require('fitness-calculator')
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('easyeffort', 'root', '', {
+  host: 'localhost',
+  dialect: 'mysql'
+});
+
+const initModels = require('../models/init-models')
+
+const models = initModels(sequelize)
 
 
 const deleteUser = (req,res) =>{
@@ -17,12 +25,15 @@ const deleteUser = (req,res) =>{
     })
 }
 
-const getAllUser = (req,res) =>{
-    database.query('SELECT * FROM user',(err,rows)=>{
+const getAllUser = async (req,res) =>{
+   /* database.query('SELECT * FROM user',(err,rows)=>{
         if(err){
             res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+err)
         }
         res.status(StatusCodes.OK).send(rows)
+    })*/
+    models.user.findAll().then(users =>{
+        res.status(StatusCodes.OK).send(users)
     })
 } 
 
