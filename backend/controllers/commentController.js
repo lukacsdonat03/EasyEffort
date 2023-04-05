@@ -1,72 +1,67 @@
-const database = require('../database/dbConfig')
+const sequelize = require('../database/databaseConfig')
 const {StatusCodes} = require('http-status-codes')
-const {
-    BadRequestError,
-    NotFoundError,
-  } = require("../errors");
+const initModels = require('../models/init-models')
 
-const getComment =(req,res) =>{
+const models = initModels(sequelize)
+
+const Comment = models.comment
+
+const getComment = async (req,res) =>{
     const {id} = req.params
-    if(!id) throw new BadRequestError('Nincs id')
-    database.query('SELECT * FROM comment WHERE id = ?',[id],(err,rows)=>{
-        if(err){
-         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Kaka a palacsintában'+err)
-        }
-        if(rows.length === 0){  
-         return res.sendStatus(StatusCodes.NO_CONTENT)
-        }
-        return res.status(StatusCodes.OK).send(rows[0])
-      })
+    if(!id) return res.status(StatusCodes.BAD_REQUEST).send('ID must be provided!');
+    Comment.findOne({where:{id:id}})
+        .then((comment)=>{
+            if(!comment){
+                return res.sendStatus(StatusCodes.NO_CONTENT)
+            }
+            return res.status(StatusCodes.OK).send(comment)
+        })
+        .catch((err)=>{
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
+        })
     }
 
-const allComment = (req,res)=>{
-    database.query('SELECT * FROM comment',(err,rows)=>{
-        if(err) return  res.status(StatusCodes.NOT_FOUND).send(err)
-        return res.status(StatusCodes.OK).send(rows)
-    })
+const allComment = async (req,res)=>{
+    try {
+        const allUser = await Comment.findAll()
+        return res.status(StatusCodes.OK).send(allUser)
+    } catch (error) {
+        return res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+    }
 }
 
-const deleteComment = (req,res) =>{
+const deleteComment = async (req,res) =>{
     const {id} = req.params
     if(!id) return res.sendStatus(StatusCodes.BAD_REQUEST)
-    database.query('DELETE FROM comment WHERE id = ?',[id],(err)=>{
-        if(err) {
-            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
-        }
-        return res.status(StatusCodes.OK).send('Sikeres törlés')
-    })
+    Comment.destroy({where:{id:id},force:true})
+        .then((affectedRows)=>{
+            if(affectedRows === 0){
+                return res.sendStatus(StatusCodes.NO_CONTENT)
+            }
+            return res.status(StatusCodes.OK).send('DELETE was successful')
+        }).catch((err)=>{
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('ERROR: ',err)
+        })
 }
 
-const createComment = (req,res) =>{
+const createComment = async (req,res) =>{
     const {userId,subject,message} = req.body
-    database.query('INSERT INTO comment (userId,subject,message) VALUES(?,?,?)',[userId,subject,message],(err)=>{
-        if(err){
-           return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
-        }
-        return res.status(StatusCodes.CREATED).send('Created')
-    })
-} 
-
-const updateComment = (req,res) =>{
-    const {subject,message} = req.body
-    const id = req.params.id
-
-    database.query('UPDATE comment SET subject = ? , message = ?  WHERE id = ?',
-    [message,id],
-    (err)=>{
-        if(err){
-           return res.status(StatusCodes.NOT_FOUND).send(err)
-        }
-       return res.status(StatusCodes.OK).send("Updated sucessfully")
+    if(!userId || !subject || !message){
+        return res.status(StatusCodes.BAD_REQUEST).send('Credentials must be provided!')
     }
-    )
+    try {
+        const newComment = await Comment.create({id:userId,subject:subject,message:message})
+        return res.status(StatusCodes.CREATED).send(newComment)
+    } catch (error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error)
+    }
 } 
+
 
 
 module.exports ={
     getComment,
     allComment,
     createComment,
-    updateComment,
     deleteComment
 }

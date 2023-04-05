@@ -1,5 +1,3 @@
-const database = require("../database/dbConfig");
-const { BadRequestError, NotFoundError } = require("../errors");
 const { StatusCodes } = require("http-status-codes");
 
 const deleteItem = (req, res) => {
