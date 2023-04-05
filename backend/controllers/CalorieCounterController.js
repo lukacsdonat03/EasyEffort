@@ -1,5 +1,4 @@
 const { StatusCodes } = require('http-status-codes');
-const database = require("../database/dbConfig");
 const axios = require('axios');
 
 const getItems = (req, res) => {
