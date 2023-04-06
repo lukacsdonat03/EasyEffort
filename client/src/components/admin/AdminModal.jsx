@@ -1,5 +1,6 @@
 import { Modal, Typography } from '@mui/material';
 import React, { useState } from 'react'
+import { ModalContent } from './ModalContent';
 
 export const AdmimnModal = (props) => {
  
@@ -25,10 +26,10 @@ export const AdmimnModal = (props) => {
         >
           {props.users.fullname}
         </Typography>
-        <p>Modal Content</p>
-        <button className='dashboard-button' onClick={handleClose}>
-          Close
-        </button>
+        <ModalContent user={props.users} />
+          <button className='dashboard-button' style={{position:'absolute',right:10,bottom:10}}  onClick={handleClose}>
+            Close
+          </button>
       </div>
     </Modal>
     </div>
