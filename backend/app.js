@@ -10,6 +10,7 @@ const commentRouter = require('./routes/commentRouter')
 const calorieRouter = require('./routes/caloprieRouter')
 const userRouter = require('./routes/UserRouter')
 const calorieCounterRouter = require('./routes/CalorieCounterRouter')
+const authMiddleware = require('./middlewares/auth-middleware.js')
 
 require('http-status-codes')
 require('dotenv').config()
@@ -29,7 +30,7 @@ app.get('/' ,(req,res)=>{
 })
 app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/contact',commentRouter)
-app.use('/api/v1/products',calorieRouter)
+app.use('/api/v1/products',/*authMiddleware,*/calorieRouter)
 app.use('/api/v1/user',userRouter)
 app.use('/api/v1/counter',calorieCounterRouter)
 

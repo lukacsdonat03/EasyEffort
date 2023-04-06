@@ -1,7 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const sequelize = require("../database/databaseConfig");
 const initModels = require("../models/init-models");
-
+const jwt = require('jsonwebtoken')
 const models = initModels(sequelize);
 
 const Calorie = models.calorie;
@@ -60,14 +60,20 @@ const updateItem = async (req, res) => {
 };
 
 const allItem = async (req, res) => {
-  console.log(req.cookies);
-  const userId = req.params.userId;
+  //const userId = req.user.id
+  const token = jwt.verify(req.cookies.access_token,process.env.JWT_SECRET)
+  console.log(token.id);
+  const userId = token.id
+   if(!token)
+    return res.send(StatusCodes.UNAUTHORIZED,'Unauthorized')
   Calorie.findAll({where:{userId:userId}})
     .then((response)=>{
       return res.status(StatusCodes.OK).send(response)
     }).catch((err)=>{
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
     })
+   
+  
 };
 
 const getItem = async (req, res) => {
