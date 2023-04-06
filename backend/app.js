@@ -30,7 +30,7 @@ app.get('/' ,(req,res)=>{
 })
 app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/contact',commentRouter)
-app.use('/api/v1/products',/*authMiddleware,*/calorieRouter)
+app.use('/api/v1/products',calorieRouter)
 app.use('/api/v1/user',userRouter)
 app.use('/api/v1/counter',calorieCounterRouter)
 

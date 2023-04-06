@@ -60,20 +60,17 @@ const updateItem = async (req, res) => {
 };
 
 const allItem = async (req, res) => {
-  //const userId = req.user.id
-  const token = jwt.verify(req.cookies.access_token,process.env.JWT_SECRET)
-  console.log(token.id);
-  const userId = token.id
-   if(!token)
-    return res.send(StatusCodes.UNAUTHORIZED,'Unauthorized')
-  Calorie.findAll({where:{userId:userId}})
-    .then((response)=>{
-      return res.status(StatusCodes.OK).send(response)
-    }).catch((err)=>{
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
-    })
-   
-  
+  const token = req.cookies.access_token
+  const decodedToken = jwt.verify(token,process.env.JWT_SECRET)
+  try {
+    const products = await Calorie.findAll({where: {userId:decodedToken.id}})
+    if(!products){
+      return res.sendStatus(StatusCodes.NO_CONTENT)
+    }
+    return res.status(StatusCodes.OK).send(products)
+  } catch (error) {
+    return res.send(StatusCodes.INTERNAL_SERVER_ERROR,error)
+  }
 };
 
 const getItem = async (req, res) => {
