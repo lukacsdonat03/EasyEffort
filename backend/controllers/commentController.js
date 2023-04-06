@@ -1,6 +1,7 @@
 const sequelize = require("../database/databaseConfig");
 const { StatusCodes } = require("http-status-codes");
 const initModels = require("../models/init-models");
+const { Sequelize } = require("sequelize");
 
 const models = initModels(sequelize);
 

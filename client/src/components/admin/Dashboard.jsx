@@ -37,7 +37,7 @@ export const Dashboard = () => {
                 <td className='dashboard-cells'>{user.id}</td>
                 <td className='dashboard-cells'>{user.fullname}</td>
                 <td className='dashboard-cells'>{user.email}</td>
-                <td className='dashboard-cells'>{user.admin ===1 ?<span>💹</span>:<span>❌</span>}</td>
+                <td className='dashboard-cells'>{user.admin ?<span>💹</span>:<span>❌</span>}</td>
                 <td className='dashboard-cells'><AdmimnModal users={user}/></td>
               </tr>
             })}

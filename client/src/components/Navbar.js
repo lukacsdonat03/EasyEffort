@@ -27,7 +27,7 @@ export const Navbar = () => {
               Home
             </NavLink>
           </li>
-          {currentUser && currentUser.admin === 1 ? (
+          {currentUser && currentUser.isAdmin === true ? (
             <li>
               <NavLink className="Link" to="/admin">
                 Admin

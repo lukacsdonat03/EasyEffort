@@ -20,7 +20,7 @@ export const UserMessage = () => {
                         <th className='calorie-table-cells'>UserId</th>
                         <th className='calorie-table-cells'>Subject</th>
                         <th className='calorie-table-cells'>Message</th>
-                        <th className='calorie-table-cells'>Name</th>
+                        <th className='calorie-table-cells'>Email</th>
                         <th className='calorie-table-cells'>Option</th>
                     </tr>
                 </thead>

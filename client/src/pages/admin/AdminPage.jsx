@@ -13,7 +13,7 @@ export const AdminPage = () => {
 
   const navigate = useNavigate()
   useEffect(()=>{
-    if(!currentUser || currentUser.admin !== 1)
+    if(currentUser.admin===false)
       navigate('/home')
   },[currentUser, navigate])
   return (
