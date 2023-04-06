@@ -25,7 +25,7 @@ const register = async (req, res) => {
         .status(StatusCodes.CONFLICT)
         .send("This email is already registered.");
     }
-  });
+  }); 
 
   //password hash
   const salt = bcrypt.genSaltSync(12);
@@ -40,7 +40,7 @@ const register = async (req, res) => {
     });
     return res.status(StatusCodes.CREATED).send(newUser);
   } catch (error) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Error: ", error);
+    return res.send(StatusCodes.INTERNAL_SERVER_ERROR,error);
   }
 };
 

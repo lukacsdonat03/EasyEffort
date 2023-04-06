@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const { StatusCodes } = require('http-status-codes/build/cjs/status-codes')
 const app  = express()
-const dbConfig = require('./database/dbConfig')
+const sequelize = require('./database/databaseConfig')
 const cookieParser = require('cookie-parser')
 //routers
 const authRouter = require('./routes/authRouter')
@@ -37,21 +37,16 @@ app.use('/api/v1/counter',calorieCounterRouter)
 //server
 const port = process.env.PORT || 5000;
 
-const start =  ()=>{
+const start = async ()=>{
     try {
-        dbConfig.connect(function (err) {
-            if (err) {
-                console.log(err)
-                return
-            }
-            console.log('Connected...')
-        })
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
         app.listen(port,()=>{
             console.log(`App is listening on port ${port}`);
         })
-    } catch (error) {
-        console.log(error);
-    }
+      } catch (error) {
+        console.error('Unable to connect to the database:', error);
+      }
 };
 
 start();
