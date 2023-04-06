@@ -60,10 +60,9 @@ const updateItem = async (req, res) => {
 };
 
 const allItem = async (req, res) => {
-  const token = req.cookies.access_token
-  const decodedToken = jwt.verify(token,process.env.JWT_SECRET)
+  const token = req.user
   try {
-    const products = await Calorie.findAll({where: {userId:decodedToken.id}})
+    const products = await Calorie.findAll({where: {userId:token.id}})
     if(!products){
       return res.sendStatus(StatusCodes.NO_CONTENT)
     }
