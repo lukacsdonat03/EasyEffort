@@ -1,21 +1,17 @@
 import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../context/AuthContext'
-import Cookies from 'js-cookie'
+import React, { useEffect, useState } from 'react'
+
 
 export const CalorieList = () => {
   const [ listData,setListData ] = useState([])
 
-  const{ currentUser } = useContext(AuthContext)
-//TODO:cookiból kinyerni a jwt-t és decóüdolni az id miatt
+
   useEffect(()=>{
-    Cookies.set('accessToken','asd')
-    console.log(Cookies.get('accessToken'));
-    axios.get(`http://localhost:8080/api/v1/products/all/${currentUser.id}`,{withCredentials:true})
+    axios.get(`http://localhost:8080/api/v1/products/`,{withCredentials:true})
       .then(res=>{
         setListData(res.data)
       })
-  },[currentUser.id])
+  },[])
 
   return (
     <>

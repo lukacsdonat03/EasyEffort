@@ -113,6 +113,7 @@
   border: 2px solid white;
   background-color: #0d1f2d;
   color: #d5dfe5;
+  box-shadow: 10px 15px 15px 5px black;
 }
 
 .calorie-table-cells{
@@ -124,7 +125,6 @@
 
 .calorie-table-div{
   margin-left: 10px;
-  box-shadow: 10px 15px 15px 5px black;
 }
 /* yes/no buttons */
 
