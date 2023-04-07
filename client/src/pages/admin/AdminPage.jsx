@@ -26,7 +26,7 @@ export const AdminPage = () => {
           variant="h3"
           align="left"
         >
-          Welcome to the Admin page {/*currentUser.name*/}
+          Welcome to the Admin page <i><b>{currentUser.fullname}</b></i>
         </Typography>
         <Grid
           paddingTop={"25px"}

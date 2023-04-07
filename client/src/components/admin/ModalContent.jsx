@@ -2,21 +2,47 @@ import { Button, Typography } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
 import axios from "axios";
 import { useState } from "react";
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
+
 
 export const ModalContent = (props) => {
-  const [updatedUser,setUpdatedUser] = useState({})
+  const [ open,setOpen ] = useState(false)
+  const [ newPassword , setNewPassword] = useState("")
+
+  const handlePasswordChange = (e) =>{
+    e.preventDefault()
+    setNewPassword(e.target.value)
+  }
+
+  const sendPassword = () =>{
+
+    axios.put('http://localhost:8080/api/v1/user/admin/password',
+    {
+      id:props.user.id,
+      newPassword: newPassword
+    }
+    ).then(()=>{
+      alert('Password updated successfully')
+    }).catch((err)=>{
+      alert('Error: ',err)
+    })
+  }
 
   const handleAdmin = () => {
     console.log(props.user.admin);
-    axios.put('http://localhost:8080/api/v1/user/admin',
-        {
-            admin:!props.user.admin,
-            id:props.user.id    
-        })
-        .then((res)=>{setUpdatedUser(res.data);props.onUpdateUser(updatedUser);alert('User updated successfully')})
-        .catch((err)=>{alert('Error: ',err)})
+    axios
+      .put("http://localhost:8080/api/v1/user/admin", {
+        admin: !props.user.admin,
+        id: props.user.id,
+      })
+      .then((res) => {
+        alert("User updated successfully")
+      })
+      .catch((err) => {
+        alert("Error: ", err);
+      });
   };
- 
+
   return (
     <>
       <table>
@@ -70,7 +96,7 @@ export const ModalContent = (props) => {
                   variant="contained"
                   startIcon={<CreateIcon />}
                   sx={{ height: "25px", width: "5px" }}
-                ></Button>{" "}
+                ></Button>
               </Typography>
             </td>
           </tr>
@@ -92,9 +118,26 @@ export const ModalContent = (props) => {
                   variant="contained"
                   startIcon={<CreateIcon />}
                   sx={{ height: "25px", width: "5px" }}
-                ></Button>{" "}
+                  onClick={()=>{setOpen(!open)}}
+                ></Button>
               </Typography>
             </td>
+            {open === true
+            ? <div>
+                <td>
+              <Typography marginTop={'10px'} marginLeft={'5px'}> <input type="password" onChange={(e)=>{handlePasswordChange(e)}}/></Typography>
+              </td>
+              <td>
+              <Button
+                  color="success"
+                  variant="contained"
+                  startIcon={<DoneOutlineIcon />}
+                  sx={{ height: "25px", width: "5px" }}
+                  onClick={sendPassword}
+                ></Button>
+              </td>
+            </div>
+            :null}
           </tr>
           <tr>
             <td>
@@ -110,7 +153,9 @@ export const ModalContent = (props) => {
             <td>
               <Typography marginTop={"10px"} marginLeft={"5px"}>
                 <Button
-                  onClick={()=>{handleAdmin()}}
+                  onClick={() => {
+                    handleAdmin();
+                  }}
                   color="warning"
                   variant="contained"
                   startIcon={<CreateIcon />}

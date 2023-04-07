@@ -1,7 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const fitnessCalculator = require("fitness-calculator");
 const sequelize = require("../database/databaseConfig");
-
+const bcrypt = require('bcrypt')
 const initModels = require("../models/init-models");
 
 const models = initModels(sequelize);
@@ -175,6 +175,21 @@ const updateAdmin = (req,res)=>{
     })
 }
 
+const updatePassword = (req,res)=>{
+  const {id, newPassword} = req.body
+  if(!id || !newPassword) return res.status(StatusCodes.BAD_REQUEST).send("All creadentials are required!")
+  const salt = bcrypt.genSalt(12)
+  const hash = bcrypt.hashSync(newPassword,salt)
+  console.log(typeof hash);
+  models.user.update({password:hash},{where:{id:id}, individualHooks: true})
+    .then((updatedRows)=>{
+      if(updatedRows[0] === 0) return res.sendStatus(StatusCodes.NO_CONTENT)
+      if(updatedRows[0] === 1) return res.status(StatusCodes.OK).send('User updated successfully...')
+    }).catch((err)=>{
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
+    })
+}
+
 module.exports = {
   deleteUser,
   getAllUser,
@@ -183,5 +198,6 @@ module.exports = {
   setTargetWeight,
   setCurrentCalorie,
   setTargetCalorie,
-  updateAdmin
+  updateAdmin,
+  updatePassword
 };

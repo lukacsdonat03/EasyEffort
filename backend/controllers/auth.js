@@ -65,7 +65,7 @@ const login = async (req, res) => {
           httpOnly: true,
         })
         .status(StatusCodes.OK)
-        .send({ email: user.email, isAdmin: user.admin });
+        .send({ email: user.email, isAdmin: user.admin,fullname:user.fullname });
     })
     .catch((err) => {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Error: ", err);
