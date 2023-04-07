@@ -5,13 +5,14 @@ import { AdmimnModal } from './AdminModal'
 
 export const Dashboard = () => {
   
-  const [userList, setUserList] = useState([])
- 
+  const [userList, setUserList] = useState([]) 
 
   useEffect(()=>{
     axios.get('http://localhost:8080/api/v1/user/all')
       .then((res)=>setUserList(res.data))
   },[])
+
+
 
   
   return (

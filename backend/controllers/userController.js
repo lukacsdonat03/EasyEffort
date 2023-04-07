@@ -149,7 +149,7 @@ const setTargetCalorie = async (req, res) => {
   if (!id) {
     return res.status(StatusCodes.NOT_FOUND).send("No id provided");
   }
-  models.calorie
+  models.user
     .update(
       { targetCalorie: calorieNeeds.mildWeightLoss },
       { where: { id: id } }
@@ -164,6 +164,17 @@ const setTargetCalorie = async (req, res) => {
     });
 };
 
+const updateAdmin = (req,res)=>{
+  const {id,admin} = req.body
+  models.user.update({admin:admin},{where:{id:id}})
+    .then((updatedRows)=>{
+      if(updatedRows[0] === 1) return res.status(StatusCodes.OK).send('User updated successfully')
+      if(updatedRows[0] === 0) return res.sendStatus(StatusCodes.NO_CONTENT)
+      }).catch((err)=>{
+      return res.send(StatusCodes.INTERNAL_SERVER_ERROR,err)
+    })
+}
+
 module.exports = {
   deleteUser,
   getAllUser,
@@ -172,4 +183,5 @@ module.exports = {
   setTargetWeight,
   setCurrentCalorie,
   setTargetCalorie,
+  updateAdmin
 };

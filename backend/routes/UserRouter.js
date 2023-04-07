@@ -7,7 +7,8 @@ const {
   setCurrentWeight,
   setTargetWeight,
   setCurrentCalorie,
-  setTargetCalorie
+  setTargetCalorie,
+  updateAdmin
 } = require("../controllers/userController");
 
 router.get('/all',getAllUser)
@@ -17,5 +18,6 @@ router.put('/target-weight/:id',setTargetWeight)
 router.put('/current-weight/:id',setCurrentWeight)
 router.put('/current-cal/:id',setCurrentCalorie)
 router.put('/target-cal/:id',setTargetCalorie)
+router.put('/admin',updateAdmin)
 
 module.exports = router
