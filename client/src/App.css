@@ -191,3 +191,16 @@
   margin-top: 290px;
   position: relative;
 }
+
+
+/* Workouts page CSS */
+
+.tab:hover{
+  color: white;
+}
+
+.workout-container{
+  background-color: #D5DFE5;
+  justify-content: center;
+  display: flex;
+}

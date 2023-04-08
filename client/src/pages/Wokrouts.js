@@ -36,24 +36,26 @@ function Wokrouts() {
   return (
     <div>
       <Navbar />
-      <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Gym" />
-          <Tab label="Street Workout" />
-          <Tab label="Home" />
-        </Tabs>
+      <div className="workout-container">
+        <Box sx={{ width: '100%' }} >
+        <Box sx={{ borderBottom: 1, borderColor: 'divider',justifyContent:'center',display:'flex' }}>
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tab label="Gym"  sx={{ '&.MuiTab-root:hover': { color: 'white' } }} />
+            <Tab label="Street Workout" sx={{ '&.MuiTab-root:hover': { color: 'white' } }} />
+            <Tab label="Home" sx={{ '&.MuiTab-root:hover': { color: 'white' } }} />
+          </Tabs>
+        </Box>
+        <TabPanel value={value} index={0}>
+          <Gym/>
+        </TabPanel>
+        <TabPanel  value={value} index={1}>
+          <StreetWorkout/>
+        </TabPanel>
+        <TabPanel  value={value} index={2}>
+          <HomeWorkout/>
+        </TabPanel>
       </Box>
-      <TabPanel value={value} index={0}>
-        <Gym/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <StreetWorkout/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <HomeWorkout/>
-      </TabPanel>
-    </Box>
+      </div>
       <Footer />
     </div>
   );
