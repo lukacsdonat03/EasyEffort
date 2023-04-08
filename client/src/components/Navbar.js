@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
+
 export const Navbar = () => {
   const { currentUser, logout } = useContext(AuthContext);
 
@@ -34,15 +35,16 @@ export const Navbar = () => {
               </NavLink>
             </li>
           ) : null}
-           {currentUser && 
+          {currentUser && (
             <li>
               <NavLink className="Link" to="/counter">
                 Calorie Counter
               </NavLink>
-            </li>}
+            </li>
+          )}
           <li>
-            <NavLink className="Link" to="/bmi-page">
-              BMI Calculator
+            <NavLink className="Link" to="/workout">
+              Workouts
             </NavLink>
           </li>
           <li>

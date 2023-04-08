@@ -11,11 +11,11 @@ import HomePage from './pages/HomePage.jsx';
 import AboutPage from './pages/AboutPage.js';
 import ContactPage from './pages/ContactPage.js';
 import ExcercisesPage from './pages/ExcercisesPage.js';
-import BMIPage from './pages/BMIPage.js';
 import CalorieCounter from './pages/CalorieCounter.jsx';
 import Login from './pages/Login.jsx'
 import {Register} from './pages/Register.jsx'
 import { AdminPage } from './pages/admin/AdminPage';
+import Wokrouts from './pages/Wokrouts';
 
 
 const router = createBrowserRouter([
@@ -36,8 +36,8 @@ const router = createBrowserRouter([
     element: <ContactPage/>,
   },
   {
-    path: "/bmi-page",
-    element: <BMIPage/>,
+    path: "/workout",
+    element: <Wokrouts/>,
   },
   {
     path: "/counter",
