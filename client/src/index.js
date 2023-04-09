@@ -10,7 +10,6 @@ import {
 import HomePage from './pages/HomePage.jsx';
 import AboutPage from './pages/AboutPage.js';
 import ContactPage from './pages/ContactPage.js';
-import ExcercisesPage from './pages/ExcercisesPage.js';
 import CalorieCounter from './pages/CalorieCounter.jsx';
 import Login from './pages/Login.jsx'
 import {Register} from './pages/Register.jsx'
