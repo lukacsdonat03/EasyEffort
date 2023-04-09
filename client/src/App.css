@@ -204,3 +204,9 @@
   justify-content: center;
   display: flex;
 }
+
+/* Nutritional Supplements */
+
+.ns-container{
+  background-color: #D5DFE5;
+}

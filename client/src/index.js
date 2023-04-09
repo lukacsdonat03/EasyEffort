@@ -16,6 +16,7 @@ import Login from './pages/Login.jsx'
 import {Register} from './pages/Register.jsx'
 import { AdminPage } from './pages/admin/AdminPage';
 import Wokrouts from './pages/Wokrouts';
+import { NutritionalSupplements } from './pages/NutritionalSupplements';
 
 
 const router = createBrowserRouter([
@@ -44,8 +45,8 @@ const router = createBrowserRouter([
     element: <CalorieCounter/>,
   },
   {
-    path: "/excercises",
-    element: <ExcercisesPage/>,
+    path: "/supplements",
+    element: <NutritionalSupplements/>,
   },
   {
     path: "/login",

@@ -48,6 +48,11 @@ export const Navbar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink className="Link" to="/supplements">
+              Supplents
+            </NavLink>
+          </li>
+          <li>
             <NavLink className="Link" to="/about">
               About
             </NavLink>
