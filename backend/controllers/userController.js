@@ -28,7 +28,7 @@ const getAllUser = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.user;
   if (!id) {
     return res.status(StatusCodes.NOT_FOUND).send("No id provided");
   }
@@ -43,7 +43,7 @@ const getUser = async (req, res) => {
 };
 
 const setCurrentWeight = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.user;
   const { currentWeight } = req.body;
 
   if (!id) {

@@ -12,10 +12,10 @@ const {
 } = require("../controllers/userController");
 
 router.get('/all',getAllUser)
-router.get('/:id',getUser)
+router.get('/',getUser)
 router.delete('/:id',deleteUser)
 router.put('/target-weight/:id',setTargetWeight)
-router.put('/current-weight/:id',setCurrentWeight)
+router.put('/current-weight',setCurrentWeight)
 router.put('/current-cal/:id',setCurrentCalorie)
 router.put('/target-cal/:id',setTargetCalorie)
 router.put('/admin',updateAdmin)

@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./Navbar.css";
 import SmallLogo from "./../img/round_logo_straight_small.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import Avatar from '@mui/material/Avatar';
+import { IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import { UserModal } from "./UserModal";
 
 
 export const Navbar = () => {
   const { currentUser, logout } = useContext(AuthContext);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const navigate = useNavigate();
 
@@ -15,6 +19,16 @@ export const Navbar = () => {
     event.preventDefault();
     logout().then(() => navigate("/login"));
   };
+
+   const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  
   return (
     <nav>
       <Link className="Link" to="/home">
@@ -64,9 +78,31 @@ export const Navbar = () => {
           </li>
           {currentUser ? (
             <li>
-              <NavLink className="Link Login" onClick={handleLogout}>
-                Logout
-              </NavLink>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar sx={{bgcolor:'#2c6e49'}} alt="Remy Sharp" >{currentUser.fullname.charAt(0)}</Avatar>
+              </IconButton>
+              <Menu
+              sx={{ mt: '45px'  }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+                <UserModal/>
+                <MenuItem  onClick={(e)=>{handleLogout(e);handleCloseUserMenu()}}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+
+            </Menu>
             </li>
           ) : (
             <li>

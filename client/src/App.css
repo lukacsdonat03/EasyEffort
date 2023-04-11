@@ -1,4 +1,7 @@
 /* - global - */
+.weight-input{
+  width: 100px;
+}
 .fullwidth{
   width: 100%;
 }
