@@ -11,6 +11,7 @@ const calorieRouter = require('./routes/caloprieRouter')
 const userRouter = require('./routes/UserRouter')
 const calorieCounterRouter = require('./routes/CalorieCounterRouter')
 const authMiddleware = require('./middlewares/auth-middleware.js')
+const cron = require('./logger/logger.js')
 
 require('http-status-codes')
 require('dotenv').config()
@@ -44,6 +45,7 @@ const start = async ()=>{
         await sequelize.sync({ force: true });
         console.log("All models were synchronized successfully.");
         app.listen(port,()=>{
+            cron()
             console.log(`App is listening on port ${port}`);
         })
       } catch (error) {
