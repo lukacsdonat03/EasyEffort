@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { Typography } from "@mui/material";
 import axios from "axios";
 import "./Contact.css";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
  const ContactPage = () => {
   const [formData, setFormData] = useState({})
+  const {currentUser} = useContext(AuthContext)
+
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(!currentUser)
+      navigate('/')
+  },[currentUser, navigate])
 
   const handleChange = ({ target: { value, name } }) => {
     setFormData({ ...formData, [name]: value });

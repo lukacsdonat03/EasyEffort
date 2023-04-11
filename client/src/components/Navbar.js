@@ -20,7 +20,7 @@ export const Navbar = () => {
     logout().then(() => navigate("/login"));
   };
 
-   const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
@@ -28,7 +28,7 @@ export const Navbar = () => {
     setAnchorElUser(null);
   };
 
-  
+
   return (
     <nav>
       <Link className="Link" to="/home">
@@ -71,38 +71,40 @@ export const Navbar = () => {
               About
             </NavLink>
           </li>
-          <li>
-            <NavLink className="Link" to="/contacts">
-              Contacts
-            </NavLink>
-          </li>
+          {currentUser &&
+            <li>
+              <NavLink className="Link" to="/contacts">
+                Contacts
+              </NavLink>
+            </li>
+          }
           {currentUser ? (
             <li>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar sx={{bgcolor:'#2c6e49'}} alt="Remy Sharp" >{currentUser.fullname.charAt(0)}</Avatar>
+                <Avatar sx={{ bgcolor: '#2c6e49' }} alt="Remy Sharp" >{currentUser.fullname.charAt(0)}</Avatar>
               </IconButton>
               <Menu
-              sx={{ mt: '45px'  }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-                <UserModal/>
-                <MenuItem  onClick={(e)=>{handleLogout(e);handleCloseUserMenu()}}>
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <UserModal />
+                <MenuItem onClick={(e) => { handleLogout(e); handleCloseUserMenu() }}>
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
 
-            </Menu>
+              </Menu>
             </li>
           ) : (
             <li>
