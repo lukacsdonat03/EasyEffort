@@ -13,6 +13,8 @@ function initModels(sequelize) {
   history.belongsTo(user, { as: "user", foreignKey: "userId"});
   user.hasMany(history, { as: "histories", foreignKey: "userId"});
 
+  comment.belongsTo(user,{as:"user",foreignKey: "userId"});
+  user.hasMany(comment,{as:"comments",foreignKey:"userId"})
   return {
     calorie,
     comment,

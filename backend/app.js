@@ -41,6 +41,8 @@ const start = async ()=>{
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
+        await sequelize.sync({ force: true });
+        console.log("All models were synchronized successfully.");
         app.listen(port,()=>{
             console.log(`App is listening on port ${port}`);
         })
