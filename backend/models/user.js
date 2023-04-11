@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('user', {
     id: {
       autoIncrement: true,
@@ -43,7 +43,7 @@ module.exports = function (sequelize, DataTypes) {
     admin: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue:0
+      defaultValue: 0
     }
   }, {
     sequelize,

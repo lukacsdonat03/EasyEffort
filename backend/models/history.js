@@ -1,27 +1,32 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('comment', {
+  return sequelize.define('history', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
+    date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
+    },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     },
-    subject: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    message: {
-      type: DataTypes.STRING(500),
+    total_cal: {
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'comment',
+    tableName: 'history',
     timestamps: false,
     indexes: [
       {
@@ -33,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "userId",
+        name: "fk_history_user",
         using: "BTREE",
         fields: [
           { name: "userId" },

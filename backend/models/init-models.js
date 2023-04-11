@@ -1,17 +1,22 @@
-const DataTypes = require("sequelize").DataTypes;
-const _calorie = require("./calorie");
-const _comment = require("./comment");
-const _user = require("./user");
+var DataTypes = require("sequelize").DataTypes;
+var _calorie = require("./calorie");
+var _comment = require("./comment");
+var _history = require("./history");
+var _user = require("./user");
 
 function initModels(sequelize) {
-  const calorie = _calorie(sequelize, DataTypes);
-  const comment = _comment(sequelize, DataTypes);
-  const user = _user(sequelize, DataTypes);
+  var calorie = _calorie(sequelize, DataTypes);
+  var comment = _comment(sequelize, DataTypes);
+  var history = _history(sequelize, DataTypes);
+  var user = _user(sequelize, DataTypes);
 
+  history.belongsTo(user, { as: "user", foreignKey: "userId"});
+  user.hasMany(history, { as: "histories", foreignKey: "userId"});
 
   return {
     calorie,
     comment,
+    history,
     user,
   };
 }
