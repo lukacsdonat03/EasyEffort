@@ -8,7 +8,7 @@ export const Dashboard = () => {
   const [userList, setUserList] = useState([]) 
 
   useEffect(()=>{
-    axios.get('http://localhost:8080/api/v1/user/all')
+    axios.get('http://localhost:8080/api/v1/user/all',{withCredentials:true})
       .then((res)=>setUserList(res.data))
   },[])
 

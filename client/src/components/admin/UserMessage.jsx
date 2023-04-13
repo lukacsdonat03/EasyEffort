@@ -4,8 +4,9 @@ import axios from 'axios'
 export const UserMessage = () => {
     const [message, setMessage] = useState([]) 
     useEffect(()=>{
-    axios.get('http://localhost:8080/api/v1/contact/messages')
+    axios.get('http://localhost:8080/api/v1/contact/messages',{withCredentials:true})
         .then((res)=>{
+            console.log(res.data);
             setMessage(res.data)
         })
  },[]) 
@@ -31,7 +32,7 @@ export const UserMessage = () => {
                             <td className='calorie-table-cells'>{singleMessage.userId}</td>
                             <td className='calorie-table-cells'>{singleMessage.subject}</td>
                             <td className='calorie-table-cells'>{singleMessage.message}</td>
-                            <td className='calorie-table-cells'>pityu</td>
+                            <td className='calorie-table-cells'>{singleMessage.email}</td>
                             <th className='calorie-table-cells'><button className='list-button'>✅</button><button className='list-button'>❌</button></th>
                         </tr>
                     })}
