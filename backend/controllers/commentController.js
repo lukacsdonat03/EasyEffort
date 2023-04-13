@@ -32,6 +32,15 @@ const allComment = async (req, res) => {
     }
   
 };
+const pendingComment = async (req, res) => {
+  try {
+    const allUser = await Comment.findAll({where:{state:null}});
+    return res.status(StatusCodes.OK).send(allUser);
+  } catch (error) {
+    return res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+
+};
 
 const rejectedComment = async (req, res) => {
   try {
@@ -88,6 +97,20 @@ const createComment = async (req, res) => {
   }
 };
 
+const updateComment = (req,res) =>{
+  const {state} = req.body
+  const {id} = req.params 
+  if(!state) return res.status(StatusCodes.BAD_REQUEST).send('Please provide the state of the message!')
+  Comment.update({state:state},{where:{id:id}})
+  .then((updatedRows)=>{
+    if(updatedRows[0] === 0) return res.sendStatus(StatusCodes.NO_CONTENT)
+    if(updatedRows[0] === 1) return res.status(StatusCodes.OK).send('Comment updated successfully...')
+  }).catch((err)=>{
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)
+  })
+}
+
+
 module.exports = {
   getComment,
   allComment,
@@ -95,4 +118,6 @@ module.exports = {
   deleteComment,
   aprovedComment,
   rejectedComment,
+  pendingComment,
+  updateComment
 };
