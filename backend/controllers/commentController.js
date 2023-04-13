@@ -33,6 +33,26 @@ const allComment = async (req, res) => {
   
 };
 
+const rejectedComment = async (req, res) => {
+  try {
+    const allUser = await Comment.findAll({where:{state:false}});
+    return res.status(StatusCodes.OK).send(allUser);
+  } catch (error) {
+    return res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+
+};
+
+const aprovedComment = async (req, res) => {
+  try {
+    const allUser = await Comment.findAll({where:{state:true}});
+    return res.status(StatusCodes.OK).send(allUser);
+  } catch (error) {
+    return res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+
+};
+
 const deleteComment = async (req, res) => {
   const { id } = req.params;
   if (!id) return res.sendStatus(StatusCodes.BAD_REQUEST);
@@ -73,4 +93,6 @@ module.exports = {
   allComment,
   createComment,
   deleteComment,
+  aprovedComment,
+  rejectedComment,
 };

@@ -21,7 +21,6 @@ export const UserMessage = () => {
                         <th className='calorie-table-cells'>UserId</th>
                         <th className='calorie-table-cells'>Subject</th>
                         <th className='calorie-table-cells'>Message</th>
-                        <th className='calorie-table-cells'>Email</th>
                         <th className='calorie-table-cells'>Option</th>
                     </tr>
                 </thead>
@@ -32,7 +31,6 @@ export const UserMessage = () => {
                             <td className='calorie-table-cells'>{singleMessage.userId}</td>
                             <td className='calorie-table-cells'>{singleMessage.subject}</td>
                             <td className='calorie-table-cells'>{singleMessage.message}</td>
-                            <td className='calorie-table-cells'>{singleMessage.email}</td>
                             <th className='calorie-table-cells'><button className='list-button'>✅</button><button className='list-button'>❌</button></th>
                         </tr>
                     })}
