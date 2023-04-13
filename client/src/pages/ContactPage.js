@@ -26,13 +26,13 @@ import { useNavigate } from "react-router-dom";
       alert('Both fields are required!')
     }
     axios.post('http://localhost:8080/api/v1/contact/messages',
-      {userId:22,subject:formData.subject,message:formData.message},
-      {headers:{"Content-Type":"application/json"},withCredentials:true}
+      {subject:formData.subject,message:formData.message},
+      {withCredentials:true}
     ).then(res => {
       if(res.status === 201){
         alert('Message has been sent')
       }
-    })
+    }).catch(()=>alert('Error'))
   }
 
   return (

@@ -11,7 +11,7 @@ export const UserModal = () => {
 
     useEffect(()=>{
         axios.get('http://localhost:8080/api/v1/user',{withCredentials:true}).then((res)=>{setUser(res.data)}).catch((err)=>console.error(err))
-    },[user])
+    },[])
 
   const handleOpen = () => {
     setOpen(true);

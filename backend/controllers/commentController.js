@@ -24,12 +24,13 @@ const getComment = async (req, res) => {
 };
 
 const allComment = async (req, res) => {
-  try {
-    const allUser = await Comment.findAll();
-    return res.status(StatusCodes.OK).send(allUser);
-  } catch (error) {
-    return res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
-  }
+    try {
+      const allUser = await Comment.findAll();
+      return res.status(StatusCodes.OK).send(allUser);
+    } catch (error) {
+      return res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+  
 };
 
 const deleteComment = async (req, res) => {
@@ -48,15 +49,16 @@ const deleteComment = async (req, res) => {
 };
 
 const createComment = async (req, res) => {
-  const { userId, subject, message } = req.body;
-  if (!userId || !subject || !message) {
+  const { subject, message } = req.body;
+  const token = req.user
+  if (!token.id || !subject || !message) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .send("Credentials must be provided!");
   }
   try {
     const newComment = await Comment.create({
-      id: userId,
+      userId: token.id,
       subject: subject,
       message: message,
     });

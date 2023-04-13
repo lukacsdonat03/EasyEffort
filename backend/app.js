@@ -30,7 +30,7 @@ app.get('/' ,(req,res)=>{
     res.status(StatusCodes.OK).send('Home page')
 })
 app.use('/api/v1/auth',authRouter)
-app.use('/api/v1/contact',commentRouter)
+app.use('/api/v1/contact',authMiddleware,commentRouter)
 app.use('/api/v1/products',authMiddleware,calorieRouter)
 app.use('/api/v1/user',authMiddleware,userRouter)
 app.use('/api/v1/counter',calorieCounterRouter)
@@ -42,7 +42,7 @@ const start = async ()=>{
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
-        await sequelize.sync({ force: true });
+        await sequelize.sync({ force: false });
         console.log("All models were synchronized successfully.");
         app.listen(port,()=>{
             cron()
