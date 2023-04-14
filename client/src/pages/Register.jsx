@@ -11,7 +11,7 @@ export const Register = () => {
     axios
       .post("http://localhost:8080/api/v1/auth/register", formData,{withCredentials:true})
       .then((res) => {
-        console.log(res.data + " sikeres regisztráció");
+        console.log(res.data + " Successful Registration!");
         navigate("/login");
       }).catch((err)=>{
         console.log(err);

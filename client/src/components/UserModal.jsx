@@ -1,7 +1,8 @@
-import { Button, MenuItem, Modal, Typography } from "@mui/material";
+import { Box, Button, MenuItem, Modal, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import axios from "axios";
+
 
 export const UserModal = () => {
   const [open, setOpen] = useState(false);
@@ -50,16 +51,17 @@ export const UserModal = () => {
       </MenuItem>
       <Modal open={open} onClose={handleClose}>
         <div className="modal-container">
-          <Typography variant="h3" color={" #0d1f2d"} align="center">
+          <Typography variant="h4" color={" #0d1f2d"} align="center">
             Set Your Goal <i>{user.fullname}</i>
           </Typography>
 
           <Typography >Your current weight: {user.currentWeight} kg</Typography>
-          <Button
+         <Box display={'flex'}>
+         <Button
             variant="contained"
             color="success"
             startIcon={<CreateIcon />}
-            sx={{ height: "25px", width: "5px" }}
+            sx={{ height: "30px", width: "5px",marginTop:'12px',marginRight:'10px',marginLeft:'5px' }}
             onClick={handleSetButtonClick}
           ></Button>
           <br />
@@ -76,8 +78,8 @@ export const UserModal = () => {
             <Typography marginLeft={2} fontSize={12} color={'#64686b'}>(Press Enter to update your weight)</Typography>
             </div>
           )}
+         </Box>
 
-          
           <button
             className="dashboard-button"
             style={{ position: "absolute", right: 10, bottom: 10 }}

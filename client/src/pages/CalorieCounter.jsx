@@ -7,6 +7,7 @@ import { Navbar } from "../components/Navbar";
 import "../App.css";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { CalorieNeedsContainer } from "../components/CalorieNeedsContainer";
 
 
 export const CalorieCounter = () => {
@@ -27,12 +28,16 @@ export const CalorieCounter = () => {
               <Grid item md={6} sm={6} xs={6}>
                 <Counter />
               </Grid>
+              <Grid>
+                <CalorieNeedsContainer/> 
+              </Grid> 
             </Grid>
           </Box>
           <div className="footer-container">
             <Footer />
           </div>
         </div>
+
       ) : (
         <div className="calorie-counter-page-container">
           <Typography variant="h2" align="center">Unreachable Page,Login for access!</Typography>

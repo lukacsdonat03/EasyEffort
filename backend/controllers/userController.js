@@ -125,19 +125,8 @@ const setCurrentCalorie = async (req, res) => {
 };
 
 const setTargetCalorie = async (req, res) => {
-  /*
-        TODO:valami option cucc frontenden ahol a user ki tudja választani a listából, hogy melyik legyen beállítiva
-        visszatérési érték:
-            {
-                balance: Number,
-                mildWeightLoss: Number,
-                mildWeightGain: Number,
-                heavyWeightLoss: Number,
-                heavyWeightGain: Number
-            }
-    */
-  const { id } = req.params;
-  const { gender, age, height, weight, activity } = req.body;
+  const token = req.user
+  const { gender, age, height, weight, activity,goal } = req.body;
   const calorieNeeds = fitnessCalculator.calorieNeeds(
     gender,
     age,
@@ -145,22 +134,42 @@ const setTargetCalorie = async (req, res) => {
     weight,
     activity
   );
-  //TODO:eldönteni hogy weightLoss vagy weightGain kell
-  if (!id) {
+  if (!token.id) {
     return res.status(StatusCodes.NOT_FOUND).send("No id provided");
+  }
+  let result = 0
+  switch (goal) {
+    case 'balance':
+      result = calorieNeeds.balance
+      break;
+    case 'mildWeightLoss':
+      result = calorieNeeds.mildWeightLoss
+      break
+    case 'mildWeightGain':
+      result = calorieNeeds.mildWeightGain
+      break
+      case 'heavyWeightLoss':
+      result = calorieNeeds.heavyWeightLoss
+      break
+    case 'heavyWeightGain':
+      result = calorieNeeds.heavyWeightGain
+      break
+    default:
+      result = calorieNeeds.balance
+      break;
   }
   models.user
     .update(
-      { targetCalorie: calorieNeeds.mildWeightLoss },
-      { where: { id: id } }
+      { targetCalorie: result },
+      { where: { id: token.id } }
     )
     .then(() => {
-      return res.status(StatusCodes.OK).send("User updated successfully!");
+      return res.status(StatusCodes.OK).send('User updated successfully');
     })
     .catch((err) => {
       return res
         .status(StatusCodes.INTERNAL_SERVER_ERROR)
-        .send("Error: " + err);
+        .send(err);
     });
 };
 
