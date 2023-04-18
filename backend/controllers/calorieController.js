@@ -23,7 +23,8 @@ const deleteItem = async (req, res) => {
 
 const createItem = async (req, res) => {
   const product = { ...req.body };
-  try {
+  const token = req.user
+ /*  try {
     const newProduct = await Calorie.create({
       name: product.name,
       amount: product.amount,
@@ -31,13 +32,23 @@ const createItem = async (req, res) => {
       protein: product.protein * product.amount,
       fat: product.fat * product.amount,
       totalCalorie: product.totalCalorie * product.amount,
-      userId: product.userId,
+      userId: token.id,
     });
     return res.status(StatusCodes.CREATED).send(newProduct)
   } catch (error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error)
-  }
-  
+  } */
+  Calorie.create({
+    name: product.name,
+    amount: product.amount,
+    carbohydrate: product.carbohydrate * product.amount,
+    protein: product.protein * product.amount,
+    fat: product.fat * product.amount,
+    totalCalorie: product.totalCalorie * product.amount,
+    userId: token.id,
+  }).then((result)=>{
+    return res.status(StatusCodes.OK).send(result)
+  }).catch((err)=>{return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err)})
 };
 
 const updateItem = async (req, res) => {

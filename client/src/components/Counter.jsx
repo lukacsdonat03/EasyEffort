@@ -45,7 +45,7 @@ export const Counter = () => {
     setInput(input + e.target.value);
   };
   const handleSubmit = (e) => {
-    //e.preventDefeult();
+    e.preventDefault();
     setInput("");
     const item = selectedItem.fields;
     axios.post(
@@ -57,9 +57,8 @@ export const Counter = () => {
         protein: item.nf_protein,
         fat: item.nf_total_fat,
         totalCalorie: item.nf_calories,
-        userId: 12,
       },
-      { headers: { "Content-Type": "application/json" }, withCredentials: true }
+      { withCredentials: true }
     );
   };
   const handleSearch = (e) => {
@@ -182,7 +181,7 @@ export const Counter = () => {
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <Button onClick={handleSubmit} variant="contained" color="success">
+            <Button onClick={(e)=>{handleSubmit(e)}} variant="contained" color="success">
               Submit
             </Button>
           </Grid>
