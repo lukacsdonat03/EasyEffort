@@ -129,9 +129,9 @@ const setTargetCalorie = async (req, res) => {
   const { gender, age, height, weight, activity,goal } = req.body;
   const calorieNeeds = fitnessCalculator.calorieNeeds(
     gender,
-    age,
-    height,
-    weight,
+    Number(age),
+    Number(height),
+    Number(weight),
     activity
   );
   if (!token.id) {
@@ -164,7 +164,7 @@ const setTargetCalorie = async (req, res) => {
       { where: { id: token.id } }
     )
     .then(() => {
-      return res.status(StatusCodes.OK).send('User updated successfully');
+      return res.status(StatusCodes.OK).json('User updated successfully '+Object.values(req.body));
     })
     .catch((err) => {
       return res

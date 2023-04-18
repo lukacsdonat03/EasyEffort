@@ -16,12 +16,20 @@ import axios from 'axios'
 
 
 export const WeightSelect = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    //set initial data
+    age:1,
+    goal:"balance",
+    weight:75,
+    height:170,
+    activity:"moderate",
+    gender:"male"
+  });
 
   const handleSubmit = (e) =>{
     e.preventDefault()
     axios.put('http://localhost:8080/api/v1/user/target-cal',formData,{withCredentials:true})
-      .then(()=>{alert('Data saved successfully!')})
+      .then((res)=>{alert('Data saved successfully!');console.log(res.data);console.log(formData);})
       .catch((err)=>{
         alert('Save failed!')
         console.error(err);
@@ -51,7 +59,7 @@ export const WeightSelect = () => {
             onChange={({ target: { name, value } }) => {
               setFormData({ ...formData, [name]: value });
             }}
-            defaultValue={"balance"}
+            
           >
             <MenuItem value={"balance"}>Balance</MenuItem>
             <MenuItem value={"mildWeightLoss"}>Mild Weight Loss</MenuItem>
@@ -64,11 +72,12 @@ export const WeightSelect = () => {
           <FormLabel id="demo-radio-buttons-group-label">Gender:</FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="male"
+            
             name="gender"
             value={formData?.gender || "male"}
             onChange={({ target: { name, value } }) => {
               setFormData({ ...formData, [name]: value });
+              console.log(formData.gender);
             }}
           >
             <FormControlLabel
@@ -84,6 +93,7 @@ export const WeightSelect = () => {
             label="Age"
             name="age"
             type="number"
+            
             sx={{ width: "280px" }}
             value={formData?.age || 1}
             onChange={({ target: { name, value } }) => {
@@ -98,6 +108,7 @@ export const WeightSelect = () => {
             type="number"
             sx={{ width: "280px" }}
             value={formData?.height || 170}
+            
             onChange={({ target: { name, value } }) => {
               setFormData({ ...formData, [name]: value });
             }}
@@ -109,6 +120,7 @@ export const WeightSelect = () => {
             name="weight"
             type="number"
             sx={{ width: "280px" }}
+            
             value={formData?.weight || 75}
             onChange={({ target: { name, value } }) => {
               setFormData({ ...formData, [name]: value });
@@ -122,11 +134,11 @@ export const WeightSelect = () => {
             value={formData?.activity || "moderate"}
             label="Activity Level"
             name="activity"
+            
             sx={{ width: "280px" }}
             onChange={({ target: { name, value } }) => {
               setFormData({ ...formData, [name]: value });
             }}
-            defaultValue={"moderate"}
           >
             <MenuItem value={"sedentary"}>Sedentary</MenuItem>
             <MenuItem value={"light"}>Light</MenuItem>
