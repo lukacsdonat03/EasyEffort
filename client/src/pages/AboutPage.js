@@ -6,7 +6,7 @@ import { Footer } from '../components/Footer';
 
 function AboutPage() {
   return (<div>
-    <Navbar></Navbar>
+    <Navbar/>
     <div className="about-container">
       <h1>About Us</h1>
       <p>We are a team of passionate developers dedicated to creating amazing websites and applications.</p>
