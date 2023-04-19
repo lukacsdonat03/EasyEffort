@@ -31,7 +31,7 @@ export const CalorieList = () => {
         <tbody>
           {listData.map((value,index)=>{
            return <tr key={index}>
-              <td className='calorie-table-cells'>{value.event_time}</td>
+              <td className='calorie-table-cells'>{new Date(value.event_time).toLocaleString()}</td>
               <td className='calorie-table-cells'>{value.name}</td>
               <td className='calorie-table-cells'>{value.totalCalorie}</td>
               <td className='calorie-table-cells'>{value.carbohydrate}</td>
