@@ -5,13 +5,28 @@ import { Counter } from "../components/Counter";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import "../App.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { CalorieNeedsContainer } from "../components/CalorieNeedsContainer";
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import ProgressBar from "react-bootstrap/ProgressBar";
+import axios from "axios";
 
 export const CalorieCounter = () => {
   const { currentUser } = useContext(AuthContext);
+  const [actualUser, setActualUser] = useState({});
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/v1/user/", { withCredentials: true })
+      .then((res) => {
+        setActualUser({
+          currentCalorie: res.data.currentCalorie,
+          targetCalorie: res.data.targetCalorie,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <>
@@ -21,24 +36,45 @@ export const CalorieCounter = () => {
       {currentUser ? (
         <div className="calorie-counter-page-container">
           <Box sx={{ flexGrow: 1 }}>
-            <Grid sx={{marginTop:"55px"}} container spacing={2}>
+            <Grid sx={{ marginTop: "55px" }} container spacing={2}>
               <Grid item md={12} sm={12} xs={12}>
-                <Typography color={"#d5dfe5"} variant="h5" textAlign={"center"} marginBottom={"45px"}>You have 95 calories left</Typography>
+                {actualUser.targetCalorie - actualUser.currentCalorie < 0 ? (
+                  <Typography
+                    color={"#d5dfe5"}
+                    variant="h5"
+                    textAlign={"center"}
+                    marginBottom={"45px"}
+                  >
+                    You have exceeded your daily calories
+                  </Typography>
+                ) : (
+                  <Typography
+                    color={"#d5dfe5"}
+                    variant="h5"
+                    textAlign={"center"}
+                    marginBottom={"45px"}
+                  >
+                    You have{" "}
+                    {(
+                      actualUser.targetCalorie - actualUser.currentCalorie
+                    ).toFixed(0)}{" "}
+                    calories left
+                  </Typography>
+                )}
                 <div className="progressbar-container">
-                  <ProgressBar variant="warning" now={10} label={"12"}/>
+                  <ProgressBar
+                    variant="warning"
+                    now={actualUser.currentCalorie}
+                    max={actualUser.targetCalorie}
+                  />
                 </div>
               </Grid>
             </Grid>
-            <Grid sx={{marginTop:"55px"}} container spacing={2}>
+            <Grid sx={{ marginTop: "55px" }} container spacing={2}>
               <Grid item md={6} sm={6} xs={8}>
                 <CalorieList />
               </Grid>
-              <Grid
-                item
-                md={6}
-                sm={6}
-                xs={6}
-              >
+              <Grid item md={6} sm={6} xs={6}>
                 <Counter />
               </Grid>
               <Grid>
