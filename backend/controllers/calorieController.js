@@ -1,7 +1,8 @@
 const { StatusCodes } = require("http-status-codes");
 const sequelize = require("../database/databaseConfig");
 const initModels = require("../models/init-models");
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { Sequelize } = require("sequelize");
 const models = initModels(sequelize);
 
 const Calorie = models.calorie;
@@ -24,20 +25,7 @@ const deleteItem = async (req, res) => {
 const createItem = async (req, res) => {
   const product = { ...req.body };
   const token = req.user
- /*  try {
-    const newProduct = await Calorie.create({
-      name: product.name,
-      amount: product.amount,
-      carbohydrate: product.carbohydrate * amount,
-      protein: product.protein * product.amount,
-      fat: product.fat * product.amount,
-      totalCalorie: product.totalCalorie * product.amount,
-      userId: token.id,
-    });
-    return res.status(StatusCodes.CREATED).send(newProduct)
-  } catch (error) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error)
-  } */
+  models.user.update({currentCalorie: Sequelize.literal(`currentCalorie + ${product.totalCalorie * product.amount}`)},{where:{id:token.id}})
   Calorie.create({
     name: product.name,
     amount: product.amount,
