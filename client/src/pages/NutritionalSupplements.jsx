@@ -23,7 +23,7 @@ export const NutritionalSupplements = () => {
           <i>{currentUser && currentUser.fullname}</i>
         </b>
       </Typography>
-      <Grid container spacing={2} justifyContent={'center'} alignItems={'cemter'}>
+      <Grid container spacing={2} justifyContent={'center'} alignItems={'cemter'} direction={"row"}>
         {supplements.supplements.map((element, index) => {
           return (
             <Grid item xs={12} sm={6} key={index+1}>

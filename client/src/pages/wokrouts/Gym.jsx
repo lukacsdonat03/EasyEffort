@@ -25,10 +25,10 @@ export const Gym = () => {
         You can browse here the basic exercises that can help you get in shape.
       </Typography>
 
-      <Grid container className="workout-container">
+      <Grid container className="workout-container" spacing={2} direction={"row"} justifyContent={'center'}>
       {exercises.gym.map((element, index) => {
         return (
-          <Grid item xs={3}>
+          <Grid item  xs={12} sm={6} md={3}>
             <Card sx={{ minWidth: 275,boxShadow:' rgba(0, 0, 0, 0.3) 0px 19px 38px,  #4c956c 16px 10px 12px;',marginBottom:'25px' }} style={{ width: "400px" }} key={index+1}>
               <CardContent>
               <CardMedia

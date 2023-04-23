@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import { Gym } from "./wokrouts/Gym";
 import { StreetWorkout } from "./wokrouts/StreetWorkout";
 import { HomeWorkout } from "./wokrouts/HomeWorkout";
+import { Grid } from "@mui/material";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -36,6 +37,7 @@ function Wokrouts() {
   return (
     <div>
       <Navbar />
+      <Grid  item direction={'column'} width={'100%'}> 
       <div className="workout-container">
         <Box sx={{ width: '100%' }} >
         <Box sx={{ borderBottom: 1, borderColor: 'divider',justifyContent:'center',display:'flex' }}>
@@ -56,6 +58,7 @@ function Wokrouts() {
         </TabPanel>
       </Box>
       </div>
+      </Grid>
       <Footer />
     </div>
   );
