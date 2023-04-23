@@ -4,12 +4,17 @@ import axios from 'axios'
 
 export const UserMessage = () => {
     const [message, setMessage] = useState([]) 
+    
     useEffect(()=>{
+    fetchData()
+ },[]) 
+
+ const fetchData = () =>{
     axios.get('http://localhost:8080/api/v1/contact/pending',{withCredentials:true})
         .then((res)=>{
             setMessage(res.data)
         })
- },[]) 
+ }
 
  const handleAprove = (event,id) =>{
     event.preventDefault()
@@ -22,6 +27,8 @@ export const UserMessage = () => {
             alert('Progress failed, check the console...')
             console.log(err);
         })
+       
+        
  }
 
  const handleReject = (event,id) =>{

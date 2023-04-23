@@ -20,7 +20,7 @@ export const ModalContent = (props) => {
     {
       id:props.user.id,
       newPassword: newPassword
-    }
+    },{withCredentials:true}
     ).then(()=>{
       alert('Password updated successfully')
     }).catch((err)=>{
@@ -29,17 +29,16 @@ export const ModalContent = (props) => {
   }
 
   const handleAdmin = () => {
-    console.log(props.user.admin);
     axios
       .put("http://localhost:8080/api/v1/user/admin", {
         admin: !props.user.admin,
         id: props.user.id,
-      })
-      .then((res) => {
+      },{withCredentials:true})
+      .then(() => {
         alert("User updated successfully")
       })
       .catch((err) => {
-        alert("Error: ", err);
+        alert("Error: "+ err);
       });
   };
 
