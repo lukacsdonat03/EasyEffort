@@ -70,15 +70,17 @@ export const CalorieCounter = () => {
                 </div>
               </Grid>
             </Grid>
-            <Grid sx={{ marginTop: "55px" }} container spacing={2}>
-              <Grid item md={6} sm={6} xs={8}>
+            <Grid sx={{ marginTop: "55px" }} container spacing={2} direction={"row"}>
+              <Grid item md={6} sm={12} xs={12} >
                 <CalorieList />
               </Grid>
-              <Grid item md={6} sm={6} xs={6}>
+              <Grid item md={6} sm={12} xs={12}>
                 <Counter />
               </Grid>
-              <Grid>
+              <Grid container>
+              <Grid item md={6} sm={12} xs={12}>
                 <CalorieNeedsContainer />
+              </Grid>
               </Grid>
             </Grid>
           </Box>

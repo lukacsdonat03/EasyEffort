@@ -100,7 +100,10 @@
   background-color: #4c856c;
   height: 100%;
   padding-top: 100px;
+  width: 118.9rem;
 }
+
+
 
 /* - footer - */
 
@@ -232,7 +235,3 @@
   
 }
 
-.progressbar-container{
-  width: 955px;
-  margin: auto;
-}
