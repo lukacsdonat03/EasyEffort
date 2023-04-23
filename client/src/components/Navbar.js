@@ -17,7 +17,7 @@ export const Navbar = () => {
 
   const handleLogout = (event) => {
     event.preventDefault();
-    logout().then(() => navigate("/login"));
+    logout().then(() => navigate("/"));
   };
 
   const handleOpenUserMenu = (event) => {

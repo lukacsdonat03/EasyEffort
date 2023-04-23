@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./HomePage.css"
 import { Footer } from '../components/Footer';
 import { Navbar } from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 
 export const HomePage = () => {
+  
+  const navigate = useNavigate()
+  const {currentUser} = useContext(AuthContext)
+
   return (
     <div className="HomePage">
       <Navbar/>
@@ -12,7 +18,12 @@ export const HomePage = () => {
       <section className="hero">
         <h1>Welcome to Easy Effort</h1>
         <p>We are a fitness website that helps you achieve your fitness goals with ease and effort.</p>
-        <button className="btn">Get Started</button>
+        <button className="btn" onClick={(e)=>{
+          e.preventDefault()
+          currentUser 
+          ?navigate('/counter')
+          :navigate('/login') 
+        }}>Get Started</button>
       </section>
       <section className="features">
         <h2>Our Features</h2>
@@ -33,7 +44,10 @@ export const HomePage = () => {
       </section>
       <section className="cta">
         <h2>Ready to Get Fit?</h2>
-        <button className="btn">Get Started</button>
+        <button className="btn" onClick={(e)=>{
+          e.preventDefault()
+          navigate('/workout')
+        }}>Get Started</button>
       </section>
       <Footer/>
     </div>
