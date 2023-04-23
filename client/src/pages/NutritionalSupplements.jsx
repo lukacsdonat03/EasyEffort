@@ -26,9 +26,9 @@ export const NutritionalSupplements = () => {
       <Grid container spacing={2} justifyContent={'center'} alignItems={'cemter'}>
         {supplements.supplements.map((element, index) => {
           return (
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} key={index+1}>
               <ImgCard
-                key={index}
+                key={index+1}
                 img={imgs[index]}
                 name={element.name}
                 description={element.description}

@@ -29,7 +29,7 @@ export const Gym = () => {
       {exercises.gym.map((element, index) => {
         return (
           <Grid item xs={3}>
-            <Card sx={{ minWidth: 275,boxShadow:' rgba(0, 0, 0, 0.3) 0px 19px 38px,  #4c956c 16px 10px 12px;',marginBottom:'25px' }} style={{ width: "400px" }} key={index}>
+            <Card sx={{ minWidth: 275,boxShadow:' rgba(0, 0, 0, 0.3) 0px 19px 38px,  #4c956c 16px 10px 12px;',marginBottom:'25px' }} style={{ width: "400px" }} key={index+1}>
               <CardContent>
               <CardMedia
                 component="img"
