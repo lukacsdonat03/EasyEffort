@@ -78,7 +78,7 @@ export const Navbar = () => {
               </NavLink>
             </li>
           }
-          {currentUser ? (
+          {currentUser !== null? (
             <li>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar sx={{ bgcolor: '#2c6e49' }} alt="Remy Sharp" >{currentUser.fullname.charAt(0)}</Avatar>

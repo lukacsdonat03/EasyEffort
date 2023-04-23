@@ -8,7 +8,7 @@ export const HomePage = () => {
   return (
     <div className="HomePage">
       <Navbar/>
-      <div className=" w-100" > {/* levettem a container classt , így nekem jónak tűnik */ }
+      <div className=" w-100" > 
       <section className="hero">
         <h1>Welcome to Easy Effort</h1>
         <p>We are a fitness website that helps you achieve your fitness goals with ease and effort.</p>
