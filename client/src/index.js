@@ -16,6 +16,8 @@ import {Register} from './pages/Register.jsx'
 import { AdminPage } from './pages/admin/AdminPage';
 import Wokrouts from './pages/Wokrouts';
 import { NutritionalSupplements } from './pages/NutritionalSupplements';
+import { CalorieOperations } from './context/CalorieContext.jsx'
+import { AdminOperations } from './context/AdminContext';
 
 
 const router = createBrowserRouter([
@@ -67,9 +69,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Authentication>
-    <RouterProvider router={router} />
+        <CalorieOperations>
+          <AdminOperations>
+            <RouterProvider router={router} />
+          </AdminOperations>
+        </CalorieOperations> 
     </Authentication>
-    </React.StrictMode>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,16 +1,16 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+
+import React, { useContext, useEffect, } from 'react'
+import { CalorieContext } from '../context/CalorieContext'
 
 
 export const CalorieList = () => {
-  const [ listData,setListData ] = useState([])
+ 
+
+  const {listItem,productList} = useContext(CalorieContext)
 
 
   useEffect(()=>{
-    axios.get(`http://localhost:8080/api/v1/products/`,{withCredentials:true})
-      .then(res=>{
-        setListData(res.data)
-      })
+      listItem()
   },[])
 
   return (
@@ -29,7 +29,7 @@ export const CalorieList = () => {
           </tr>
         </thead>
         <tbody>
-          {listData.map((value,index)=>{
+          {productList.map((value,index)=>{
            return <tr key={index}>
               <td className='calorie-table-cells'>{new Date(value.event_time).toLocaleString()}</td>
               <td className='calorie-table-cells'>{value.name}</td>

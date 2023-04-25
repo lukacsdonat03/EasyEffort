@@ -1,48 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useContext, useEffect } from 'react'
+import { AdminContext } from '../../context/AdminContext'
 
 
 export const UserMessage = () => {
-    const [message, setMessage] = useState([]) 
+    
+
+    const {messages,aproveMessage,rejectMessage,listMessage} = useContext(AdminContext) 
     
     useEffect(()=>{
-    fetchData()
+    listMessage()
  },[]) 
 
- const fetchData = () =>{
-    axios.get('http://localhost:8080/api/v1/contact/pending',{withCredentials:true})
-        .then((res)=>{
-            setMessage(res.data)
-        })
- }
-
- const handleAprove = (event,id) =>{
-    event.preventDefault()
-    axios.put(`http://localhost:8080/api/v1/contact/${id}`,{state:true},{withCredentials:true})
-        .then((res)=>{
-            if(res.status === 200) alert('Comment status updated successfully...')
-            if(res.status === 204) alert('There is no comment with this id!')
-        })
-        .catch((err)=>{
-            alert('Progress failed, check the console...')
-            console.log(err);
-        })
-       
-        
- }
-
- const handleReject = (event,id) =>{
-    event.preventDefault()
-    axios.put(`http://localhost:8080/api/v1/contact/${id}`,{state:false},{withCredentials:true})
-        .then((res)=>{
-            if(res.status === 200) alert('Comment status updated successfully...')
-            if(res.status === 204) alert('There is no comment with this id!')
-        })
-        .catch((err)=>{
-            alert('Progress failed, check the console...')
-            console.log(err);
-        })
- }
   
  return (
     <>
@@ -58,13 +26,13 @@ export const UserMessage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {message.map((singleMessage,index)=>{
+                    {messages.map((singleMessage,index)=>{
                         return <tr key={index}>
                             <td className='calorie-table-cells'>{index+1}</td>
                             <td className='calorie-table-cells'>{singleMessage.userId}</td>
                             <td className='calorie-table-cells'>{singleMessage.subject}</td>
                             <td className='calorie-table-cells'>{singleMessage.message}</td>
-                            <th className='calorie-table-cells'><button className='list-button' onClick={(e)=>{handleAprove(e,singleMessage.id)}}>✅</button><button className='list-button'  onClick={(e)=>{handleReject(e,singleMessage.id)}}>❌</button></th>
+                            <th className='calorie-table-cells'><button className='list-button' onClick={()=>{aproveMessage(singleMessage.id);listMessage()}}>✅</button><button className='list-button'  onClick={()=>{rejectMessage(singleMessage.id)}}>❌</button></th>
                         </tr>
                     })}
                 </tbody>

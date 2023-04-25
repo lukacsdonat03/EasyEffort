@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import { Autocomplete, Button, TextField } from "@mui/material";
 import axios from "axios";
+import { CalorieContext } from "../context/CalorieContext";
 
 let PRODUCTS = [];
 
 export const Counter = () => {
+  const{createItem,listItem} = useContext(CalorieContext)
+
   const [input, setInput] = useState("");
   const [search, setSearch] = useState("");
   const [selectedItem, setSelectedItem] = useState({});
@@ -45,7 +48,7 @@ export const Counter = () => {
     setInput(input + e.target.value);
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
+   /*  e.preventDefault();
     setInput("");
     const item = selectedItem.fields;
     axios.post(
@@ -59,7 +62,10 @@ export const Counter = () => {
         totalCalorie: item.nf_calories,
       },
       { withCredentials: true }
-    );
+    ); */
+    const item = selectedItem.fields;
+    createItem(item,input)
+    listItem()
   };
   const handleSearch = (e) => {
       PRODUCTS.splice(0, PRODUCTS.length);
