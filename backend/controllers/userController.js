@@ -187,9 +187,8 @@ const updateAdmin = (req,res)=>{
 const updatePassword = (req,res)=>{
   const {id, newPassword} = req.body
   if(!id || !newPassword) return res.status(StatusCodes.BAD_REQUEST).send("All creadentials are required!")
-  const salt = bcrypt.genSalt(12)
+  const salt = bcrypt.genSaltSync(12)
   const hash = bcrypt.hashSync(newPassword,salt)
-  console.log(typeof hash);
   models.user.update({password:hash},{where:{id:id}, individualHooks: true})
     .then((updatedRows)=>{
       if(updatedRows[0] === 0) return res.sendStatus(StatusCodes.NO_CONTENT)

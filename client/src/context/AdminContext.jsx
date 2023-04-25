@@ -6,6 +6,7 @@ export const AdminContext = createContext()
 export  const AdminOperations = ({children}) =>{
     
     const [ messages,setMessages ] = useState([])
+    const [ users, setUsers ] = useState([]) 
      
     const listMessage = () =>{
         axios.get('http://localhost:8080/api/v1/contact/pending',{withCredentials:true})
@@ -42,8 +43,28 @@ export  const AdminOperations = ({children}) =>{
 
         listMessage()
      }
+
+     const setAdmin = (id,admin) =>{
+        axios.put('http://localhost:8080/api/v1/user/admin',{
+            admin: !admin,
+            id:id
+        },{withCredentials:true})
+            .then((res)=>{
+                if(res.status === 200) alert('User updated successfully...')
+            })
+            .catch(err=>{
+                console.error(err)
+                alert('Something went wrong, check the console from more information!')
+            })
+            allUser()
+     }      
+
+     const allUser = () =>{
+        axios.get('http://localhost:8080/api/v1/user/all',{withCredentials:true})
+      .then((res)=>setUsers(res.data))
+     }
      return ( 
-        <AdminContext.Provider value={{messages,listMessage,aproveMessage,rejectMessage}}>
+        <AdminContext.Provider value={{users,messages,listMessage,aproveMessage,rejectMessage,setAdmin,allUser}}>
             {children}
         </AdminContext.Provider>
      )

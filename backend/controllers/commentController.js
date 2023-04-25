@@ -100,7 +100,7 @@ const createComment = async (req, res) => {
 const updateComment = (req,res) =>{
   const {state} = req.body
   const {id} = req.params 
-  if(!state) return res.status(StatusCodes.BAD_REQUEST).send('Please provide the state of the message!')
+  if(state === null) return res.status(StatusCodes.BAD_REQUEST).send('Please provide the state of the message!')
   Comment.update({state:state},{where:{id:id}})
   .then((updatedRows)=>{
     if(updatedRows[0] === 0) return res.sendStatus(StatusCodes.NO_CONTENT)

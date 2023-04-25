@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { Typography } from '@mui/material'
 import { AdmimnModal } from './AdminModal'
+import { AdminContext } from '../../context/AdminContext'
 
 export const Dashboard = () => {
   
   const [userList, setUserList] = useState([]) 
-
+  const {users,allUser} = useContext(AdminContext)
   useEffect(()=>{
-    axios.get('http://localhost:8080/api/v1/user/all',{withCredentials:true})
-      .then((res)=>setUserList(res.data))
+    /* axios.get('http://localhost:8080/api/v1/user/all',{withCredentials:true})
+      .then((res)=>setUserList(res.data)) */
+      allUser()
   },[])
 
 
@@ -32,7 +34,7 @@ export const Dashboard = () => {
             </tr>
           </thead>
           <tbody>
-            {userList.map((user,index)=>{
+            {users.map((user,index)=>{
               return <tr key={index+1}>
                 <td className='dashboard-cells'>{index+1}</td>
                 <td className='dashboard-cells'>{user.id}</td>

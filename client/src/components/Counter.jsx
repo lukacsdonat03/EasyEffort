@@ -47,22 +47,7 @@ export const Counter = () => {
   const handleClick = (e) => {
     setInput(input + e.target.value);
   };
-  const handleSubmit = (e) => {
-   /*  e.preventDefault();
-    setInput("");
-    const item = selectedItem.fields;
-    axios.post(
-      "http://localhost:8080/api/v1/products/",
-      {
-        name: item.item_name,
-        amount: item.nf_serving_size_qty * input,
-        carbohydrate: item.nf_total_carbohydrate,
-        protein: item.nf_protein,
-        fat: item.nf_total_fat,
-        totalCalorie: item.nf_calories,
-      },
-      { withCredentials: true }
-    ); */
+  const handleSubmit = () => {
     const item = selectedItem.fields;
     createItem(item,input)
     listItem()

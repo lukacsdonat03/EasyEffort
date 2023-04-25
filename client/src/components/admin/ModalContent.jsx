@@ -1,13 +1,16 @@
 import { Button, Typography } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
+import { AdminContext } from "../../context/AdminContext";
 
 
 export const ModalContent = (props) => {
   const [ open,setOpen ] = useState(false)
   const [ newPassword , setNewPassword] = useState("")
+
+  const {setAdmin,allUser} = useContext(AdminContext)
 
   const handlePasswordChange = (e) =>{
     e.preventDefault()
@@ -29,17 +32,8 @@ export const ModalContent = (props) => {
   }
 
   const handleAdmin = () => {
-    axios
-      .put("http://localhost:8080/api/v1/user/admin", {
-        admin: !props.user.admin,
-        id: props.user.id,
-      },{withCredentials:true})
-      .then(() => {
-        alert("User updated successfully")
-      })
-      .catch((err) => {
-        alert("Error: "+ err);
-      });
+      setAdmin(props.user.id,props.user.admin)
+      
   };
 
   return (
