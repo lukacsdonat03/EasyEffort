@@ -1,16 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useContext, useEffect } from 'react'
+
 import { Typography } from '@mui/material'
 import { AdmimnModal } from './AdminModal'
 import { AdminContext } from '../../context/AdminContext'
 
 export const Dashboard = () => {
   
-  const [userList, setUserList] = useState([]) 
+  
   const {users,allUser} = useContext(AdminContext)
   useEffect(()=>{
-    /* axios.get('http://localhost:8080/api/v1/user/all',{withCredentials:true})
-      .then((res)=>setUserList(res.data)) */
       allUser()
   },[])
 

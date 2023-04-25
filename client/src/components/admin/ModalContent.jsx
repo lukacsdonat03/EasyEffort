@@ -10,7 +10,7 @@ export const ModalContent = (props) => {
   const [ open,setOpen ] = useState(false)
   const [ newPassword , setNewPassword] = useState("")
 
-  const {setAdmin,allUser} = useContext(AdminContext)
+  const {setAdmin}  = useContext(AdminContext)
 
   const handlePasswordChange = (e) =>{
     e.preventDefault()
@@ -33,7 +33,6 @@ export const ModalContent = (props) => {
 
   const handleAdmin = () => {
       setAdmin(props.user.id,props.user.admin)
-      
   };
 
   return (
