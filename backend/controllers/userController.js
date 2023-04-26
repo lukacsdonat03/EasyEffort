@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 const initModels = require("../models/init-models");
 
 const models = initModels(sequelize);
-
+// valszeg törlésre kerül a metódus
 const deleteUser = async (req, res) => {
   const { id } = req.params;
   if (!id) {
@@ -22,12 +22,14 @@ const deleteUser = async (req, res) => {
 };
 
 const getAllUser = async (req, res) => {
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   models.user.findAll().then((users) => {
     return res.status(StatusCodes.OK).send(users);
   });
 };
 
 const getUser = async (req, res) => {
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   const { id } = req.user;
   if (!id) {
     return res.status(StatusCodes.NOT_FOUND).send("No id provided");
@@ -174,6 +176,7 @@ const setTargetCalorie = async (req, res) => {
 };
 
 const updateAdmin = (req,res)=>{
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   const {id,admin} = req.body
   models.user.update({admin:admin},{where:{id:id}})
     .then((updatedRows)=>{
@@ -185,6 +188,7 @@ const updateAdmin = (req,res)=>{
 }
 
 const updatePassword = (req,res)=>{
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   const {id, newPassword} = req.body
   if(!id || !newPassword) return res.status(StatusCodes.BAD_REQUEST).send("All creadentials are required!")
   const salt = bcrypt.genSaltSync(12)

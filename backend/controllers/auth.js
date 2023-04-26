@@ -58,7 +58,7 @@ const login = async (req, res) => {
       if (!isCorrectPassword) {
         return res.status(StatusCodes.BAD_REQUEST).send("Invalid credentials!");
       }
-      const token =jwt.sign({ id: user.id }, process.env.JWT_SECRET,{expiresIn:'30d'});
+      const token =jwt.sign({ id: user.id,isAdmin: user.admin }, process.env.JWT_SECRET,{expiresIn:'1d'});
 
       res
         .cookie("access_token", token, {

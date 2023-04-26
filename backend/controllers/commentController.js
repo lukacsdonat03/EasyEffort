@@ -1,13 +1,14 @@
 const sequelize = require("../database/databaseConfig");
 const { StatusCodes } = require("http-status-codes");
 const initModels = require("../models/init-models");
-const { Sequelize } = require("sequelize");
+
 
 const models = initModels(sequelize);
 
 const Comment = models.comment;
 
 const getComment = async (req, res) => {
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   const { id } = req.params;
   if (!id)
     return res.status(StatusCodes.BAD_REQUEST).send("ID must be provided!");
@@ -24,6 +25,7 @@ const getComment = async (req, res) => {
 };
 
 const allComment = async (req, res) => {
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
     try {
       const allUser = await Comment.findAll();
       return res.status(StatusCodes.OK).send(allUser);
@@ -33,6 +35,7 @@ const allComment = async (req, res) => {
   
 };
 const pendingComment = async (req, res) => {
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   try {
     const allUser = await Comment.findAll({where:{state:null}});
     return res.status(StatusCodes.OK).send(allUser);
@@ -43,6 +46,7 @@ const pendingComment = async (req, res) => {
 };
 
 const rejectedComment = async (req, res) => {
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   try {
     const allUser = await Comment.findAll({where:{state:false}});
     return res.status(StatusCodes.OK).send(allUser);
@@ -53,6 +57,7 @@ const rejectedComment = async (req, res) => {
 };
 
 const aprovedComment = async (req, res) => {
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   try {
     const allUser = await Comment.findAll({where:{state:true}});
     return res.status(StatusCodes.OK).send(allUser);
@@ -63,6 +68,7 @@ const aprovedComment = async (req, res) => {
 };
 
 const deleteComment = async (req, res) => {
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   const { id } = req.params;
   if (!id) return res.sendStatus(StatusCodes.BAD_REQUEST);
   Comment.destroy({ where: { id: id }, force: true })
@@ -98,6 +104,7 @@ const createComment = async (req, res) => {
 };
 
 const updateComment = (req,res) =>{
+  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   const {state} = req.body
   const {id} = req.params 
   if(state === null) return res.status(StatusCodes.BAD_REQUEST).send('Please provide the state of the message!')
