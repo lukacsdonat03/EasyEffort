@@ -26,7 +26,7 @@ export const CalorieCounter = () => {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [actualUser]);
 
   return (
     <>
