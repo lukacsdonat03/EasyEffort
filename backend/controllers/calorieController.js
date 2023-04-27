@@ -13,13 +13,22 @@ const deleteItem = async (req, res) => {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .send("There is no product with this id!");
-  Calorie.destroy({ where: { id: id }, force: true })
+  try {
+    const item = await Calorie.findOne({where:{id:id}})
+    Calorie.destroy({ where: { id: id } })
     .then(() => {
+      models.user.update({currentCalorie: Sequelize.literal(`currentCalorie - ${item.totalCalorie}`)},{where:{id:item.userId}})
       return res.status(StatusCodes.NO_CONTENT).send("Deleted successfully");
     })
     .catch((err) => {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
     });
+  
+  } catch (error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error: '+error)
+  }
+
+  
 };
 
 const createItem = async (req, res) => {

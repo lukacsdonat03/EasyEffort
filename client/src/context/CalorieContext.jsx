@@ -31,9 +31,21 @@ export const CalorieOperations = ({children}) =>{
           listItem()
     }
 
+    const deleteItem = (id) =>{
+       axios.delete(`http://localhost:8080/api/v1/products/${id}`,{withCredentials:true})
+        .then((res)=>{
+            if(res.status === 204) alert('Item removed successfully!')
+        })
+        .catch((err)=>{
+            console.error(err)
+            alert('Something went wrong')
+        })
+        listItem()
+    }
+
 
     return (
-        <CalorieContext.Provider value={{productList,listItem,createItem}}>
+        <CalorieContext.Provider value={{productList,listItem,createItem,deleteItem}}>
             {children}
         </CalorieContext.Provider>
     )

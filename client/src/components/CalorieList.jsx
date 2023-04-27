@@ -6,7 +6,7 @@ import { CalorieContext } from '../context/CalorieContext'
 export const CalorieList = () => {
  
 
-  const {listItem,productList} = useContext(CalorieContext)
+  const {listItem,productList,deleteItem} = useContext(CalorieContext)
 
 
   useEffect(()=>{
@@ -26,6 +26,7 @@ export const CalorieList = () => {
             <th className='calorie-table-cells'>Protein<sub>(g)</sub></th>
             <th className='calorie-table-cells'>Fat<sub>(g)</sub></th>
             <th className='calorie-table-cells'>Weight <sub>(g)</sub></th>
+            <th className='calorie-table-cells'>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +39,7 @@ export const CalorieList = () => {
               <td className='calorie-table-cells'>{value.protein}</td>
               <td className='calorie-table-cells'>{value.fat}</td>
               <td className='calorie-table-cells'>{value.amount}</td>
+              <td className='calorie-table-cells'><button className='list-button' onClick={()=>{deleteItem(value.id);listItem()}}>❌</button></td>
             </tr>
           })}
         </tbody>
