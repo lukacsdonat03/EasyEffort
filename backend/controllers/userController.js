@@ -181,7 +181,7 @@ const updateAdmin = (req,res)=>{
   models.user.update({admin:admin},{where:{id:id}})
     .then((updatedRows)=>{
       if(updatedRows[0] === 1) return res.status(StatusCodes.OK).send('User updated successfully')
-      if(updatedRows[0] === 0) return res.sendStatus(StatusCodes.NO_CONTENT)
+      if(updatedRows[0] === 0) return res.status(StatusCodes.BAD_REQUEST).send('No rows updated...')
       }).catch((err)=>{
       return res.send(StatusCodes.INTERNAL_SERVER_ERROR,err)
     })
