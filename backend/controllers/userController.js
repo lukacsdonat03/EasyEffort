@@ -29,7 +29,6 @@ const getAllUser = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  if(!req.user.isAdmin) return res.sendStatus(StatusCodes.UNAUTHORIZED)
   const { id } = req.user;
   if (!id) {
     return res.status(StatusCodes.NOT_FOUND).send("No id provided");
