@@ -1,0 +1,237 @@
+/* - global - */
+.weight-input{
+  width: 100px;
+}
+.fullwidth{
+  width: 100%;
+}
+.border-radius{
+  border-radius: 15px;
+}
+
+/* form style - login*/
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #D5DFE5;
+}
+
+.login-form {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow:  rgba(0, 0, 0, 0.3) 0px 19px 38px,  #4c956c 0px 15px 12px;
+  padding: 2rem;
+  width: 30rem;
+}
+
+
+.login-heading {
+  text-align: center;
+}
+
+.login-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.login-form-group label {
+  margin-bottom: 0.5rem;
+}
+
+.login-form-group input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login-button {
+  padding: 0.5rem 1rem;
+  background-color: #2C6E49;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.login-button:hover {
+  background-color: #0062cc;
+}
+
+.link:link{
+  color: #4c956c;
+  text-decoration: none;
+}
+
+.link:hover{
+  color:#163724;
+}
+
+.link:visited{
+  color:#4c956c;
+}
+
+/* - counter style -*/
+
+.counter-box{
+  height: 580px;
+  width: 500px;
+  border-radius: 30px;
+  border: 1px solid black;
+  box-shadow: 10px 5px 15px black;
+  margin: auto;
+  background-color: #d5dfe5;
+  justify-content: center;
+  padding: 5px;
+  text-align: center;
+}
+
+.counter-container{
+  margin: auto;
+  text-align: center;
+  padding: 25px;
+}
+
+.calorie-counter-page-container{
+  background-color: #4c856c;
+  height: 100%;
+  padding-top: 100px;
+  width: 118.9rem;
+}
+
+
+
+/* - footer - */
+
+.footer-container{
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+/* calorie-table  */
+.calorie-table{
+  border: 2px solid white;
+  background-color: #0d1f2d;
+  color: #d5dfe5;
+  box-shadow: 10px 15px 15px 5px black;
+}
+
+.calorie-table-cells{
+  border: 2px solid white;
+  padding: 5px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.calorie-table-div{
+  margin-left: 10px;
+}
+/* yes/no buttons */
+
+.list-button{
+  background-color: #0d1f2d;
+  margin: 1px;
+  border:none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.list-button:hover{
+  background-color:#D5DFE5 ;
+  border: none;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* admin */
+.message-container{
+  margin: auto;
+}
+.admin-page-container{
+  background-color: #4c956c;
+  height: 850px;
+}
+
+.dashboard-container{
+  margin: auto;
+}
+
+.dashboard-cells{
+  background-color: #D5DFE5;
+  border: 2px solid #0d1f2d;
+  color: #0d1f2d;
+  padding: 10px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.dashboard-button{
+  background-color: #0d1f2d;
+  color: #D5DFE5;
+  margin: 1px;
+  border:none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-button:hover{
+  background-color:#2C6E49 ;
+  border: none;
+  box-shadow: 0px 5px 10px rgba(1, 0, 0, 2);
+}
+
+/* modal */
+.modal-container{
+  background-color: #d9d9d9;
+  height: 300px;
+  width: 650px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  margin-top: 290px;
+  position: relative;
+}
+
+
+/* Workouts page CSS */
+
+.tab:hover{
+  color: white;
+}
+
+.workout-container{
+  background-color: #D5DFE5;
+  justify-content: center;
+  display: flex;
+}
+
+/* Nutritional Supplements */
+
+.ns-container{
+  background-color: #D5DFE5;
+}
+
+
+/* calorie needs */
+
+.calorie-needs-container{
+  height: 781px;
+  width: 655px;
+  background-color: #D5DFE5;
+  margin-bottom: 75px;
+  margin-left: 55px;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid black;
+  box-shadow: 10px 5px 15px black;
+  color: #0d1f2d;
+  margin-top: 55px;
+  
+}
+

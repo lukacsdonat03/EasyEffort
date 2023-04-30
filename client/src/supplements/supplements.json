@@ -1,0 +1,40 @@
+{
+    "supplements": [
+      {
+        "name": "Whey protein",
+        "description": "A supplement that provides protein for muscle growth and repair.",
+        "benefits": ["Supports muscle recovery after exercise", "May help to promote muscle growth", "May aid in weight loss"],
+        "serving_size": "1 scoop",
+        "price": "$24.99"
+      },
+      {
+        "name": "Creatine",
+        "description": "A supplement that can help to increase muscle mass and strength.",
+        "benefits": ["May help to increase muscle mass and strength", "May improve performance during high-intensity exercise"],
+        "serving_size": "5 grams",
+        "price": "$19.99"
+      },
+      {
+        "name": "Beta-alanine",
+        "description": "A supplement that can help to reduce muscle fatigue during high-intensity exercise.",
+        "benefits": ["May reduce muscle fatigue during high-intensity exercise", "May improve performance during short-duration, high-intensity exercise"],
+        "serving_size": "3 grams",
+        "price": "$29.99"
+      },
+      {
+        "name": "Omega-3 fatty acids",
+        "description": "A supplement that contains essential fatty acids important for brain function and heart health.",
+        "benefits": ["May reduce inflammation and risk of chronic diseases", "May improve brain function and mental health", "May help to lower blood pressure"],
+        "serving_size": "1 softgel",
+        "price": "$14.99"
+      },
+      {
+        "name": "Vitamin D",
+        "description": "A supplement that is important for bone health and immune function.",
+        "benefits": ["Supports bone health", "May help to reduce risk of certain diseases", "May improve immune function"],
+        "serving_size": "1 softgel",
+        "price": "$9.99"
+      }
+    ]
+  }
+  

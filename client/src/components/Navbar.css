@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&family=Varela+Round&display=swap');
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0D1F2D;
+    padding: 20px 80px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.06);
+   
+}
+
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar li{
+   list-style: none;
+   padding: 0px 20px;
+   position: relative; 
+}
+
+.Link{
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: 'Tilt Warp', cursive;
+    font-weight: 250;
+    color: #D5DFE5;
+    transition: 0.3s ease-in-out;
+}
+
+.login{
+    text-decoration: underline;
+}
+
+.Link:hover,
+.Link.active{
+    color: #4c956c;
+}
+.Link:hover::after,
+.Link.active::after{
+content: "";
+width: 30%;
+height: 2px;
+background: #2c6e49;
+bottom: -4px;
+left: 20px;
+
+}

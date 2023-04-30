@@ -1,0 +1,236 @@
+{
+    "gym":[
+        {
+            "name" : "Bicep curls",
+            "muscle": "Arms",
+            "equipment": "Dumbells or EZ bar",
+            "description:": "Slowly curl the weights up towards your shoulders, keeping your elbows close to your body."
+        },
+        {
+            "name" : "Triceps pushdown",
+            "muscle": "Arms",
+            "equipment": "Carble Tower",
+            "description:": "Attach a rope to a cable machine and hold it with both hands, palms facing down. Keeping your elbows close to your body, push the rope down towards your thighs. "
+        },
+        {
+            "name" : "Cable Lateral Raise",
+            "muscle": "Arms",
+            "equipment": "Carble Tower",
+            "description:": "Raise until your arm is parallel with the ground and then back to the starting position."
+        },
+        {
+            "name" : "Close grip bench press",
+            "muscle": "Arms",
+            "equipment": "Barbell",
+            "description:": "Lie flat on a bench and hold a barbell with your hands close together, palms facing up."
+        },
+        {
+            "name" : "Bicep curls on machine",
+            "muscle": "Arms",
+            "equipment": "Carble Tower",
+            "description:": "Slowly curl the weights up towards your shoulders, keeping your elbows close to your body.It is a more controlled variation."
+        },
+        {
+            "name" : "Overhead Press",
+            "muscle": "Arms",
+            "equipment": "Dumberll, Barbell or Cable Machine",
+            "description:": "Use a handle attachment with the cable set to the bottom of the machine. Stand upright making sure to maintain a flat back. Your starting position will have your palms facing forward."
+        },
+        {
+            "name" : "Squats",
+            "muscle": "Legs",
+            "equipment": "Barberll, Schmidt frame",
+            "description:": "Slowly lower your body down into a squat, keeping your back straight and your knees in line with your toes. Push back up to standing, squeezing your glutes and thighs at the top of the movement."
+        },
+        {
+            "name" : "Lunges",
+            "muscle": "Legs",
+            "equipment": "Dumberll",
+            "description:": "Stand with your feet hip-width apart and hold a dumbbell in each hand. Step forward with one foot and lower your body down into a lunge, keeping your back straight and your knee in line with your toes. Push back up to standing and repeat on the other leg."
+        },
+        {
+            "name" : "Leg press",
+            "muscle": "Legs",
+            "equipment": "Leg press machine",
+            "description:": "Sit in a leg press machine with your feet on the platform, hip-width apart. Push the platform away from your body, straightening your legs. Slowly release the platform back down towards your body."
+        },
+        {
+            "name" : "Calf raises",
+            "muscle": "Legs",
+            "equipment": "Barbell or Bodyweight",
+            "description:": "Stand on a raised surface, such as a step, with your heels hanging off the edge. Slowly raise up onto the balls of your feet, squeezing your calves at the top of the movement. Lower back down to the starting position and repeat."
+        },
+        {
+            "name" : "Lat pulldowns",
+            "muscle": "Back",
+            "equipment": "Lat Pulldown Machine",
+            "description:": "Pull the bar down towards your chest, squeezing your shoulder blades together at the bottom of the movement. Slowly release back up to the starting position and repeat."
+        },
+        {
+            "name" : "Bent-over rows",
+            "muscle": "Back",
+            "equipment": "Barbell or Dumbells",
+            "description:": "Hinge at the hips and lower the barbell down towards the ground, keeping your back straight. Pull the barbell up towards your chest, squeezing your shoulder blades together at the top of the movement and repeat."
+        },
+        {
+            "name" : "Seated cable rows",
+            "muscle": "Back",
+            "equipment": "Row Machine",
+            "description:": " Pull the handles towards your chest, squeezing your shoulder blades together at the end of the movement. Slowly release back to the starting position and repeat."
+        },
+        {
+            "name" : "Bench press",
+            "muscle": "Chest",
+            "equipment": "Bench and Barbell or Dumbells",
+            "description:": "Lie flat on a bench and hold a barbell with your hands slightly wider than shoulder-width apart, palms facing up. Lower the barbell down towards your chest, keeping your elbows close to your body. Push the barbell back up to the starting position, squeezing your chest at the top of the movement."
+        },
+        {
+            "name" : "Incline Bench press",
+            "muscle": "Chest",
+            "equipment": "Bench and Barbell or Dumbells",
+            "description:": "Do the same as basic benc press but put the bench slightly incline.This variation is target your upper chest which is good for more toned chests."
+        },
+        {
+            "name" : "Cable or Dumbell flys",
+            "muscle": "Chest",
+            "equipment": "Dumbells or Cable Tower",
+            "description:": "Lie flat on a bench and hold a dumbbell (or stand if you are useing cables) in each hand with your arms extended above your chest. Slowly lower your arms out to the sides, keeping a slight bend in your elbows. Bring the dumbbells back up to the starting position, squeezing your chest at the top of the movement."
+        },
+        {
+            "name" : "Crunches",
+            "muscle": "Abs",
+            "equipment": "Polyfoam",
+            "description:": "Lie flat on your back with your knees bent and feet flat on the floor. Place your hands behind your head and lift your head and shoulders off the ground, engaging your abs. Slowly release back down to the starting position and repeat."
+        },
+        {
+            "name" : "Plank",
+            "muscle": "Abs",
+            "equipment": "Polyfoam",
+            "description:": "Get into a push-up position and lower yourself down onto your forearms. Engage your abs and hold your body in a straight line from head to heels, keeping your core tight. Hold this position for as long as you can."
+        },
+        {
+            "name" : "Russian Twist",
+            "muscle": "Abs",
+            "equipment": "Polyfoam",
+            "description:": "Sit on the floor with your knees bent and feet flat on the ground. Lean back slightly and lift your feet off the ground, balancing on your sit bones. Hold a weight or medicine ball in front of your chest and twist your torso to the right, tapping the weight on the ground next to your hip. Twist to the left and repeat, engaging your abs throughout the movement."
+        }   
+    ],
+    "streetworkout":[
+        {
+            "name" : "Push-ups",
+            "muscle": "Chest",
+            "equipment": "bodyweight",
+            "description:": "This is a classic exercise that targets the chest muscles, as well as the triceps and shoulders. To perform a push-up, start in a plank position with your hands shoulder-width apart, then lower your body until your chest touches almost the ground and push back up to the starting position."
+        },
+        {
+            "name" : "Diamond Push-ups",
+            "muscle": "Chest",
+            "equipment": "bodyweight",
+            "description:": "This exercise targets the inner portion of the chest muscles, as well as the triceps and shoulders. To perform a diamond push-up, place your hands close together in a diamond shape, then perform a push-up as you would normally."
+        },
+        {
+            "name" : "Chin-ups",
+            "muscle": "Arms",
+            "equipment": "bodyweight",
+            "description:": "To perform a chin-up, grip the bar with your palms facing towards you, then pull your body up until your chin is above the bar, then lower back down to the starting position"
+        },
+        {
+            "name":"Dips",
+            "muscle":"Arms",
+            "equipment":"bodyweight,becnh or a chair",
+            "description:":"This exercise targets the triceps muscles. To perform a dip, grip two parallel bars and lower your body until your arms are at a 90-degree angle, then push back up to the starting position." 
+        },
+        {
+            "name":"Pull-ups",
+            "muscle":"Back",
+            "equipment":"bodyweight",
+            "description:":"This exercise primarily targets the biceps and back muscles. To perform a pull-up, grip the bar with your palms facing away from you, then pull your body up until your chin is above the bar, then lower back down to the starting position." 
+        },
+        {
+            "name":"Handstand push-ups: ",
+            "muscle":"Arms",
+            "equipment":"bodyweight",
+            "description:":"This advanced exercise targets the shoulders and triceps muscles. Start in a handstand position with your hands shoulder-width apart, then lower your head to the ground and push back up to the starting position." 
+        },
+        {
+            "name" : "Squats",
+            "muscle": "Legs",
+            "equipment": "Bodyweight",
+            "description:": "This exercise targets the quadriceps, hamstrings, and glutes. To perform a squat, stand with your feet shoulder-width apart, then lower your body until your thighs are parallel to the ground, then push back up to the starting position."
+        },
+        {
+            "name" : "Lunges",
+            "muscle": "Legs",
+            "equipment": "Bodyweight",
+            "description:": "This exercise targets the quadriceps, hamstrings, and glutes. To perform a lunge, step forward with one foot and lower your body until your front thigh is parallel to the ground, then push back up to the starting position and repeat on the other leg."
+        },
+        {
+            "name" : "Leg raises",
+            "muscle": "Abs",
+            "equipment": "Bodyweight",
+            "description:": "This exercise targets the lower abs. To perform leg raises, lie on your back with your legs extended, then lift your legs up towards the ceiling while keeping them straight, then lower them back down to the ground."
+        },
+        {
+            "name" : "Flutter kicks",
+            "muscle": "Abs",
+            "equipment": "Polyfoam",
+            "description:": "This exercise targets the rectus abdominis and hip flexor muscles. To perform flutter kicks, lie on your back with your legs extended, then lift your legs a few inches off the ground and rapidly alternate kicking up and down.            "
+        },
+        {
+            "name" : "L-sit hold",
+            "muscle": "Abs",
+            "equipment": "Bodyweight",
+            "description:": "This advanced exercise targets the core muscles. To perform an L-sit hold, sit on the ground with your legs extended in front of you, then lift your entire body off the ground using your hands and hold your legs straight out in front of you, forming an L-shape with your body."
+        }
+    ],
+    "home":[
+        {
+            "name" : "Push-ups",
+            "muscle": "Chest/Triceps",
+            "equipment": "Bodyweight",
+            "description:": "This exercise targets the chest, shoulders, and triceps. To perform a push-up, start in a plank position with your hands shoulder-width apart, then lower your body down by bending your elbows and keeping your core engaged, until your chest nearly touches the ground, then push back up to the starting position." 
+        },
+        {
+            "name" : "Squats",
+            "muscle": "Legs",
+            "equipment": "Bodyweight",
+            "description:": "This exercise targets the legs and glutes. To perform a squat, stand with your feet shoulder-width apart, then lower your body down by bending your knees and pushing your hips back, while keeping your chest up and your back straight. Return to the starting position by pushing through your heels." 
+        },
+        {
+            "name" : "Lunges",
+            "muscle": "Legs",
+            "equipment": "Bodyweight",
+            "description:": "This exercise targets the legs and glutes. To perform a lunge, step forward with one leg, lowering your body down until both knees form a 90-degree angle, then push back up to the starting position and repeat with the other leg." 
+        },
+        {
+            "name" : "Plank",
+            "muscle": "Abs",
+            "equipment": "Bodyweight",
+            "description:": "This exercise targets the core muscles. To perform a plank, start in a push-up position but instead of lowering yourself down, hold yourself up on your elbows and toes with a straight back, while engaging your core muscles. Hold for a set amount of time or until failure." 
+        },
+        {
+            "name":"Bicycle Cruches",
+            "muscle":"Abs",
+            "equipment":"Polyfoam",
+            "description:":"This exercise targets the rectus abdominis and oblique muscles. To perform a bicycle crunch, lie on your back with your hands behind your head, then lift your shoulders off the ground and bring one knee towards your chest, while simultaneously twisting your torso to touch your elbow to the opposite knee. Repeat with the other leg."
+        },
+        {
+            "name":"Burpees",
+            "muscle":"Abs",
+            "equipment":"Bodyweight",
+            "description:":"This exercise targets multiple muscle groups and is a great way to get your heart rate up. To perform a burpee, start in a standing position, then drop down into a plank position, perform a push-up, jump your feet back up towards your hands, then jump up explosively into the air."
+        },
+        {
+            "name":"Dips",
+            "muscle":"Arms",
+            "equipment":"bodyweight,becnh or a chair",
+            "description:":"This exercise targets the triceps muscles. To perform a dip, grip two parallel bars and lower your body until your arms are at a 90-degree angle, then push back up to the starting position." 
+        },
+        {
+            "name":"Pull-ups",
+            "muscle":"Back",
+            "equipment":"bodyweight",
+            "description:":"This exercise primarily targets the biceps and back muscles. To perform a pull-up, grip the bar with your palms facing away from you, then pull your body up until your chin is above the bar, then lower back down to the starting position." 
+        }
+    ]
+}
